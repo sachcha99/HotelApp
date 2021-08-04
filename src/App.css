@@ -37,6 +37,195 @@
   }
 } */
 
+.conf-card{
+  display: flex;
+  justify-content: space-between;
+}
+
+.conf-date{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.conf-date1{
+  margin-left: 10px;
+  font-size: 15px !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.conf-btn{
+  font-size: 15px !important;
+  margin-left: 10px;
+  transition: 0.6s;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.text-muted{
+  text-align: center;
+}
+
+.conf-org{
+  text-align: left;
+  margin-left: 10px;
+  font-size: 15px !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+
+.conf-organ{
+  margin-bottom: 20px;
+  margin-left: 10px;
+  font-size: 15px !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.conf-uid{
+  text-align: left;
+}
+
+.conf-btn1{
+  background: #0cce26 !important;
+  color: white !important;
+  border-color: #4aff62 !important;
+  transition: 0.5s !important;
+}
+
+.conf-btn1:hover{
+  background: #056912 !important;
+ 
+}
+
+.conf-btn2{
+  background: #f03c5a !important;
+  color: white !important;
+  border-color: #f03c5a !important;
+  margin-left: auto !important;
+  transition: 0.5s !important;
+}
+.conf-btn2:hover{
+  background: #a5031e !important;
+ 
+}
+
+.conf-btn3{
+  background: none !important;
+  color: #2057bd !important;
+  border-color: white !important;
+  /* margin-right: auto !important;
+  justify-self: flex-start !important; */
+  border:1px solid transparent;
+ 
+  transition: 0.5s !important;
+}
+
+
+.conf-btn3:hover{
+  background: rgba(0, 0, 0, 0.164) !important;
+  color: #032970 !important;
+  border-radius: 25px;
+ 
+}
+
+.conf-btn4{
+
+  background: none !important;
+  color: #ff000096 !important;
+  border-color: white !important;
+  /* margin-right: auto !important;
+  justify-self: flex-start !important; */
+  border:1px solid transparent;
+ 
+  transition: 0.5s !important;
+}
+.conf-btn4:hover{
+  background: rgba(0, 0, 0, 0.164) !important;
+  color: #ff0000c7 !important;
+  border-radius: 25px;
+ 
+}
+#btn-3-conf{
+  margin-right: auto !important;
+}
+.CardOutline{
+  display: flex;
+}
+.text-center{
+  margin-bottom: 100px;
+  font-family: 'Poppins', sans-serif !important;
+  width: 90%;
+
+}
+.cardBack{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#filterToggle{
+  display: flex;
+}
+#filterDrop{
+  justify-content: flex-end;
+  color: #f1fdf1 !important;
+  margin-left: auto !important;
+  font-size: 15px !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+#drop-item{
+  font-size: 15px !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+.statusParent{
+  display: flex;
+}
+.statusChild{
+  font-size: 13px;
+  font-family: 'Poppins', sans-serif !important;
+  text-transform: uppercase;
+  margin-left: auto !important;
+  padding-right: 5px;
+  /* border-right: 15px solid #007d8d; */
+}
+
+.card-title-h3{
+  font-size: 23px;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.venue{
+  font-size: 18px !important;
+}
+.desc-card{
+  font-size: 18px !important;
+}
+.wr-table{
+  width: 95%;
+  margin: 10px auto 100px;
+}
+.wr-table-header{
+  background: rgb(148, 148, 148);
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+.wr-dashboard-header{
+  text-align: left;
+}
+.wr-submit{
+  text-align: right;
+}
+.cardBody{
+  display: flex;
+}
+.hallImg{
+  width: 500px;
+}
+.cardDesc{
+  margin-left: auto;
+  width: 100% !important;
+}
 /* -------------------------------------------------- ReceptionHall ----------------------------------------------------------------------------- */
 .repImage1{ 
   height: 500px!important ;
