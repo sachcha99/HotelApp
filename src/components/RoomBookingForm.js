@@ -2,31 +2,36 @@ import React, { useState } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import GroupIcon from '@material-ui/icons/Group';
 import DescriptionIcon from '@material-ui/icons/Description';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
-import AssistantIcon from '@material-ui/icons/Assistant';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FastfoodIcon from '@material-ui/icons/Fastfood';
-import FormLabel from '@material-ui/core/FormLabel';
 import ChildCareIcon from '@material-ui/icons/ChildCare';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import HouseIcon from '@material-ui/icons/House';
 import LocalActivityIcon from '@material-ui/icons/LocalActivity';
 import Switch from '@material-ui/core/Switch';
+import API from "./api";
+import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    },
     margin: {
         margin: theme.spacing(1),
     },
@@ -83,22 +88,82 @@ export const RoomBookingForm = () => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [Rooms, setRooms] = useState();
-    const [Category, setCategory] = useState();
-    const [Menu, setMenu] = useState();
-    const [state, setState] = React.useState({
-        checkedA: true,
-        checkedB: true,
-      });
+    const [adultNo, setAdultNo] = useState();
+    const [childNo, setChildNo] = useState();
+    const [checkIn, setCheckIn] = useState();
+    const [checkOut, setCheckOut] = useState();
+    const [remarks, setRemarks] = useState();
+    const [switchState, setSwitchState] = useState({ switch: false });
+    const [open, setOpen] = React.useState(false);
 
-      const handleSwitch = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
-      };
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleCloseSnack = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+    const handleSwitch = (event) => {
+        setSwitchState({ ...switchState, [event.target.name]: event.target.checked });
+    };
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        const room = {
+            name: "John",
+            email: "john@gmail.com",
+            phone: "+94775556667",
+            roomName: "Room 01",
+            status: "pending",
+            adultNo: adultNo,
+            childNo: childNo,
+            roomNo: Rooms,
+            checkIn: checkIn,
+            checkOut: checkOut,
+            remarks: remarks,
+            loyalty: switchState.switch
+
+        }
+
+        //send post request to add a new room reservation to the db
+        API.post('/room/create', room)
+            .then(function (response) {
+                console.log(response.data);
+                if (response.data.message) {
+                    alert.info(response.data.message);
+                }
+                handleClick()
+                setShow(false)
+            })
+            .catch(function (error) {
+                console.log(error);
+                setShow(false)
+            });
+
+        setRooms()
+        setAdultNo();
+        setChildNo();
+        setCheckIn();
+        setCheckOut();
+        setRemarks();
+        setSwitchState({ ...switchState, switch: false });
+
+    }
     return (
         <div>
+            <Snackbar open={open} autoHideDuration={3000} onClose={handleCloseSnack}>
+                <Alert onClose={handleCloseSnack} severity="success">
+                    Room Reservation Successful
+                </Alert>
+            </Snackbar>
             <Button variant="primary" onClick={handleShow}>
                 Reserve a Room
             </Button>
@@ -114,161 +179,170 @@ export const RoomBookingForm = () => {
                 <Modal.Header closeButton>
                     <Modal.Title>Reserve a room</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                  
-                    <div>
+                <form onSubmit={handleSubmit}>
+                    <Modal.Body>
 
-                        <label className={classes.textFieldLabel3}>Capacity</label><br></br>
-                        <Grid container spacing={1}>
-                            
-                            <Grid item>
-                            
-                                           
-                            <div className={classes.margin}>
-                            <Grid container spacing={1} alignItems="flex-end">
+
+                        <div>
+
+                            <label className={classes.textFieldLabel3}>Capacity</label><br></br>
+                            <Grid container spacing={1}>
+
                                 <Grid item>
-                                    <EmojiPeopleIcon fontSize="large" />
+
+
+                                    <div className={classes.margin}>
+                                        <Grid container spacing={1} alignItems="flex-end">
+                                            <Grid item>
+                                                <EmojiPeopleIcon fontSize="large" />
+                                            </Grid>
+                                            <Grid item>
+                                                <TextField required onChange={(e) => { setAdultNo(e.target.value) }} value={adultNo} id="input-with-icon-grid" label="Adult" type="number"
+                                                    className={classes.textField2} inputProps={{ min: 0 }} />
+                                            </Grid>
+                                        </Grid>
+                                    </div>
                                 </Grid>
                                 <Grid item>
-                                    <TextField  id="input-with-icon-grid" label="Adult" type="number"
-                                        className={classes.textField2} inputProps={{ min: 0}} />
+
+                                    <div className={classes.margin}>
+                                        <Grid container spacing={1} alignItems="flex-end">
+                                            <Grid item>
+                                                <ChildCareIcon fontSize="large" />
+                                            </Grid>
+                                            <Grid item>
+                                                <TextField required onChange={(e) => { setChildNo(e.target.value) }} value={childNo} id="input-with-icon-grid" label="Child" type="number"
+                                                    className={classes.textField2} inputProps={{ min: 0 }} />
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                </Grid>
+                            </Grid>
+
+
+                            <div className={classes.margin}>
+
+                                <Grid container spacing={1} alignItems="flex-end">
+                                    <Grid item>
+                                        <HouseIcon fontSize="large" />
+                                    </Grid>
+                                    <Grid item>
+                                        <FormControl className={classes.formControl}>
+                                            <InputLabel className={classes.textField} id="demo-simple-select-label">No Of Rooms</InputLabel>
+                                            <Select required
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                className={classes.textField}
+                                                value={Rooms}
+                                                onChange={(e) => setRooms(e.target.value)}
+                                            >
+                                                <MenuItem value={1}>1</MenuItem>
+                                                <MenuItem value={2}>2</MenuItem>
+                                                <MenuItem value={3}>3</MenuItem>
+                                                <MenuItem value={4}>4</MenuItem>
+                                                <MenuItem value={5}>5</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                                </Grid>
+                            </div>
+
+                            <Grid container spacing={1}>
+                                <Grid item>
+                                    <div className={classes.margin}>
+
+                                        <Grid container spacing={1} alignItems="flex-end">
+                                            <Grid item>
+                                                <ScheduleIcon fontSize="large" />
+                                            </Grid>
+                                            <Grid item>
+                                                <label className={classes.textFieldLabel1}>Check-In Date</label><br></br>
+                                                <TextField
+                                                    required
+                                                    onChange={(e) => { setCheckIn(e.target.value) }}
+                                                    value={checkIn}
+                                                    variant="filled"
+                                                    size="small"
+                                                    id="datetime-local"
+                                                    type="datetime-local"
+                                                    className={classes.textField1}
+                                                    InputLabelProps={{
+                                                        shrink: true,
+                                                    }}
+                                                />
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                </Grid>
+                                <Grid item>
+                                    <div className={classes.margin}>
+
+                                        <Grid container spacing={1} alignItems="flex-end">
+                                            <Grid item>
+                                                <ScheduleIcon fontSize="large" />
+                                            </Grid>
+                                            <Grid item>
+                                                <label className={classes.textFieldLabel1}>Check-Out Date</label><br></br>
+                                                <TextField
+                                                    required
+                                                    onChange={(e) => { setCheckOut(e.target.value) }}
+                                                    value={checkOut}
+                                                    variant="filled"
+                                                    size="small"
+                                                    id="datetime-local"
+                                                    type="datetime-local"
+                                                    className={classes.textField1}
+                                                    InputLabelProps={{
+                                                        shrink: true,
+                                                    }}
+                                                />
+                                            </Grid>
+                                        </Grid>
+                                    </div>
                                 </Grid>
                             </Grid>
                         </div>
-                            </Grid>
-                            <Grid item>
-                                           
-                            <div className={classes.margin}>
-                            <Grid container spacing={1} alignItems="flex-end">
-                                <Grid item>
-                                    <ChildCareIcon fontSize="large" />
-                                </Grid>
-                                <Grid item>
-                                    <TextField  id="input-with-icon-grid" label="Child" type="number"
-                                        className={classes.textField2} inputProps={{ min: 0 }} />
-                                </Grid>
-                            </Grid>
-                        </div>
-                            </Grid>
-                        </Grid>
-
 
                         <div className={classes.margin}>
-
                             <Grid container spacing={1} alignItems="flex-end">
                                 <Grid item>
-                                    <HouseIcon fontSize="large" />
+                                    <DescriptionIcon fontSize="large" />
                                 </Grid>
                                 <Grid item>
-                                    <FormControl className={classes.formControl}>
-                                        <InputLabel className={classes.textField} id="demo-simple-select-label">No Of Rooms</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            className={classes.textField}
-                                            value={Rooms}
-                                            onChange={(e) => setRooms(e.target.value)}
-                                        >
-                                            <MenuItem value={1}>1</MenuItem>
-                                            <MenuItem value={2}>2</MenuItem>
-                                            <MenuItem value={3}>3</MenuItem>
-                                            <MenuItem value={4}>4</MenuItem>
-                                            <MenuItem value={5}>5</MenuItem>
-                                        </Select>
-                                    </FormControl>
+                                    <TextField id="input-with-icon-grid" label="Remarks" onChange={(e) => { setRemarks(e.target.value) }} value={remarks}
+                                        className={classes.textField} multiline />
                                 </Grid>
                             </Grid>
                         </div>
-                       
-                        <Grid container spacing={1}>
-                            <Grid item>
-                                <div className={classes.margin}>
 
-                                    <Grid container spacing={1} alignItems="flex-end">
-                                        <Grid item>
-                                            <ScheduleIcon fontSize="large" />
-                                        </Grid>
-                                        <Grid item>
-                                            <label className={classes.textFieldLabel1}>Check-In Date</label><br></br>
-                                            <TextField
-                                                variant="filled"
-                                                size="small"
-                                                id="datetime-local"
-                                                type="datetime-local"
-                                                defaultValue="2020-05-24T10:30"
-                                                className={classes.textField1}
-                                                InputLabelProps={{
-                                                    shrink: true,
-                                                }}
-                                            />
-                                        </Grid>
-                                    </Grid>
-                                </div>
+                        <div className={classes.margin}>
+                            <Grid container spacing={1} alignItems="flex-start">
+                                <Grid item>
+                                    <LocalActivityIcon fontSize="large" />
+                                </Grid>
+                                <Grid item>
+                                    <label className={classes.textFieldLabel4}>Loyality Member</label>
+                                    <Switch
+                                        onChange={handleSwitch}
+                                        color="primary"
+                                        name="switch"
+                                        value={switchState}
+                                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                                        className={classes.switch}
+                                    />
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <div className={classes.margin}>
+                        </div>
 
-                                    <Grid container spacing={1} alignItems="flex-end">
-                                        <Grid item>
-                                            <ScheduleIcon fontSize="large" />
-                                        </Grid>
-                                        <Grid item>
-                                            <label className={classes.textFieldLabel1}>Check-Out Date</label><br></br>
-                                            <TextField
-                                                variant="filled"
-                                                size="small"
-                                                id="datetime-local"
-                                                type="datetime-local"
-                                                defaultValue="2020-05-24T10:30"
-                                                className={classes.textField1}
-                                                InputLabelProps={{
-                                                    shrink: true,
-                                                }}
-                                            />
-                                        </Grid>
-                                    </Grid>
-                                </div>
-                            </Grid>
-                        </Grid>
-                    </div>
 
-                    <div className={classes.margin}>
-                        <Grid container spacing={1} alignItems="flex-end">
-                            <Grid item>
-                                <DescriptionIcon fontSize="large" />
-                            </Grid>
-                            <Grid item>
-                                <TextField id="input-with-icon-grid" label="Remarks"
-                                    className={classes.textField} multiline />
-                            </Grid>
-                        </Grid>
-                    </div>
-                   
-                    <div className={classes.margin}>
-                        <Grid container spacing={1} alignItems="flex-start">
-                            <Grid item>
-                                <LocalActivityIcon fontSize="large" />
-                            </Grid>
-                            <Grid item>
-                            <label className={classes.textFieldLabel4}>Loyality Member</label>
-                            <Switch
-        checked={state.checkedB}
-        onChange={handleSwitch}
-        color="primary"
-        name="checkedB"
-        inputProps={{ 'aria-label': 'primary checkbox' }}
-        className={classes.switch}
-      />
-                            </Grid>
-                        </Grid>
-                    </div>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary">Reserve</Button>
-                </Modal.Footer>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button type="submit" variant="primary">Reserve</Button>
+                    </Modal.Footer>
+                </form>
             </Modal>
         </div>
     )

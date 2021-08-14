@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -20,8 +18,23 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import FormLabel from '@material-ui/core/FormLabel';
+import API from "./api";
+import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(2),
+        },
+    },
     margin: {
         margin: theme.spacing(1),
     },
@@ -61,14 +74,76 @@ export const ReceptionHallBookingForm = () => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [Ent, setEnt] = useState();
     const [Category, setCategory] = useState();
     const [Menu, setMenu] = useState();
+    const [capacity, setCapacity] = useState();
+    const [remarks, setRemarks] = useState();
+    const [date, setDate] = useState();
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleCloseSnack = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        const reception = {
+            name: "John",
+            email: "john@gmail.com",
+            phone: "+94775556667",
+            receptionName: "Room 01",
+            status: "pending",
+            capacity: capacity,
+            entType: Ent,
+            category: Category,
+            funcDate: date,
+            menu: Menu,
+            remarks: remarks
+        }
+
+        //send post request to add a new reception hall reservation to the db
+        API.post('/reception/create', reception)
+            .then(function (response) {
+                console.log(response.data);
+                if (response.data.message) {
+                    alert.info(response.data.message);
+                }
+                handleClick()
+                setShow(false)
+            })
+            .catch(function (error) {
+                console.log(error);
+                setShow(false)
+            });
+        setCapacity()
+        setEnt();
+        setCategory();
+        setDate();
+        setMenu();
+        setRemarks();
+
+
+    }
+
     return (
         <div>
+            <Snackbar open={open} autoHideDuration={3000} onClose={handleCloseSnack}>
+                <Alert onClose={handleCloseSnack} severity="success">
+                    Reception Hall Reservation Successful
+                </Alert>
+            </Snackbar>
             <Button variant="primary" onClick={handleShow}>
                 Book Now
             </Button>
@@ -84,137 +159,144 @@ export const ReceptionHallBookingForm = () => {
                 <Modal.Header closeButton>
                     <Modal.Title>Check Availability of the Reception Hall</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                  
-                    <div>
+                <form onSubmit={handleSubmit}>
+                    <Modal.Body>
+
+                        <div>
+
+                            <div className={classes.margin}>
+                                <Grid container spacing={1} alignItems="flex-end">
+                                    <Grid item>
+                                        <GroupIcon fontSize="large" />
+                                    </Grid>
+                                    <Grid item>
+                                        <TextField required onChange={(e) => { setCapacity(e.target.value) }} value={capacity} id="input-with-icon-grid" label="Capacity" type="number"
+                                            className={classes.textField} inputProps={{ min: 0 }} />
+                                    </Grid>
+                                </Grid>
+                            </div>
+
+
+                            <div className={classes.margin}>
+
+                                <Grid container spacing={1} alignItems="flex-end">
+                                    <Grid item>
+                                        <LibraryMusicIcon fontSize="large" />
+                                    </Grid>
+                                    <Grid item>
+                                        <FormControl className={classes.formControl}>
+                                            <InputLabel className={classes.textField} id="demo-simple-select-label">Entertainment Type</InputLabel>
+                                            <Select
+                                                required
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                className={classes.textField}
+                                                value={Ent}
+                                                onChange={(e) => setEnt(e.target.value)}
+                                            >
+                                                <MenuItem value="Music">Music Band</MenuItem>
+                                                <MenuItem value="DJ">DJ</MenuItem>
+                                                <MenuItem value="Calypso">Calypso</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                                </Grid>
+                            </div>
+                            <div className={classes.margin}>
+
+                                <Grid container spacing={1} alignItems="flex-end">
+                                    <Grid item>
+                                        <AssistantIcon fontSize="large" />
+                                    </Grid>
+                                    <Grid item>
+                                        <FormControl className={classes.formControl}>
+                                            <InputLabel className={classes.textField} id="demo-simple-select-label">Category</InputLabel>
+                                            <Select
+                                                required
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                className={classes.textField}
+                                                value={Category}
+                                                onChange={(e) => setCategory(e.target.value)}
+                                            >
+                                                <MenuItem value="Wedding">Wedding</MenuItem>
+                                                <MenuItem value="Party">Party</MenuItem>
+                                                <MenuItem value="Other">Other Occasions</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Grid>
+                                </Grid>
+                            </div>
+                            <Grid container spacing={1}>
+                                <Grid item><div className={classes.margin}>
+
+                                    <Grid container spacing={1} alignItems="flex-end">
+                                        <Grid item>
+                                            <ScheduleIcon fontSize="large" />
+                                        </Grid>
+                                        <Grid item>
+                                            <label className={classes.textFieldLabel1}>Date of the function</label><br></br>
+                                            <TextField
+                                                required
+                                                variant="filled"
+                                                size="small"
+                                                id="datetime-local"
+                                                type="datetime-local"
+                                                onChange={(e) => { setDate(e.target.value) }}
+                                                value={date}
+                                                className={classes.textField1}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                            />
+                                        </Grid>
+                                    </Grid>
+                                </div>
+                                </Grid>
+                                <Grid item>
+                                    <div className={classes.margin2}>
+
+                                        <Grid container spacing={1} alignItems="flex-start">
+                                            <Grid item>
+                                                <FastfoodIcon fontSize="large" />
+                                            </Grid>
+                                            <Grid item>
+                                                <FormControl component="fieldset">
+                                                    <FormLabel className={classes.textFieldLabel2} component="legend">Menu Selection</FormLabel>
+                                                    <RadioGroup className={classes.textField2} aria-label="menu" name="menu" value={Menu} onChange={(e) => setMenu(e.target.value)}>
+                                                        <FormControlLabel value="MenuA" control={<Radio required={true} color="primary" />} label="Menu A" />
+                                                        <FormControlLabel value="MenuB" control={<Radio required={true} color="primary" />} label="Menu B" />
+                                                        <FormControlLabel value="MenuC" control={<Radio required={true} color="primary" />} label="Menu C" />
+                                                    </RadioGroup>
+                                                </FormControl>
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                </Grid>
+                            </Grid>
+                        </div>
 
                         <div className={classes.margin}>
                             <Grid container spacing={1} alignItems="flex-end">
                                 <Grid item>
-                                    <GroupIcon fontSize="large" />
+                                    <DescriptionIcon fontSize="large" />
                                 </Grid>
                                 <Grid item>
-                                    <TextField id="input-with-icon-grid" label="Capacity" type="number"
-                                        className={classes.textField} inputProps={{ min: 0 }} />
+                                    <TextField id="input-with-icon-grid" onChange={(e) => setRemarks(e.target.value)} value={remarks} label="Remarks"
+                                        className={classes.textField} multiline />
                                 </Grid>
                             </Grid>
                         </div>
 
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button type="submit" variant="primary">Make an Enquiry</Button>
 
-                        <div className={classes.margin}>
-
-                            <Grid container spacing={1} alignItems="flex-end">
-                                <Grid item>
-                                    <LibraryMusicIcon fontSize="large" />
-                                </Grid>
-                                <Grid item>
-                                    <FormControl className={classes.formControl}>
-                                        <InputLabel className={classes.textField} id="demo-simple-select-label">Entertainment Type</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            className={classes.textField}
-                                            value={Ent}
-                                            onChange={(e) => setEnt(e.target.value)}
-                                        >
-                                            <MenuItem value="Music">Music Band</MenuItem>
-                                            <MenuItem value="DJ">DJ</MenuItem>
-                                            <MenuItem value="Calypso">Calypso</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </Grid>
-                            </Grid>
-                        </div>
-                        <div className={classes.margin}>
-
-                            <Grid container spacing={1} alignItems="flex-end">
-                                <Grid item>
-                                    <AssistantIcon fontSize="large" />
-                                </Grid>
-                                <Grid item>
-                                    <FormControl className={classes.formControl}>
-                                        <InputLabel className={classes.textField} id="demo-simple-select-label">Category</InputLabel>
-                                        <Select
-                                            labelId="demo-simple-select-label"
-                                            id="demo-simple-select"
-                                            className={classes.textField}
-                                            value={Category}
-                                            onChange={(e) => setCategory(e.target.value)}
-                                        >
-                                            <MenuItem value="Wedding">Wedding</MenuItem>
-                                            <MenuItem value="Party">Party</MenuItem>
-                                            <MenuItem value="Other">Other Occasions</MenuItem>
-                                        </Select>
-                                    </FormControl>
-                                </Grid>
-                            </Grid>
-                        </div>
-                        <Grid container spacing={1}>
-                        <Grid item><div className={classes.margin}>
-
-                            <Grid container spacing={1} alignItems="flex-end">
-                                <Grid item>
-                                    <ScheduleIcon fontSize="large" />
-                                </Grid>
-                                <Grid item>
-                                    <label className={classes.textFieldLabel1}>Date of the function</label><br></br>
-                                    <TextField
-                                        variant="filled"
-                                        size="small"
-                                        id="datetime-local"
-                                        type="datetime-local"
-                                        defaultValue="2020-05-24T10:30"
-                                        className={classes.textField1}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                    />
-                                </Grid>
-                            </Grid>
-                        </div>
-                        </Grid>
-                        <Grid item>
-                        <div className={classes.margin2}>
-
-                            <Grid container spacing={1} alignItems="flex-start">
-                                <Grid item>
-                                    <FastfoodIcon fontSize="large" />
-                                </Grid>
-                                <Grid item>
-                                    <FormControl component="fieldset">
-                                        <FormLabel className={classes.textFieldLabel2} component="legend">Menu Selection</FormLabel>
-                                        <RadioGroup className={classes.textField2} aria-label="gender" name="gender1" value={Menu} onChange={(e) => setMenu(e.target.value)}>
-                                            <FormControlLabel value="MenuA" control={<Radio />} label="Menu A" />
-                                            <FormControlLabel value="MenuB" control={<Radio />} label="Menu B" />
-                                            <FormControlLabel value="MenuC" control={<Radio />} label="Menu C" />
-                                        </RadioGroup>
-                                    </FormControl>
-                                </Grid>
-                            </Grid>
-                        </div>
-                        </Grid>
-                        </Grid>
-                    </div>
-
-                    <div className={classes.margin}>
-                        <Grid container spacing={1} alignItems="flex-end">
-                            <Grid item>
-                                <DescriptionIcon fontSize="large" />
-                            </Grid>
-                            <Grid item>
-                                <TextField id="input-with-icon-grid" label="Remarks"
-                                    className={classes.textField} multiline />
-                            </Grid>
-                        </Grid>
-                    </div>
-                    
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary">Make an Enquiry</Button>
-                </Modal.Footer>
+                    </Modal.Footer>
+                </form>
             </Modal>
         </div>
     )
