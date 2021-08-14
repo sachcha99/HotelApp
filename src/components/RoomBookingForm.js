@@ -164,9 +164,8 @@ export const RoomBookingForm = () => {
                     Room Reservation Successful
                 </Alert>
             </Snackbar>
-            <Button variant="primary" onClick={handleShow}>
-                Reserve a Room
-            </Button>
+         
+            <Button variant="primary" className="roomBtn1" onClick={handleShow} >Check Availability</Button>
 
             <Modal
                 show={show}

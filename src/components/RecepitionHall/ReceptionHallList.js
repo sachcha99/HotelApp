@@ -10,12 +10,15 @@ import SquareFootRoundedIcon from '@material-ui/icons/SquareFootRounded';
 import ChevronRightOutlinedIcon from '@material-ui/icons/ChevronRightOutlined';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import RoomRoundedIcon from '@material-ui/icons/RoomRounded';
-
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 import React from "react";
+import { ReceptionHallBookingForm } from "../ReceptionHallBookingForm";
 
 export const RecepitonHallList = () => {
   return (
     <div>
+      <Header/>
         <div className="repCard">
             
       <Card  style={{ width: "70%",margin: "20px" }}>
@@ -99,9 +102,8 @@ export const RecepitonHallList = () => {
       </List>
       </div>
       </div>
-          <div className="repBtn" >
-          <Button variant="primary" className="repBtn1" >Make an Enquiry</Button>
-          </div>
+        
+          <ReceptionHallBookingForm/>
           
         </Card.Body>
       </Card>

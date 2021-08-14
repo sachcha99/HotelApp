@@ -144,9 +144,10 @@ export const ReceptionHallBookingForm = () => {
                     Reception Hall Reservation Successful
                 </Alert>
             </Snackbar>
-            <Button variant="primary" onClick={handleShow}>
-                Book Now
-            </Button>
+        
+            <div className="repBtn" >
+          <Button variant="primary" className="repBtn1" onClick={handleShow}  >Make an Enquiry</Button>
+          </div>
 
             <Modal
                 show={show}
