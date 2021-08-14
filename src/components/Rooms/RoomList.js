@@ -10,8 +10,10 @@ import SquareFootRoundedIcon from '@material-ui/icons/SquareFootRounded';
 import SupervisorAccountRoundedIcon from '@material-ui/icons/SupervisorAccountRounded';
 import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
 import { RoomDetails } from "./RoomDetails";
-
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 import React, {useState, useEffect} from 'react';
+import { RoomBookingForm } from "../RoomBookingForm";
 
 
 
@@ -25,6 +27,7 @@ const ReadMoreBtn =()=>{
 }
   return (
     <div>
+      <Header/>
         <div className="roomCard">
             
       <Card  style={{ width: "80%",margin: "20px" }}>
@@ -78,7 +81,7 @@ const ReadMoreBtn =()=>{
 
           <div className="roomBtn" >
           <Button variant="primary" className="roomBtn2" onClick={ReadMoreBtn} >Read more</Button>
-          <Button variant="primary" className="roomBtn1" >Check Availability</Button>
+          <RoomBookingForm/>
           </div>
           
         </Card.Body>

@@ -58,33 +58,33 @@ export const RoomDetails = () => {
             <List component="nav" aria-label="main mailbox folders">
             
           <ListItemIcon>
-            Premium wood ceiling
+            Pillow menu
           </ListItemIcon>
         
         <br/>
 
         <ListItemIcon>
-            nobstructed view from any angle
+        Suit, skirt & padded hangers
           </ListItemIcon>
         
         <br/>
         <ListItemIcon>
-            Theatre style and table set-up arrangements
+        Bath menu & bath salts
           </ListItemIcon>
         
         <br/>
         <ListItemIcon>
-         Cushion chairs with choice of covers and bows
+        Infant cribs for infants aged 0-2 years available on
           </ListItemIcon>
         
         <br/>
         <ListItemIcon>
-            Choice of theme light colours
+        request on complimentary basis
           </ListItemIcon>
         
         <br/>
         <ListItemIcon>
-            Fully Air-conditioned
+        Rollaway or Extra Beds are available on additional
           </ListItemIcon>
         
         <br/>
