@@ -2,8 +2,8 @@ import React from 'react'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {createBrowserHistory} from "history";
 import { Home } from './Home'
-import {RoomBookingHistory} from './RoomBookingHistory'
-import { ReceptionHallBookingHistory } from './ReceptionHallBookingHistory';
+import {RoomBookingHistory} from './Rooms/RoomBookingHistory'
+import { ReceptionHallBookingHistory } from './RecepitionHall/ReceptionHallBookingHistory';
 import {RecepitonHallList} from './RecepitionHall/ReceptionHallList'
 import {RoomList} from "./Rooms/RoomList"
 

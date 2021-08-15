@@ -1,6 +1,6 @@
 import React from 'react'
-import {ReceptionHallBookingForm} from './ReceptionHallBookingForm'
-import { RoomBookingForm } from './RoomBookingForm'
+import {ReceptionHallBookingForm} from '../components/RecepitionHall/ReceptionHallBookingForm'
+import { RoomBookingForm } from '../components/Rooms/RoomBookingForm'
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 

@@ -18,7 +18,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import FormLabel from '@material-ui/core/FormLabel';
-import API from "./api";
+import API from "../api";
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 
