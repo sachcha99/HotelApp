@@ -6,6 +6,8 @@ import {RoomBookingHistory} from './Rooms/RoomBookingHistory'
 import { ReceptionHallBookingHistory } from './RecepitionHall/ReceptionHallBookingHistory';
 import {RecepitonHallList} from './RecepitionHall/ReceptionHallList'
 import {RoomList} from "./Rooms/RoomList"
+import {AdminNav} from "./Admin/AdminNav"
+
 
 const hist = createBrowserHistory();
 
@@ -16,6 +18,7 @@ const routes = () => (
         <Route exact path="/ReceptionHistory" component={ReceptionHallBookingHistory}/>
         <Route exact path="/Receptions" component={RecepitonHallList}/>
         <Route exact path="/Rooms" component={RoomList}/>
+        <Route exact path="/AdminNav" component={AdminNav}/>
     </Router>
 )
 export default routes;
