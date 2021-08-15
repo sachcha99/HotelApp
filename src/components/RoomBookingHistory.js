@@ -9,6 +9,8 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import Room01 from './Images/room01.jpg'
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
+import Title from "./header/Title";
+import image from './Images/roomreseve.jpg'
 
 export const RoomBookingHistory = () => {
     const [status, setStatus] = useState("all");
@@ -73,7 +75,8 @@ export const RoomBookingHistory = () => {
     return (
         <div>
 <Header/>
-       
+<Title className="PicTitileRoomReserve" title="Room Reservation History"/>
+            <img className="headerPic" src={image}/>  
         <div id="admin-card-back">
             <div className="wr-table">
                 <div className="wr-table-header">
