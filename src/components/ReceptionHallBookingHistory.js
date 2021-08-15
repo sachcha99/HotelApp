@@ -9,6 +9,8 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 import Hall01 from './Images/hall01.jpg'
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
+import Title from "./header/Title";
+import image from './Images/rreception2.jpg'
 
 export const ReceptionHallBookingHistory = () => {
     const [status, setStatus] = useState("all");
@@ -73,7 +75,9 @@ export const ReceptionHallBookingHistory = () => {
     return (
         <div>
             <Header/>
-        <div id="admin-card-back">
+            <Title className="PicTitileRoomReserve" title="Reception Hall Booking History"/>
+            <img className="headerPic" src={image}/>
+        <div id="filter-card-back">
             <div className="wr-table">
                 <div className="wr-table-header">
                     <Row>

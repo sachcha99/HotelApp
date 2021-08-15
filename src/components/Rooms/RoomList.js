@@ -14,6 +14,8 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import React, {useState, useEffect} from 'react';
 import { RoomBookingForm } from "../RoomBookingForm";
+import Title from "../header/Title";
+import image from '../Images/rroom.jpg'
 
 
 
@@ -28,6 +30,8 @@ const ReadMoreBtn =()=>{
   return (
     <div>
       <Header/>
+      <Title className="PicTitileRoomReserve" title="Reserve a Room"/>
+      <img className="headerPic" src={image}/>
         <div className="roomCard">
             
       <Card  style={{ width: "80%",margin: "20px" }}>
@@ -69,11 +73,11 @@ const ReadMoreBtn =()=>{
 
           <div className ="roomCostFlex">
           <ListItemIcon>
-            <StarRateRoundedIcon style={{ color: "#827700",marginLeft: "20px"} } /><div   > Uninterrupted view of the twinkling pool and city</div>
+            <StarRateRoundedIcon style={{ color: "#827700",marginLeft: "20px"} } /> Uninterrupted view of the twinkling pool and city
           </ListItemIcon>
 
           <ListItemIcon className="roomCost">
-            <div style={{ color: "#0d0d0a",marginLeft: "20px"} }> LKR :</div><div >1500.00 </div>
+            <div style={{ color: "#0d0d0a",marginLeft: "15px"} }> LKR :1500.00 </div>
           </ListItemIcon>
           </div>
 
