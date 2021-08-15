@@ -41,7 +41,7 @@ const Header = (props) => {
     }
 
     const GotoAbout = () => {
-        history.push("/")
+        history.push("/AdminNav")
     }
 
     const changeNavbar = () => {
