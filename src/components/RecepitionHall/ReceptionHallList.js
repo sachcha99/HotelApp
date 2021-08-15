@@ -14,11 +14,19 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import React from "react";
 import { ReceptionHallBookingForm } from "../ReceptionHallBookingForm";
+import Title from "../header/Title";
+import image from '../Images/rreception1.jpg'
 
 export const RecepitonHallList = () => {
   return (
     <div>
       <Header/>
+      {/* <div className="PicTitileHallReserve">Reserve a ReceptionHall</div> */}
+      <Title className="PicTitileRoomReserve" title="Reserve a Reception Hall"/>
+      <img className="headerPic" src={image}/>
+<div  className="mainBgPic">
+  <h3 className="repMTitle">Our Reception Hall List</h3>
+<hr className="hr1"></hr>
         <div className="repCard">
             
       <Card  style={{ width: "70%",margin: "20px" }}>
@@ -39,6 +47,7 @@ export const RecepitonHallList = () => {
       <List component="nav" aria-label="secondary mailbox folders">
         <div>
       <hr className="repListHR"/>
+      
           <ListItemIcon>
             <RoomRoundedIcon style={{ color: "#827c74"} } /><div className="repList"  >Location</div>
           </ListItemIcon>
@@ -107,6 +116,7 @@ export const RecepitonHallList = () => {
           
         </Card.Body>
       </Card>
+      </div>
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ const Header = (props) => {
     return <div>
         
         <Navbar className={navbar ? "navBarr1" : "navBarr"}  fixed="top" light expand="md">
-        <NavbarBrand  href="/home"><img className="icafLogo" src={Logo}/></NavbarBrand>
+        <NavbarBrand  href="/home"><img className="mainLogo" src={Logo}/></NavbarBrand>
             <NavbarToggler onClick={toggle}/>
             <Collapse className="navCollaspe" isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
@@ -93,7 +93,7 @@ const Header = (props) => {
                 </Nav>
                 <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="lg" style={{  fontSize:"large"  }} >
                     <DropdownToggle  caret className="userOption" >
-                       <PersonRoundedIcon fontSize="large"   /> 
+                       <PersonRoundedIcon fontSize="large" /> 
                     </DropdownToggle>
                     <DropdownMenu>
                     <DropdownItem onClick={goToRoomHistory}>
