@@ -1,16 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from "react-bootstrap/Button";
-import API from "../components/api";
+import API from "../api";
 import { useHistory } from 'react-router-dom';
 import { Col, Row, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import {confirmAlert} from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import Hall01 from './Images/hall01.jpg'
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer";
-import Title from "./header/Title";
-import image from './Images/rreception2.jpg'
+import Hall01 from '../Images/hall01.jpg'
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
+import Title from "../header/Title";
+import image from '../Images/rreception2.jpg'
 
 export const ReceptionHallBookingHistory = () => {
     const [status, setStatus] = useState("all");

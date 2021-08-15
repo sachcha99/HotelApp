@@ -15,7 +15,7 @@ import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import HouseIcon from '@material-ui/icons/House';
 import LocalActivityIcon from '@material-ui/icons/LocalActivity';
 import Switch from '@material-ui/core/Switch';
-import API from "./api";
+import API from "../api";
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 

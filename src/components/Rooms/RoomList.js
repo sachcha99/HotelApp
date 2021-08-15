@@ -1,6 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import rep1 from "../Images/rep1.jpg"
+import rep1 from "../Images/room1.jpeg"
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -13,7 +13,7 @@ import { RoomDetails } from "./RoomDetails";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import React, { useState, useEffect } from 'react';
-import { RoomBookingForm } from "../RoomBookingForm";
+import { RoomBookingForm } from "../Rooms/RoomBookingForm";
 import Title from "../header/Title";
 import image from '../Images/rroom.jpg'
 
@@ -47,7 +47,7 @@ export const RoomList = () => {
               <img className="roomImage1" src={rep1} alt="sdfd" />
               <Card.Body>
                 <div className="roomTitleFlex">
-                  <Card.Title className="roomTitle">RECEPTION HALL 01</Card.Title>
+                  <Card.Title className="roomTitle">Luxury Room City View</Card.Title>
                 </div>
                 <Card.Text className="roomDesc">
                   Some quick example text to build on the card title and make up the

@@ -13,7 +13,7 @@ import RoomRoundedIcon from '@material-ui/icons/RoomRounded';
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import React from "react";
-import { ReceptionHallBookingForm } from "../ReceptionHallBookingForm";
+import { ReceptionHallBookingForm } from "../RecepitionHall/ReceptionHallBookingForm";
 import Title from "../header/Title";
 import image from '../Images/rreception1.jpg'
 
