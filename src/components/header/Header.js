@@ -60,7 +60,7 @@ const Header = (props) => {
         <Navbar className={navbar ? "navBarr1" : "navBarr"}  fixed="top" light expand="md">
         <NavbarBrand  href="/home"><img className="mainLogo" src={Logo}/></NavbarBrand>
             <NavbarToggler onClick={toggle}/>
-            <Collapse isOpen={isOpen} navbar>
+            <Collapse className="navCollaspe" isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                     <NavItem>
                         <NavLink className="navItem" href="/" >Home</NavLink>
@@ -91,9 +91,9 @@ const Header = (props) => {
                         <NavLink  className="navItem" onClick={GotoAbout}>About</NavLink>
                     </NavItem>
                 </Nav>
-                <UncontrolledButtonDropdown  className="ml-auto" size="lg"  >
+                <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="lg" style={{  fontSize:"large"  }} >
                     <DropdownToggle  caret className="userOption" >
-                       <PersonRoundedIcon  /> 
+                       <PersonRoundedIcon fontSize="large" /> 
                     </DropdownToggle>
                     <DropdownMenu>
                     <DropdownItem onClick={goToRoomHistory}>

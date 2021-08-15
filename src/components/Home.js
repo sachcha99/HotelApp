@@ -9,8 +9,7 @@ export const Home = () => {
         <div>
             <Header/>
             <div>
-            <ReceptionHallBookingForm/>
-            <RoomBookingForm/>
+           
             </div>
            
             {/* <Footer/> */}
