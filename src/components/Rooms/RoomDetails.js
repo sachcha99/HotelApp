@@ -8,7 +8,7 @@ import React from "react";
 export const RoomDetails = () => {
   return (
     <div>
-        
+        <div className="detailList">
       <div className="roomReadMore">
           <div>
       <div className="repFeaTitle">ROOM DETAILS</div>
@@ -150,7 +150,7 @@ export const RoomDetails = () => {
       </div>
       
 
-
+      </div>
     </div>
     
   );
