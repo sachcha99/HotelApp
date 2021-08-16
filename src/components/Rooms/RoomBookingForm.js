@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const RoomBookingForm = () => {
+export const RoomBookingForm = ({row}) => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
@@ -99,6 +99,27 @@ export const RoomBookingForm = () => {
     const [switchState, setSwitchState] = useState({ switch: false });
     const [open, setOpen] = React.useState(false);
 
+
+
+
+    useEffect(() => {
+        if(row){
+   
+            setRooms(row.roomNo)
+            setAdultNo(row.adultNo);
+            setChildNo(row.childNo);
+            setCheckIn(row.checkIn.split('.',1));
+            setCheckOut(row.checkOut.split('.',1));
+            setRemarks(row.remarks);
+            if( row.loyalty){
+                setSwitchState(true );
+                console.log(switchState)
+            }
+            
+        }
+       }, [open])
+
+
     const handleClick = () => {
         setOpen(true);
     };
@@ -112,11 +133,14 @@ export const RoomBookingForm = () => {
     };
 
     const handleSwitch = (event) => {
+       
         setSwitchState({ ...switchState, [event.target.name]: event.target.checked });
     };
+    
 
     function handleSubmit(event) {
         event.preventDefault();
+        if(!row){
         const room = {
             name: "John",
             email: "john@gmail.com",
@@ -147,6 +171,46 @@ export const RoomBookingForm = () => {
                 console.log(error);
                 setShow(false)
             });
+        }if(row){
+
+            const room = {
+                
+                _id: row._id, 
+                name: "John",
+                email: "john@gmail.com",
+                phone: "+94775556667",
+                roomName: "Room 01",
+                status: "pending",
+                adultNo: adultNo,
+                childNo: childNo,
+                roomNo: Rooms,
+                checkIn: checkIn,
+                checkOut: checkOut,
+                remarks: remarks,
+                loyalty: switchState.switch
+    
+            }
+
+
+
+            API.put('/room/update', room)
+                    .then(function (response) {
+                        console.log(response.data);
+                        if (response.data.message) {
+                            alert.info(response.data.message);
+    
+                        }
+                        handleClick()
+                        setShow(false)
+    
+                    })
+    
+                    .catch(function (error) {
+                        console.log(error);
+                        setShow(false)
+    
+                    });
+        }
 
         setRooms()
         setAdultNo();
@@ -161,12 +225,13 @@ export const RoomBookingForm = () => {
         <div>
             <Snackbar open={open} autoHideDuration={3000} onClose={handleCloseSnack}>
                 <Alert onClose={handleCloseSnack} severity="success">
-                    Room Reservation Successful
+                {row ? 'Room Reservation Successful Updated':'Room Reservation Successful'}
                 </Alert>
             </Snackbar>
-         
+         {row ?
+            <Button className='conf-btn conf-btn2' variant="primary" onClick={handleShow}>Edit</Button>:
             <Button variant="primary" className="roomBtn1" onClick={handleShow} >Check Availability</Button>
-
+         }
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -339,7 +404,8 @@ export const RoomBookingForm = () => {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                        <Button type="submit" variant="primary">Reserve</Button>
+                
+                        <Button type="submit" variant="primary">{row ? `Update`:'Reserve'}</Button>
                     </Modal.Footer>
                 </form>
             </Modal>
