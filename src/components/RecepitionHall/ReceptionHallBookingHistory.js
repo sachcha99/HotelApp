@@ -11,6 +11,8 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Title from "../header/Title";
 import image from '../Images/rreception2.jpg'
+import { RecepitonHallList } from './ReceptionHallList';
+import { ReceptionHallBookingForm } from './ReceptionHallBookingForm';
 
 export const ReceptionHallBookingHistory = () => {
     const [status, setStatus] = useState("all");
@@ -143,7 +145,8 @@ export const ReceptionHallBookingHistory = () => {
                                     <Button className='conf-btn conf-btn4' variant="primary"  onClick={() => deleteBooking(row)}> Cancel</Button>
 
 
-                                    <Button className='conf-btn conf-btn2' variant="primary">Edit</Button>
+                                    
+                                    <ReceptionHallBookingForm row={row}/>
                                     </div>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState , useEffect} from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const ReceptionHallBookingForm = () => {
+export const ReceptionHallBookingForm = ({row}) => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
@@ -83,6 +83,21 @@ export const ReceptionHallBookingForm = () => {
     const [remarks, setRemarks] = useState();
     const [date, setDate] = useState();
     const [open, setOpen] = React.useState(false);
+
+
+
+    useEffect(() => {
+     if(row){
+
+        setCapacity(row.capacity)
+        setEnt(row.entType);
+        setCategory(row.category);
+        setDate(row.funcDate.split('.',1));
+        setMenu(row.menu);
+        setRemarks(row.remarks);
+     }
+    }, [open])
+    
 
     const handleClick = () => {
         setOpen(true);
@@ -99,7 +114,8 @@ export const ReceptionHallBookingForm = () => {
 
     function handleSubmit(event) {
         event.preventDefault();
-        const reception = {
+        if(!row)
+      {  const reception = {
             name: "John",
             email: "john@gmail.com",
             phone: "+94775556667",
@@ -127,6 +143,52 @@ export const ReceptionHallBookingForm = () => {
                 console.log(error);
                 setShow(false)
             });
+        } 
+        if(row){
+
+           
+
+                const reception = {
+    
+                    _id: row._id,   
+                    name: "John", 
+                    email: "john@gmail.com",
+                    phone: "+94775556667",    
+                    receptionName: "Room 01",
+                    status: "pending",  
+                    capacity: capacity,  
+                    entType: Ent,    
+                    category: Category,    
+                    funcDate: date,    
+                    menu: Menu,
+                    remarks: remarks
+    
+                }
+    
+        
+                //send post request to add a new reception hall reservation to the db
+    
+                API.put('/reception/update', reception)
+                    .then(function (response) {
+                        console.log(response.data);
+                        if (response.data.message) {
+                            alert.info(response.data.message);
+    
+                        }
+                        handleClick()
+                        setShow(false)
+    
+                    })
+    
+                    .catch(function (error) {
+                        console.log(error);
+                        setShow(false)
+    
+                    });
+    
+                }
+
+        
         setCapacity()
         setEnt();
         setCategory();
@@ -141,12 +203,15 @@ export const ReceptionHallBookingForm = () => {
         <div>
             <Snackbar open={open} autoHideDuration={3000} onClose={handleCloseSnack}>
                 <Alert onClose={handleCloseSnack} severity="success">
-                    Reception Hall Reservation Successful
+                    {row ? `Reception Hall Reservation Successfully Updated ` : `Reception Hall Reservation Successful`}
                 </Alert>
             </Snackbar>
         
             <div className="repBtn" >
-          <Button variant="primary" className="repBtn1" onClick={handleShow}  >Make an Enquiry</Button>
+                {row ? 
+                 <Button className='conf-btn conf-btn2' variant="primary" onClick={handleShow} >Edit</Button> :
+                 <Button variant="primary" className="repBtn1" onClick={handleShow}  >Make an Enquiry</Button>
+         }
           </div>
 
             <Modal
@@ -158,7 +223,7 @@ export const ReceptionHallBookingForm = () => {
                 size="lg"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Check Availability of the Reception Hall</Modal.Title>
+                    <Modal.Title>{row ? `Update Reception Hall Reservation Details`:`Check Availability of the Reception Hall`}</Modal.Title>
                 </Modal.Header>
                 <form onSubmit={handleSubmit}>
                     <Modal.Body>
@@ -294,7 +359,8 @@ export const ReceptionHallBookingForm = () => {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                        <Button type="submit" variant="primary">Make an Enquiry</Button>
+                  
+                        <Button type="submit" variant="primary">{ row ? `Update`:`Make an Enquiry`}</Button>
 
                     </Modal.Footer>
                 </form>
