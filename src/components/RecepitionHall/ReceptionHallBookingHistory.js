@@ -11,10 +11,13 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Title from "../header/Title";
 import image from '../Images/rreception2.jpg'
+import { ReceptionHallBookingForm } from './ReceptionHallBookingForm';
 
 export const ReceptionHallBookingHistory = () => {
     const [status, setStatus] = useState("all");
     const [rows, setRows] = useState('');
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
         API.get(`/reception/`)
@@ -140,10 +143,11 @@ export const ReceptionHallBookingHistory = () => {
                                 </div>
                                 <div className='conf-card' >
 
-                                    <Button className='conf-btn conf-btn4' variant="primary"  onClick={() => deleteBooking(row)}> Cancel</Button>
+                                    <Button className='conf-btn conf-btn4' variant="primary" onClick={() => deleteBooking(row)}> Cancel</Button>
 
+                                    <ReceptionHallBookingForm  setShow={setShow}  row={row}  show={show} handleShow={handleShow} />
 
-                                    <Button className='conf-btn conf-btn2' variant="primary">Edit</Button>
+                                    <Button className='conf-btn conf-btn2' onClick={handleShow} variant="primary">Edit</Button>
                                     </div>
                                 </div>
                             </div>

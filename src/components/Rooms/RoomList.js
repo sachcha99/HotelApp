@@ -21,7 +21,9 @@ import image from '../Images/rroom.jpg'
 
 
 export const RoomList = () => {
-
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const [readmore, setReadmore] = useState(false);
 
   const ReadMoreBtn = () => {
@@ -88,7 +90,10 @@ export const RoomList = () => {
 
                 <div className="roomBtn" >
                   <Button variant="primary" className="roomBtn2" onClick={ReadMoreBtn} >Read more</Button>
-                  <RoomBookingForm />
+                  <RoomBookingForm handleClose={handleClose} setShow={setShow} show={show} handleShow={handleShow} />
+                  
+            <Button variant="primary" className="roomBtn1" onClick={handleShow} >Check Availability</Button>
+
                 </div>
 
               </Card.Body>

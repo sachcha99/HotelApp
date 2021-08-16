@@ -50,8 +50,6 @@ const Header = (props) => {
         }else{
             setNavbar(false)
         }
-      
-        console.log(window.scrollY)
     }
     window.addEventListener('scroll',changeNavbar);
 

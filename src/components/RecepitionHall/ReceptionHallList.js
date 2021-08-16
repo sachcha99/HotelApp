@@ -12,12 +12,18 @@ import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import RoomRoundedIcon from '@material-ui/icons/RoomRounded';
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import React from "react";
+import React,{useState} from "react";
 import { ReceptionHallBookingForm } from "../RecepitionHall/ReceptionHallBookingForm";
 import Title from "../header/Title";
 import image from '../Images/rreception1.jpg'
 
 export const RecepitonHallList = () => {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  
+
   return (
     <div>
       <Header />
@@ -112,8 +118,10 @@ export const RecepitonHallList = () => {
                 </div>
               </div>
 
-              <ReceptionHallBookingForm />
-
+              <ReceptionHallBookingForm  handleClose={handleClose} setShow={setShow} show={show} handleShow={handleShow} />
+              <div className="repBtn" >
+                <Button variant="primary" className="repBtn1" onClick={handleShow}  >Make an Enquiry</Button>
+              </div>
             </Card.Body>
           </Card>
         </div>

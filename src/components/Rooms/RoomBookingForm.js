@@ -84,12 +84,9 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const RoomBookingForm = () => {
+export const RoomBookingForm = ({show,setShow,handleClose,handleShow}) => {
 
     const classes = useStyles();
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const [Rooms, setRooms] = useState();
     const [adultNo, setAdultNo] = useState();
     const [childNo, setChildNo] = useState();
@@ -165,8 +162,6 @@ export const RoomBookingForm = () => {
                 </Alert>
             </Snackbar>
          
-            <Button variant="primary" className="roomBtn1" onClick={handleShow} >Check Availability</Button>
-
             <Modal
                 show={show}
                 onHide={handleClose}
