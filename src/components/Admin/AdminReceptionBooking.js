@@ -11,11 +11,17 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Title from "../header/Title";
 import image from '../Images/rreception2.jpg'
+import { MDBCol } from "mdbreact";
 
 export const AdminReceptionBooking = () => {
     const [status, setStatus] = useState("all");
     const [rows, setRows] = useState('');
     const [approve,setApprove] = useState("all");
+
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+ 
+ 
 
     useEffect(() => {
         API.get(`/reception/`)
@@ -25,9 +31,31 @@ export const AdminReceptionBooking = () => {
             .catch(err => {
                 console.log(err)
             });
+
+    
     }, [rows]);
 
 
+    const findItems= (itemName)=>{
+        API.post('/search', {itemName : itemName})
+            .then(function (res) {
+                let arr = res.data;
+                let i;
+                let list=[];
+                for (i = 0; i < arr.length; i++) {
+                    list.push(arr[i])
+                }
+                setRows(list);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+
+    const handleChange = event => {
+        findItems(event.target.value);
+      };
 
 
 
@@ -159,6 +187,9 @@ export const AdminReceptionBooking = () => {
                         <Col className="wr-dashboard-header">
                             <h4>Manage My Bookings</h4>
                         </Col>
+                        <MDBCol md="6">
+      <input className="form-control" type="text" placeholder="Search" value={searchTerm} onChange={handleChange} aria-label="Search" />
+    </MDBCol>
                         <Col className="wr-submit" >
                             <UncontrolledDropdown id='filterToggle'>
                                 <DropdownToggle caret id='filterDrop'>

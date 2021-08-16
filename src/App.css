@@ -550,3 +550,12 @@ margin-left: 30px;
   margin-top: 120px;
   padding-top: 80px;
 }
+
+
+
+/* search bar */
+.form-control{
+width: 300px !important;
+margin-left: auto;
+
+}
