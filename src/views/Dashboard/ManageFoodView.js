@@ -4,7 +4,7 @@ import {Button, Col, Row} from "reactstrap";
 import "./ManageFoodView.css";
 import {useHistory} from "react-router-dom";
 import API from "../../components/api";
-import FoodTable from "../../components/FoodTable";
+import FoodTable from "../../components/Food/FoodTable";
 
 export default function ManageFoodView() {
     const history = useHistory();
