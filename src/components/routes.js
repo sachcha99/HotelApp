@@ -7,7 +7,11 @@ import { ReceptionHallBookingHistory } from './RecepitionHall/ReceptionHallBooki
 import {RecepitonHallList} from './RecepitionHall/ReceptionHallList'
 import {RoomList} from "./Rooms/RoomList"
 import {AdminNav} from "./Admin/AdminNav"
-
+import SignInView from "../views/SignIn";
+import SignUpView from "../views/SignUp";
+import Dashboard from "../views/Dashboard/Dashboard";
+import AddItemView from "../views/Dashboard/AddItemView";
+import EditItemView from "../views/Dashboard/EditItemView";
 
 const hist = createBrowserHistory();
 
@@ -19,6 +23,11 @@ const routes = () => (
         <Route exact path="/Receptions" component={RecepitonHallList}/>
         <Route exact path="/Rooms" component={RoomList}/>
         <Route exact path="/AdminNav" component={AdminNav}/>
+        <Route path="/login" component={SignInView}/>
+        <Route path="/register" component={SignUpView}/>
+        <Route path="/dashboard" component={Dashboard}/>
+        <Route path="/food/add" component={AddItemView}/>
+        <Route path="/food/edit" component={EditItemView}/>
     </Router>
 )
 export default routes;
