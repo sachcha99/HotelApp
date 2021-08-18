@@ -11,6 +11,7 @@ import TableCell from "@material-ui/core/TableCell";
 import CardMedia from '@material-ui/core/CardMedia';
 import {confirmAlert} from "react-confirm-alert";
 import {useHistory} from "react-router-dom";
+import API from "../api";
 
 //const token =JSON.parse(sessionStorage.getItem("token"));
 
@@ -50,6 +51,8 @@ const FoodTable = (props) => {
                 {
                     label: 'Yes',
                     onClick: () => {
+                        API.delete(`/food/delete/${id}`)
+                            .then();
 
                     }
                 },

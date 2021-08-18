@@ -19,7 +19,7 @@ export default function ManageFoodView() {
             .catch(err => {
                 console.log(err)
             });
-    }, []);
+    }, [rows]);
 
     const goToAddItem = ()=>{
         history.push("/food/add");
