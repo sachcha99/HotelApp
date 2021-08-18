@@ -247,7 +247,7 @@ export default function AddItemView() {
                                     <MenuItem value={"special"}>Specials</MenuItem>
                                     <MenuItem value={"kottu"}>Kottu</MenuItem>
                                     <MenuItem value={"noodles"}>Noodles</MenuItem>
-                                    <MenuItem value={"snacks"}>Pizza</MenuItem>
+                                    <MenuItem value={"pizza"}>Pizza</MenuItem>
                                     <MenuItem value={"dessert"}>Dessert</MenuItem>
                                     <MenuItem value={"beverages"}>Beverages</MenuItem>
                                 </Select>

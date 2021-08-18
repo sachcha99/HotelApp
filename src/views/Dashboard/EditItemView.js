@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,12 +14,13 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 import {useForm} from "react-hook-form";
 import API from "../../components/api";
 import {confirmAlert} from "react-confirm-alert";
-import uniqueID from 'uniqid';
 import clsx from "clsx";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import AppBar from "@material-ui/core/AppBar";
+import {useHistory} from "react-router-dom";
+import {useLocation} from "react-router";
 
 function Copyright() {
     return (
@@ -65,10 +66,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddItemView() {
     const classes = useStyles();
+    const history = useHistory();
+    const location = useLocation();
+
     const { register, handleSubmit } = useForm();
 
     const [textInput, setTextInput] = useState({
-        itemCode:uniqueID.time('ITM-'),
+        itemCode:"",
         itemName:"",
         description:"",
         imageURL:"",
@@ -76,18 +80,23 @@ export default function AddItemView() {
         price:""
     });
 
+    useEffect(() => {
+        setTextInput(location.state.data);
+        console.log(location.state.data)
+    }, [location]);
+
     const onSubmit = () => {
-        API.post("/food/create", textInput)
+        API.put("/food/update", textInput)
             .then(() => {
-                // confirmAlert({
-                //     title: 'Added Successfully',
-                //     message: 'Food Item has added successfully',
-                //     buttons: [
-                //         {
-                //             label: 'Ok'
-                //         }
-                //     ]
-                // });
+                confirmAlert({
+                    title: 'Updated Successfully',
+                    message: 'Food Item has updated successfully',
+                    buttons: [
+                        {
+                            label: 'Ok'
+                        }
+                    ]
+                });
             });
     };
 
@@ -190,7 +199,6 @@ export default function AddItemView() {
                                 id="itemCode"
                                 label="Item Code"
                                 name="itemCode"
-                                inputRef={register("itemCode")}
                                 onChange={handleTextInputChange}
                                 value={textInput.itemCode}
                                 disabled
@@ -242,12 +250,13 @@ export default function AddItemView() {
                                     id="demo-simple-select-filled"
                                     onChange={handleTextInputChange}
                                     value={textInput.category}
+                                    defaultValue=""
                                     name="category"
                                 >
                                     <MenuItem value={"special"}>Specials</MenuItem>
                                     <MenuItem value={"kottu"}>Kottu</MenuItem>
                                     <MenuItem value={"noodles"}>Noodles</MenuItem>
-                                    <MenuItem value={"snacks"}>Pizza</MenuItem>
+                                    <MenuItem value={"pizza"}>Pizza</MenuItem>
                                     <MenuItem value={"dessert"}>Dessert</MenuItem>
                                     <MenuItem value={"beverages"}>Beverages</MenuItem>
                                 </Select>
