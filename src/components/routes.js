@@ -12,7 +12,7 @@ import SignUpView from "../views/SignUp";
 import Dashboard from "../views/Dashboard/Dashboard";
 import AddItemView from "../views/Dashboard/AddItemView";
 import EditItemView from "../views/Dashboard/EditItemView";
-import RestuarantView from "../views/RestuarantView";
+import RestuarantView from "../views/Restaurant/RestuarantView";
 
 const hist = createBrowserHistory();
 

@@ -569,3 +569,10 @@ margin-left: auto;
 .rest-body{
     margin-top: 100px;
 }
+
+.itemList{
+    margin: auto 50px;
+}
+.card{
+    margin: 1rem 0.5rem;
+}
