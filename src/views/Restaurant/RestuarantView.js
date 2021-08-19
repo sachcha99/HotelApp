@@ -58,6 +58,7 @@ export default function RestaurantView(){
                         ))}
                     </Grid>
                 </div>
+
             </div>
         </div>
     );

@@ -576,3 +576,14 @@ margin-left: auto;
 .card{
     margin: 1rem 0.5rem;
 }
+.cart{
+    padding-top: 4px;
+}
+.rest-user{
+    background:transparent !important ;
+    margin-top: 6px !important;
+    margin-left: auto !important;
+    /* border: none !important; */
+    border: 4px solid ;
+    transition: 0.9s !important;
+}
