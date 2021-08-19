@@ -30,7 +30,7 @@ export default function ManageFoodView() {
                 <Row>
                     <Col className="dashboard-header">
                         <Typography component="h2" variant="h6" color="inherit" noWrap>
-                            Active listings (0)
+                            Active listings ({rows.length})
                         </Typography>
                     </Col>
                     <Col className="add-new-listening">

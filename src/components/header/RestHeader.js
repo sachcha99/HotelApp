@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {useHistory} from "react-router-dom";
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+import "./RestHeader.css"
+
 import {
     Collapse,
     Navbar,
@@ -40,9 +42,6 @@ const Header = (props) => {
         history.push("/ReceptionHistory")
     }
 
-    const goToRestaurant=()=>{
-        history.push("/restaurant");
-    }
     const GotoAbout = () => {
         history.push("/AdminNav")
     }
@@ -53,15 +52,15 @@ const Header = (props) => {
         }else{
             setNavbar(false)
         }
-      
+
         console.log(window.scrollY)
     }
     window.addEventListener('scroll',changeNavbar);
 
     return <div>
-        
-        <Navbar className={navbar ? "navBarr1" : "navBarr"}  fixed="top" light expand="md">
-        <NavbarBrand  href="/home"><img className="mainLogo" src={Logo}/></NavbarBrand>
+
+        <Navbar className={"rest-nav-bar"}  fixed="top" light expand="md">
+            <NavbarBrand  href="/home"><img className="mainLogo" src={Logo}/></NavbarBrand>
             <NavbarToggler onClick={toggle}/>
             <Collapse className="navCollaspe" isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
@@ -71,24 +70,11 @@ const Header = (props) => {
                     <NavItem>
                         <NavLink className="navItem" onClick={goToRooms} >Accommodation</NavLink>
                     </NavItem>
-                    {/* <UncontrolledDropdown nav inNavbar>
-                        <DropdownToggle nav caret className="navItem">
-                        Wedding & Event
-                        </DropdownToggle>
-                        <DropdownMenu right>
-                            <DropdownItem onClick={goToReceptionHalls}>
-                                Reception Halls
-                            </DropdownItem>
-                            <DropdownItem onClick={callForEvent}>
-                                Events
-                            </DropdownItem>
-                        </DropdownMenu>
-                    </UncontrolledDropdown> */}
                     <NavItem>
                         <NavLink  className="navItem" onClick={goToReceptionHalls}>Wedding & Event</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink className="navItem" onClick={goToRestaurant}>Restaurant</NavLink>
+                        <NavLink className="navItem" >Restaurant</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink  className="navItem" onClick={GotoAbout}>About</NavLink>
@@ -96,15 +82,15 @@ const Header = (props) => {
                 </Nav>
                 <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="lg" style={{  fontSize:"large"  }} >
                     <DropdownToggle  caret className="userOption" >
-                       <PersonRoundedIcon fontSize="large" /> 
+                        <PersonRoundedIcon fontSize="large" />
                     </DropdownToggle>
                     <DropdownMenu>
-                    <DropdownItem onClick={goToRoomHistory}>
-                                Room Reservation History
-                            </DropdownItem>
-                            <DropdownItem onClick={goToReceptionHistory}>
-                            Reception Hall Reservation History 
-                            </DropdownItem>
+                        <DropdownItem onClick={goToRoomHistory}>
+                            Room Reservation History
+                        </DropdownItem>
+                        <DropdownItem onClick={goToReceptionHistory}>
+                            Reception Hall Reservation History
+                        </DropdownItem>
                     </DropdownMenu>
                 </UncontrolledButtonDropdown>
             </Collapse>
