@@ -13,6 +13,14 @@ import Title from "../header/Title";
 import image from '../Images/roomreseve.jpg'
 import { RoomBookingForm } from './RoomBookingForm';
 
+import ChildCareIcon from '@material-ui/icons/ChildCare';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
+import HouseIcon from '@material-ui/icons/House';
+import LocalActivityIcon from '@material-ui/icons/LocalActivity';
+import DescriptionIcon from '@material-ui/icons/Description';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
+
 export const RoomBookingHistory = () => {
     const [status, setStatus] = useState("all");
     const [rows, setRows] = useState('');
@@ -118,35 +126,54 @@ export const RoomBookingHistory = () => {
 
                                     <div className="cardDesc">
                                 <div className="statusParent">
-                                    <h6 className="statusChild" style={status === "approved" ? { borderRight: "15px solid #0cce26" } : status == "rejected" ? { borderRight: "15px solid red" } : status == "recent" ? { borderRight: "15px solid #007d8d" } : { borderRight: "15px solid orange" }} >{row.status}</h6>
-                                </div>
-                                <Card.Title><h3 className="card-title-h3">Room Type : {row.roomName}</h3></Card.Title>
+                                <Card.Title><h4 className="card-title-h3">Room Type : {row.roomName}</h4></Card.Title>
+                                    <div className="statusType">
+                                    <h6 className="statusChild" style={row.status === "approved" ? { borderRight: "15px solid #0cce26" } : row.status == "rejected" ? { borderRight: "15px solid red" } : row.status == "recent" ? { borderRight: "15px solid #007d8d" } : { borderRight: "15px solid orange" }} >{row.status}</h6>
+                                    </div>
+                                      </div>
+                                
 
-                                <h5 className="venue">Adult No : {row.adultNo}</h5>
-                                <h5 className="venue">Child No : {row.childNo}</h5>
-                                <h5 className="venue">Room No:{row.roomNo}</h5>
+                                      <div className="card-his-bodyFlex">
+                                <div>
+                                <h6 className="card-his-body"><EmojiPeopleIcon  id="card-his-bodyIcon"/>Adult No : {row.adultNo}</h6>
+                                <h6 className="card-his-body"><ChildCareIcon id="card-his-bodyIcon"/>Child No : {row.childNo}</h6>
+                                <h6 className="card-his-body"><HouseIcon id="card-his-bodyIcon"/>Room No:{row.roomNo}</h6>
+                                <h6 className='card-his-body'><LocalActivityIcon id="card-his-bodyIcon"/>Customer Type :  {row.loyalty? "Loyalty":"Regular"}</h6>
+                           
+                                </div>
+                                <div className='card-his-body-date1'>
+                                    <div>
+                                    <h6 className='conf-date1'><TodayOutlinedIcon id="card-his-bodyIcon"/>Check In Date : {row.checkIn.split('T',[1])}</h6>
+                                    <h6 className='conf-date1'><ScheduleIcon id="card-his-bodyIcon"/>Check In Time : {row.checkIn.split('T').pop().split(".",1)}</h6>
+                                   
+                                       </div>
+                                    <div>
+                                    <h6 className='conf-date1'><TodayOutlinedIcon id="card-his-bodyIcon"/>Check Out Date : {row.checkOut.split('T',[1])}</h6>
+                                    <h6 className='conf-date1'><ScheduleIcon id="card-his-bodyIcon"/>Check In Time : {row.checkIn.split('T').pop().split(".",1)}</h6>
+                                    </div>
+                                </div>
 
-                                <div className='conf-date'>
-                                    <h6 className='conf-date1'>Check In Date : {row.checkIn.split('T',[1])}</h6>
-                                    <h6 className='conf-date1'>Check Out Date : {row.checkOut.split('T',[1])}</h6>
+
+
                                 </div>
-                                <div className='conf-date'>
-                                    <h6 className='conf-date1'>Check In Time : {row.checkIn.split('T').pop().split(".",1)}</h6>
-                                    <h6 className='conf-date1'>Check Out Time : {row.checkOut.split('T').pop().split(".",1)}</h6>
-                                </div>
-                                <br />
-                                <Card.Text className="desc-card">
-                                    Remarks : {row.remarks}
+
+
+                       
+
+                                <div className='card-his-body-remarks'>
+                                       
+                                <Card.Text >
+                                <DescriptionIcon style={{ color: "#827700e0", marginLeft: "40px",fontSize:"20px",paddingBottom:"3px"  }} />   Remarks - {row.remarks}
                                 </Card.Text>
-                                <div className='conf-org'>
-                                    <h6 className='conf-organ'>Customer Type :  {row.loyalty? "Loyalty":"Regular"}</h6>
+                                
+                              
                                 </div>
-                                <div className='conf-card' >
+                            
+                                <div className='card-his-btn' >
 
-                                    <Button className='conf-btn conf-btn4' variant="primary"  onClick={() => deleteBooking(row)}> Cancel</Button>
+<Button className='card-his-btnDelete' variant="primary"  onClick={() => deleteBooking(row)}>Cancel</Button>
 
 
-                                    
                                     <RoomBookingForm row={row}/>
                                     </div>
                                 </div>

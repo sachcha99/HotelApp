@@ -6,21 +6,22 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import Select from '@material-ui/core/Select';
 import GroupIcon from '@material-ui/icons/Group';
 import DescriptionIcon from '@material-ui/icons/Description';
-import ScheduleIcon from '@material-ui/icons/Schedule';
-import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 import AssistantIcon from '@material-ui/icons/Assistant';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FastfoodIcon from '@material-ui/icons/Fastfood';
 import FormLabel from '@material-ui/core/FormLabel';
 import API from "../api";
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -96,7 +97,7 @@ export const ReceptionHallBookingForm = ({row}) => {
         setMenu(row.menu);
         setRemarks(row.remarks);
      }
-    }, [open])
+    }, [show])
     
 
     const handleClick = () => {
@@ -209,7 +210,7 @@ export const ReceptionHallBookingForm = ({row}) => {
         
             <div className="repBtn" >
                 {row ? 
-                 <Button className='conf-btn conf-btn2' variant="primary" onClick={handleShow} >Edit</Button> :
+                 <Button className=' conf-btn2' variant="primary" onClick={handleShow} ><EditOutlinedIcon fontSize="small" /> Edit</Button> :
                  <Button variant="primary" className="repBtn1" onClick={handleShow}  >Make an Enquiry</Button>
          }
           </div>

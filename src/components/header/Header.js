@@ -51,7 +51,6 @@ const Header = (props) => {
             setNavbar(false)
         }
       
-        console.log(window.scrollY)
     }
     window.addEventListener('scroll',changeNavbar);
 
@@ -91,7 +90,7 @@ const Header = (props) => {
                         <NavLink  className="navItem" onClick={GotoAbout}>About</NavLink>
                     </NavItem>
                 </Nav>
-                <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="lg" style={{  fontSize:"large"  }} >
+                <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="small" style={{  fontSize:"large"  }} >
                     <DropdownToggle  caret className="userOption" >
                        <PersonRoundedIcon fontSize="large" /> 
                     </DropdownToggle>

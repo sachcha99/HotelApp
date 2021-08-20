@@ -9,7 +9,7 @@ import EmailIcon from '@material-ui/icons/Email';
 export default function App() {
     return (
         <MDBFooter style={{
-            backgroundColor: 'rgba(0, 47, 255, 0.1)',
+            backgroundColor: 'rgba(110,189,33,0.55)',
             position: 'relative',
             height: 'auto',
             bottom: '-50px',
@@ -31,7 +31,7 @@ export default function App() {
                     <MDBCol lg='6' md='12' className='mb-4 mb-md-0'>
                         <MDBRow>
                             <MDBCol lg='6' md='12' className='mb-4 mb-md-0'>
-                                <h5 className='text-uppercase'>ICAF Conference</h5>
+                                <h5 className='text-uppercase'>Hotel LEMON TREE</h5>
                                 <p>
                                     No 25,<br></br>
                                     Galle Road,<br></br>
@@ -43,10 +43,12 @@ export default function App() {
                             <MDBCol lg='6' md='12' className='mb-4 mb-md-0'>
                                 <h5 className='text-uppercase'> Join with us <br/></h5>
                                 <ul>
-                                    <li><a href="#" className='text-dark'> Register</a></li>
-                                    <li><a href="#" className='text-dark'>Conference </a></li>
-                                    <li><a href="#" className='text-dark'>Workshops</a></li>
-                                    <li><a href="#" className='text-dark'>Research</a></li>
+                                    <li><a href="#" className='text-dark'> Home</a></li>
+                                    <li><a href="#" className='text-dark'>Accommodation </a></li>
+                                    <li><a href="#" className='text-dark'>Wedding & Event </a></li>
+                                    <li><a href="#" className='text-dark'>Restaurant </a></li>
+                                    <li><a href="#" className='text-dark'>Gallery</a></li>
+                                    <li><a href="#" className='text-dark'>About</a></li>
                                 </ul>
                             </MDBCol>
                         </MDBRow>
@@ -57,7 +59,7 @@ export default function App() {
             <div className='p-3' style={{width:'100%',textAlign:'center', backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
                 &copy; {new Date().getFullYear()} Copyright:{' '}
                 <a className='text-dark' href='#'>
-                    icaf.com
+                    lemontree.com
                 </a>
             </div>
         </MDBFooter>

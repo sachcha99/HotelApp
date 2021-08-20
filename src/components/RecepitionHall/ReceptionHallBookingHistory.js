@@ -13,6 +13,13 @@ import Title from "../header/Title";
 import image from '../Images/rreception2.jpg'
 import { RecepitonHallList } from './ReceptionHallList';
 import { ReceptionHallBookingForm } from './ReceptionHallBookingForm';
+import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
+import GroupIcon from '@material-ui/icons/Group';
+import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
+import AssistantIcon from '@material-ui/icons/Assistant';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
+import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 
 export const ReceptionHallBookingHistory = () => {
     const [status, setStatus] = useState("all");
@@ -119,30 +126,39 @@ export const ReceptionHallBookingHistory = () => {
 
                                     <div className="cardDesc">
                                 <div className="statusParent">
+                                    <Card.Title><h4 className="card-title-h3">Reception Hall Type : {row.receptionName}</h4></Card.Title>
+                                    <div className="statusType">
                                     <h6 className="statusChild" style={row.status === "approved" ? { borderRight: "15px solid #0cce26" } : row.status == "rejected" ? { borderRight: "15px solid red" } : row.status == "recent" ? { borderRight: "15px solid #007d8d" } : { borderRight: "15px solid orange" }} >{row.status}</h6>
+                                    </div>
+                                </div >
+                                <div className="card-his-bodyFlex">
+                                <div>
+                                <h6 className="card-his-body"><GroupIcon  id="card-his-bodyIcon"/>Capacity : {row.capacity}</h6>
+                                <h6 className="card-his-body"><AssistantIcon id="card-his-bodyIcon"/>Category : {row.category}</h6>
+                                <h6 className="card-his-body"><LibraryMusicIcon id="card-his-bodyIcon"/>Entertainment Type : {row.entType}</h6>
                                 </div>
-                                <Card.Title><h3 className="card-title-h3">Reception Hall Type : {row.receptionName}</h3></Card.Title>
-
-                                <h5 className="venue">Capacity : {row.capacity}</h5>
-                                <h5 className="venue">Category : {row.category}</h5>
-                                <h5 className="venue">Entertainment Type : {row.entType}</h5>
-
-                                <div className='conf-date'>
-                                    <h6 className='conf-date1'>Date of the Function : {row.funcDate.split('T',[1])}</h6>
+                                <div className='card-his-body-date'>
+                                    <div>
+                                    <h6 className='conf-date1'><TodayOutlinedIcon id="card-his-bodyIcon"/>Date of the Function  {row.funcDate.split('T',[1])}</h6>
+                            
+                                    <h6 className='conf-date1'><ScheduleIcon id="card-his-bodyIcon"/>Time of the Function : {row.funcDate.split('T').pop().split(".",1)}</h6>
+                                    </div>
                                 </div>
-                                <div className='conf-date'>
-                                    <h6 className='conf-date1'>Time of the Function : {row.funcDate.split('T').pop().split(".",1)}</h6>
+
                                 </div>
                                 <br />
-                                <Card.Text className="desc-card">
-                                    Remarks : {row.remarks}
+                                <div className="card-his-bodyFlex">
+                                <Card.Text >
+                                <StarRateRoundedIcon style={{ color: "#827700", marginLeft: "40px",paddingBottom:"2px" }} />   Remarks - {row.remarks}
                                 </Card.Text>
-                                <div className='conf-org'>
-                                    <h6 className='conf-organ'>Menu Selection :  {row.menu}</h6>
+                                <div className='card-his-body-menu'>
+                                    <h6 className='conf-organ'><FastfoodIcon id="card-his-bodyIcon"/>Menu Selection :  {row.menu}</h6>
                                 </div>
-                                <div className='conf-card' >
 
-                                    <Button className='conf-btn conf-btn4' variant="primary"  onClick={() => deleteBooking(row)}> Cancel</Button>
+                                </div>
+                                <div className='card-his-btn' >
+
+                                    <Button className='card-his-btnDelete' variant="primary"  onClick={() => deleteBooking(row)}>Cancel</Button>
 
 
                                     
