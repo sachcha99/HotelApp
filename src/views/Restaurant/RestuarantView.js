@@ -21,6 +21,7 @@ import FoodCard from "../../components/Food/FoodCard";
 // install Swiper modules
 SwiperCore.use([Navigation]);
 
+let cart =[];
 
 export default function RestaurantView(){
     const [foods, setFoodItems] = useState([]);
@@ -36,13 +37,17 @@ export default function RestaurantView(){
             });
     }, []);
 
-    const addToCart = ()=>{
+    const [count,setCount] = useState(0);
 
+    //add item to the cart array
+    const addToCart=(item)=>{
+        cart.push(item);
+        setCount(cart.length);
     }
 
     return(
         <div>
-            <RestHeader/>
+            <RestHeader count={count} cartItems={cart}/>
             <Title title="Order Delicious Foods" />
             <img className="headerPic" src="https://www.littlestepsasia.com/wp-content/uploads/2020/08/Best-Food-Delivery-Takeaway-Meals-In-Singapore.jpg" />
             <div className="rest-body">

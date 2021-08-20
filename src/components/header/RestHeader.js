@@ -66,22 +66,12 @@ const Header = (props) => {
     }
 
     const goToCart = () => {
+        console.log(props.cartItems)
         if (props.cartItems) {
             localStorage.setItem("cart", JSON.stringify(props.cartItems)); //store cart
             history.push("/itemCart");
         }
     }
-
-    const changeNavbar = () => {
-        if (window.scrollY >= 80) {
-            setNavbar(true)
-        } else {
-            setNavbar(false)
-        }
-
-        console.log(window.scrollY)
-    }
-    window.addEventListener('scroll', changeNavbar);
 
     return <div>
 
