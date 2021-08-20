@@ -41,7 +41,7 @@ const Header = (props) => {
     }
 
     const goToRestaurant=()=>{
-        history.push("/restaurant");
+        history.push("/restaurant/menu");
     }
     const GotoAbout = () => {
         history.push("/AdminNav")

@@ -66,11 +66,21 @@ const Header = (props) => {
     }
 
     const goToCart = () => {
-        console.log(props.cartItems)
-        if (props.cartItems) {
-            localStorage.setItem("cart", JSON.stringify(props.cartItems)); //store cart
-            history.push("/itemCart");
+        const cart = JSON.parse(localStorage.getItem("cart"));
+        if(cart){
+            if (props.cartItems) {
+                localStorage.setItem("cart", JSON.stringify(props.cartItems)); //store cart
+                history.push("/restaurant/cart");
+            }
+        }else{
+            if (props.cartItems) {
+                localStorage.setItem("cart", JSON.stringify(props.cartItems)); //store cart
+                history.push("/restaurant/cart");
+                props.removeCache();
+            }
         }
+
+
     }
 
     return <div>

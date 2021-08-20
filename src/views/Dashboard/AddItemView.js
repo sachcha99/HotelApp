@@ -169,7 +169,6 @@ export default function AddItemView() {
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                         Add Food Item
                     </Typography>
-
                 </Toolbar>
             </AppBar>
             <br/>
