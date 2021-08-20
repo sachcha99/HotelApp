@@ -12,6 +12,7 @@ import SignUpView from "../views/SignUp";
 import Dashboard from "../views/Dashboard/Dashboard";
 import AddItemView from "../views/Dashboard/AddItemView";
 import EditItemView from "../views/Dashboard/EditItemView";
+import RestuarantView from "../views/Restaurant/RestuarantView";
 
 const hist = createBrowserHistory();
 
@@ -28,6 +29,7 @@ const routes = () => (
         <Route path="/dashboard" component={Dashboard}/>
         <Route path="/food/add" component={AddItemView}/>
         <Route path="/food/edit" component={EditItemView}/>
+        <Route path="/restaurant" component={RestuarantView}/>
     </Router>
 )
 export default routes;

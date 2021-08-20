@@ -40,6 +40,9 @@ const Header = (props) => {
         history.push("/ReceptionHistory")
     }
 
+    const goToRestaurant=()=>{
+        history.push("/restaurant");
+    }
     const GotoAbout = () => {
         history.push("/AdminNav")
     }
@@ -85,7 +88,7 @@ const Header = (props) => {
                         <NavLink  className="navItem" onClick={goToReceptionHalls}>Wedding & Event</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink className="navItem" >Restaurant</NavLink>
+                        <NavLink className="navItem" onClick={goToRestaurant}>Restaurant</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink  className="navItem" onClick={GotoAbout}>About</NavLink>

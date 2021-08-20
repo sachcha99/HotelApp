@@ -79,15 +79,15 @@ export default function AddItemView() {
     const onSubmit = () => {
         API.post("/food/create", textInput)
             .then(() => {
-                // confirmAlert({
-                //     title: 'Added Successfully',
-                //     message: 'Food Item has added successfully',
-                //     buttons: [
-                //         {
-                //             label: 'Ok'
-                //         }
-                //     ]
-                // });
+                confirmAlert({
+                    title: 'Added Successfully',
+                    message: 'Food Item has added successfully',
+                    buttons: [
+                        {
+                            label: 'Ok'
+                        }
+                    ]
+                });
             });
     };
 
