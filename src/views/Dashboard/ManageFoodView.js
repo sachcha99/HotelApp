@@ -14,10 +14,8 @@ export default function ManageFoodView() {
         API.get(`/food/`)
             .then(res => {
                 setRows(res.data)
-                console.log(res.data)
             })
             .catch(err => {
-                console.log(err)
             });
     }, [rows]);
 
