@@ -1,6 +1,9 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import rep1 from "../Images/room1.jpeg"
+import rep2 from "../Images/room2.jpeg"
+import rep3 from "../Images/room3.jpeg"
+import rep4 from "../Images/room4.jpeg"
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -50,8 +53,7 @@ export const RoomList = () => {
                   <Card.Title className="roomTitle">Luxury Room City View</Card.Title>
                 </div>
                 <Card.Text className="roomDesc">
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content The Grand Banquet Hall is the largest hall in Brighten Hotels. The hall is ideal for weddings, birthday parties, engagements, receptions, corporate events etc..
+                In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
                 </Card.Text>
 
 
@@ -80,7 +82,7 @@ export const RoomList = () => {
                   </ListItemIcon>
 
                   <ListItemIcon className="roomCost">
-                    <div style={{ color: "#0d0d0a", marginLeft: "15px" }}> LKR :1500.00 </div>
+                    <div style={{ color: "#0d0d0a", marginLeft: "15px" }}> LKR :15000.00 </div>
                   </ListItemIcon>
                 </div>
 
@@ -124,14 +126,13 @@ export const RoomList = () => {
 
 
 
-              <img className="roomImage1" src={rep1} alt="sdfd" />
+              <img className="roomImage1" src={rep2} alt="sdfd" />
               <Card.Body>
                 <div className="roomTitleFlex">
-                  <Card.Title className="roomTitle">Luxury Room City View</Card.Title>
+                  <Card.Title className="roomTitle">Deluxe Room Ocean Facing</Card.Title>
                 </div>
                 <Card.Text className="roomDesc">
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content The Grand Banquet Hall is the largest hall in Brighten Hotels. The hall is ideal for weddings, birthday parties, engagements, receptions, corporate events etc..
+                In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
                 </Card.Text>
 
 
@@ -160,7 +161,7 @@ export const RoomList = () => {
                   </ListItemIcon>
 
                   <ListItemIcon className="roomCost">
-                    <div style={{ color: "#0d0d0a", marginLeft: "15px" }}> LKR :1500.00 </div>
+                    <div style={{ color: "#0d0d0a", marginLeft: "15px" }}> LKR :20000.00 </div>
                   </ListItemIcon>
                 </div>
 
@@ -197,14 +198,13 @@ export const RoomList = () => {
 
 
 
-              <img className="roomImage1" src={rep1} alt="sdfd" />
+              <img className="roomImage1" src={rep3} alt="sdfd" />
               <Card.Body>
                 <div className="roomTitleFlex">
-                  <Card.Title className="roomTitle">Luxury Room City View</Card.Title>
+                  <Card.Title className="roomTitle">Deluxe Bed Room Suite City View</Card.Title>
                 </div>
                 <Card.Text className="roomDesc">
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content The Grand Banquet Hall is the largest hall in Brighten Hotels. The hall is ideal for weddings, birthday parties, engagements, receptions, corporate events etc..
+                In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
                 </Card.Text>
 
 
@@ -233,7 +233,7 @@ export const RoomList = () => {
                   </ListItemIcon>
 
                   <ListItemIcon className="roomCost">
-                    <div style={{ color: "#0d0d0a", marginLeft: "15px" }}> LKR :1500.00 </div>
+                    <div style={{ color: "#0d0d0a", marginLeft: "15px" }}> LKR :25000.00 </div>
                   </ListItemIcon>
                 </div>
 
@@ -270,14 +270,13 @@ export const RoomList = () => {
 
 
 
-              <img className="roomImage1" src={rep1} alt="sdfd" />
+              <img className="roomImage1" src={rep4} alt="sdfd" />
               <Card.Body>
                 <div className="roomTitleFlex">
-                  <Card.Title className="roomTitle">Luxury Room City View</Card.Title>
+                  <Card.Title className="roomTitle">Deluxe Bed Room Suite Ocean View</Card.Title>
                 </div>
                 <Card.Text className="roomDesc">
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content The Grand Banquet Hall is the largest hall in Brighten Hotels. The hall is ideal for weddings, birthday parties, engagements, receptions, corporate events etc..
+                In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
                 </Card.Text>
 
 
@@ -306,7 +305,7 @@ export const RoomList = () => {
                   </ListItemIcon>
 
                   <ListItemIcon className="roomCost">
-                    <div style={{ color: "#0d0d0a", marginLeft: "15px" }}> LKR :1500.00 </div>
+                    <div style={{ color: "#0d0d0a", marginLeft: "15px" }}> LKR :30000.00 </div>
                   </ListItemIcon>
                 </div>
 

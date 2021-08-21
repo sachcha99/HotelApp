@@ -145,7 +145,7 @@ export const RoomBookingForm = ({row}) => {
             name: "John",
             email: "john@gmail.com",
             phone: "+94775556667",
-            roomName: "Room 01",
+            roomName: "Luxury Room City View",
             status: "pending",
             adultNo: adultNo,
             childNo: childNo,
@@ -405,7 +405,7 @@ export const RoomBookingForm = ({row}) => {
                             Close
                         </Button>
                 
-                        <Button type="submit" variant="primary">{row ? `Update`:'Reserve'}</Button>
+                        <Button type="submit" className="bookingBtn" variant="primary">{row ? `Update`:'Reserve'}</Button>
                     </Modal.Footer>
                 </form>
             </Modal>

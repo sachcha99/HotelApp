@@ -120,7 +120,7 @@ export const ReceptionHallBookingForm = ({row}) => {
             name: "John",
             email: "john@gmail.com",
             phone: "+94775556667",
-            receptionName: "Room 01",
+            receptionName: "Grand Ballroom",
             status: "pending",
             capacity: capacity,
             entType: Ent,
@@ -361,7 +361,7 @@ export const ReceptionHallBookingForm = ({row}) => {
                             Close
                         </Button>
                   
-                        <Button type="submit" variant="primary">{ row ? `Update`:`Make an Enquiry`}</Button>
+                        <Button type="submit" className="bookingBtn" variant="primary">{ row ? `Update`:`Make an Enquiry`}</Button>
 
                     </Modal.Footer>
                 </form>

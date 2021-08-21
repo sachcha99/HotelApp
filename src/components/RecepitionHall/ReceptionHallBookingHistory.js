@@ -149,7 +149,7 @@ export const ReceptionHallBookingHistory = () => {
                                 <br />
                                 <div className="card-his-bodyFlex">
                                 <Card.Text >
-                                <StarRateRoundedIcon style={{ color: "#827700", marginLeft: "40px",paddingBottom:"2px" }} />   Remarks - {row.remarks}
+                                <StarRateRoundedIcon style={{ color: "#827700", marginLeft: "45px",paddingBottom:"2px" }} />   Remarks - {row.remarks}
                                 </Card.Text>
                                 <div className='card-his-body-menu'>
                                     <h6 className='conf-organ'><FastfoodIcon id="card-his-bodyIcon"/>Menu Selection :  {row.menu}</h6>

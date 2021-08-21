@@ -114,7 +114,7 @@
   background: #2f3130!important;
   color: white !important;
   border-width: 2px !important;
-  border-color: #0b4285 !important;
+  border-color: black !important;
 }
 
 .conf-btn3{
@@ -209,16 +209,10 @@
   font-size: 18px !important;
 }
 .wr-table{
-  width: 95%;
-  margin: 10px auto 100px;
+  width: 100%;
+  margin: 10px 0px 100px 0px;
 }
-.wr-table-header{
-  background: rgb(148, 148, 148);
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-  color: rgb(0, 0, 0);
-}
+
 .wr-dashboard-header{
   text-align: left;
 }
@@ -236,18 +230,21 @@
   width: 100% !important;
 }
 /* -------------------------------------------------- ReceptionHall ----------------------------------------------------------------------------- */
-/* .repImage1{ 
+.repImage1{ 
+  object-fit:cover !important;
   height: 500px!important ;
-
-} */
+  width: 1100px !important;
+  transition: transform 2s  ease-in-out;
+}
 .img-wrapper{
   overflow:hidden;
   height: 500px!important ;
   
+  
 }
 
 img.repImage1:hover {
-  transition: transform 3s ease;
+  transition: transform 2s  ease-in-out;
   transform: scale(1.04);
 }
 
@@ -302,9 +299,14 @@ img.repImage1:hover {
   margin-left: auto !important;
   width: 420px;
   height: 50px;
-  background-color: #1b0938 !important;
-  border-color: #1b0938 !important;
+  background-color: rgb(50, 206, 120) !important;
+  border-color: rgb(50, 206, 120) !important;
   width: 220px !important;
+}
+
+.bookingBtn{
+  background-color: #037208 !important;
+  border-color: #037208 !important;
 }
 .repFlex{
   display: flex;
@@ -364,6 +366,8 @@ img.repImage1:hover {
   margin-left: auto !important;
   width: 200px;
   height: 40px;
+  background-color:rgb(50, 206, 120) !important;
+  border-color: rgb(50, 206, 120) !important;
 }
 
 .roomBtn2{
@@ -571,16 +575,23 @@ margin-bottom: 0px !important;
 }
 
 .wr-table-header{
-
-  background-color: #aeb912c7 !important;
+  padding: 8px !important;
+  border-radius: 5px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgba(215,215,215,1) 0%, rgba(255,255,255,1) 81%);
+  font-size: 21px !important;
 }
 
 .wr-dashboard-header{
   font-size: 10px !important;
+  padding-left: 40px!important;
+  padding-top: 8px !important;
 }
 
 #filterDrop{
-  background-color: #aeb912c7 !important;
+  background-color: #585858c7 !important;
+  margin-right: 40px !important;
 }
 
 
@@ -588,7 +599,7 @@ margin-bottom: 0px !important;
 
 .mainBgPic{
   /* background: url("../src/components/Images/bgroom.jpg"); */
-  background: radial-gradient(circle, rgba(152,236,109,1) 0%, rgba(243,255,236,0.9026961126247374) 100%);
+  background: radial-gradient(circle, rgb(184, 184, 184) 0%, rgba(238, 241, 236, 0.903) 100%);
   margin-top: 120px;
   padding-top: 80px;
 }
@@ -662,7 +673,7 @@ margin-right: 100px;
 .card-his-body-menu{
   margin-left: auto;
   text-align: left;
-  margin-right: 165px;
+  margin-right: 160px;
 }
 
 .card-his-body-remarks{
@@ -698,7 +709,8 @@ margin-right: 100px;
 }
 
 .card-his-btnDelete:hover{
- border-bottom: #032970 !important;
+ background-color: rgb(214, 214, 214) !important;
+ border-radius: 50px;
 }
 
 
