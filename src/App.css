@@ -564,7 +564,7 @@ margin-left: auto;
     color: white;
     padding: 10px;
     text-align: center;
-    background:linear-gradient(90deg, rgba(233,185,53,1) 0%, rgba(236,0,0,1) 100%);
+    background:linear-gradient(90deg, rgba(44,64,29,1) 0%, rgba(59,93,34,1) 38%, rgba(115,168,59,1) 100%) !important;
 }
 .rest-body{
     margin-top: 100px;
