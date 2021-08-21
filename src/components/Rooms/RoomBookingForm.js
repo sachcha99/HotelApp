@@ -230,7 +230,7 @@ export const RoomBookingForm = ({row}) => {
             </Snackbar>
          {row ?
             <Button className='conf-btn conf-btn2' variant="primary" onClick={handleShow}>Edit</Button>:
-            <Button variant="primary" className="roomBtn1" onClick={handleShow} >Check Availability</Button>
+            <Button variant="primary" className="roomBtn1" onClick={handleShow} >Reserve</Button>
          }
             <Modal
                 show={show}

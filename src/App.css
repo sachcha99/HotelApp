@@ -233,7 +233,7 @@
 .repImage1{ 
   object-fit:cover !important;
   height: 500px!important ;
-  width: 1100px !important;
+  width: 100% !important;
   transition: transform 2s  ease-in-out;
 }
 .img-wrapper{
@@ -352,8 +352,9 @@ img.repImage1:hover {
   justify-content: center !important;
 }
 .roomImage1{
-  height: 375px;
-  width: 550px;
+  height: 375px !important;
+  width: 530px !important;
+  object-fit: cover;
 }
 
 .roomFlex{

@@ -20,10 +20,29 @@ import AssistantIcon from '@material-ui/icons/Assistant';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
+import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 
 export const ReceptionHallBookingHistory = () => {
     const [status, setStatus] = useState("all");
     const [rows, setRows] = useState('');
+    const [open, setOpen] = React.useState(false);
+
+    const handleCloseSnack = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+    const handleClick = () => {
+        setOpen(true);
+    };
 
     useEffect(() => {
         API.get(`/reception/`)
@@ -41,13 +60,14 @@ export const ReceptionHallBookingHistory = () => {
         console.log(row._id)
         confirmAlert({
             title: 'Confirm to Delete',
-            message: 'Are you sure to delete this Reception.',
+            message: 'Are you sure to delete this Reception Hall Reservation.',
             buttons: [
                 {
                     label: 'Yes',
                     onClick: () => {
                         API.delete(`reception/delete/${row._id}`)
                             .then((res) => {
+                                handleClick()
 
                             }).catch((err) => {
                             console.log(err);
@@ -83,6 +103,11 @@ export const ReceptionHallBookingHistory = () => {
 
     return (
         <div>
+                        <Snackbar open={open} autoHideDuration={3000} onClose={handleCloseSnack}>
+                <Alert onClose={handleCloseSnack} severity="warning">
+                    {`Reception Hall Reservation Cancelled`}
+                </Alert>
+            </Snackbar>
             <Header/>
             <Title className="PicTitileRoomReserve" title="Reception Hall Booking History"/>
             <img className="headerPic" src={image}/>

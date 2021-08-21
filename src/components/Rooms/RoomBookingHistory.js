@@ -20,11 +20,26 @@ import LocalActivityIcon from '@material-ui/icons/LocalActivity';
 import DescriptionIcon from '@material-ui/icons/Description';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
+import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 
 export const RoomBookingHistory = () => {
     const [status, setStatus] = useState("all");
     const [rows, setRows] = useState('');
+    const [open, setOpen] = React.useState(false);
 
+    const handleCloseSnack = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
     useEffect(() => {
         API.get(`/room/`)
             .then(res => {
@@ -36,19 +51,22 @@ export const RoomBookingHistory = () => {
     }, [rows]);
 
 
+    const handleClick = () => {
+        setOpen(true);
+    };
 
     const deleteBooking = (row)=>{
         console.log(row._id)
         confirmAlert({
             title: 'Confirm to Delete',
-            message: 'Are you sure to delete this Room.',
+            message: 'Are you sure to delete this Room Reservation.',
             buttons: [
                 {
                     label: 'Yes',
                     onClick: () => {
                         API.delete(`room/delete/${row._id}`)
                             .then((res) => {
-
+                                handleClick()
                             }).catch((err) => {
                             console.log(err);
                         })
@@ -83,6 +101,11 @@ export const RoomBookingHistory = () => {
 
     return (
         <div>
+                        <Snackbar open={open} autoHideDuration={3000} onClose={handleCloseSnack}>
+                <Alert onClose={handleCloseSnack} severity="warning">
+                    {`Room Reservation Cancelled`}
+                </Alert>
+            </Snackbar>
 <Header/>
 <Title className="PicTitileRoomReserve" title="Room Reservation History"/>
             <img className="headerPic" src={image}/>  
@@ -135,9 +158,10 @@ export const RoomBookingHistory = () => {
 
                                       <div className="card-his-bodyFlex">
                                 <div>
-                                <h6 className="card-his-body"><EmojiPeopleIcon  id="card-his-bodyIcon"/>Adult No : {row.adultNo}</h6>
-                                <h6 className="card-his-body"><ChildCareIcon id="card-his-bodyIcon"/>Child No : {row.childNo}</h6>
-                                <h6 className="card-his-body"><HouseIcon id="card-his-bodyIcon"/>Room No:{row.roomNo}</h6>
+                                <h6 className="card-his-body"><HouseIcon id="card-his-bodyIcon"/>No of Rooms: {row.roomNo}</h6>
+                                <h6 className="card-his-body"><EmojiPeopleIcon  id="card-his-bodyIcon"/>No of Adults : {row.adultNo}</h6>
+                                <h6 className="card-his-body"><ChildCareIcon id="card-his-bodyIcon"/>No of Childs : {row.childNo}</h6>
+                                
                                 <h6 className='card-his-body'><LocalActivityIcon id="card-his-bodyIcon"/>Customer Type :  {row.loyalty? "Loyalty":"Regular"}</h6>
                            
                                 </div>
