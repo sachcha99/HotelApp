@@ -28,9 +28,9 @@ const routes = () => (
         <Route exact path="/AdminNav" component={AdminNav}/>
         <Route path="/login" component={SignInView}/>
         <Route path="/register" component={SignUpView}/>
-        <Route path="/food/dashboard" component={Dashboard}/>
-        <Route path="/food/add" component={AddItemView}/>
-        <Route path="/food/edit" component={EditItemView}/>
+        <Route path="/restaurant/dashboard" component={Dashboard}/>
+        <Route path="/restaurant/food/add" component={AddItemView}/>
+        <Route path="/restaurant/food/edit" component={EditItemView}/>
         <Route path="/restaurant/menu" component={RestuarantView}/>
         <Route path="/restaurant/cart" component={FoodCartView}/>
         <Route path="/restaurant/checkout" component={CheckOutView}/>

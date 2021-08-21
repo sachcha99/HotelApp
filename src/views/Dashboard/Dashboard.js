@@ -27,6 +27,7 @@ import FastfoodIcon from "@material-ui/icons/Fastfood";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import AssignmentIcon from "@material-ui/icons/Assignment";
+import ManageOrderView from "./ManageOrderView";
 
 function Copyright() {
     return (
@@ -133,7 +134,7 @@ export default function Dashboard(props) {
                 </ListItemIcon>
                 <ListItemText primary="Dashboard" />
             </ListItem>
-            <ListItem button onClick={()=>{setView(null)}}>
+            <ListItem button onClick={()=>{setView(<ManageOrderView/>)}}>
                 <ListItemIcon>
                     <ShoppingCartIcon />
                 </ListItemIcon>
