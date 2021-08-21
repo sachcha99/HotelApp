@@ -20,7 +20,7 @@ export default function ManageFoodView() {
     }, [rows]);
 
     const goToAddItem = ()=>{
-        history.push("/food/add");
+        history.push("/restaurant/food/add");
     }
     return (
         <div>

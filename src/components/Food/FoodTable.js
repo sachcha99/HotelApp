@@ -64,7 +64,7 @@ const FoodTable = (props) => {
     }
 
     const goToEditItem =(row)=>{
-        history.push({pathname: "food/edit", state: {data: row}});
+        history.push({pathname: "/restaurant/food/edit", state: {data: row}});
     }
 
     return (

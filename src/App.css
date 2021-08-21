@@ -669,3 +669,12 @@ margin-left: auto;
     padding: 20px;
     box-shadow: 0 1px 5px rgb(0, 0, 0);
 }
+.success{
+    position: relative;
+    width: 55%;
+    margin: 40px auto 150px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+}
