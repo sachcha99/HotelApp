@@ -57,7 +57,7 @@ const Header = (props) => {
     const goToRoomHistory = () => {
         history.push("/RoomHistory");
     }
-    const goToLogOut = () => {
+    const goToLogout = () => {
         sessionStorage.removeItem("token");
         history.push("/login")
     }
@@ -134,7 +134,7 @@ const Header = (props) => {
                                     (<DropdownItem onClick={goToLogin}>
                                         Login
                                     </DropdownItem>):
-                                    (<DropdownItem onClick={goToLogOut}>
+                                    (<DropdownItem onClick={goToLogout}>
                                         Logout
                                     </DropdownItem>)
                                 }

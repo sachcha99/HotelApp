@@ -89,6 +89,16 @@ export default function SignInView() {
                             type:res.data.type
                         }
                         sessionStorage.setItem("token",JSON.stringify(token));
+                        switch(token.type) {
+                            case "customer":
+                                history.push("/restaurant/menu");
+                                break;
+                            case "headChef":
+                                history.push("/restaurant/dashboard");
+                                break;
+                            default:
+                            // code block
+                        }
                     }else {
                         confirmAlert({
                             title: 'Login Error',
