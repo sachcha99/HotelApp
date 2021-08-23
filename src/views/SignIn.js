@@ -16,6 +16,8 @@ import {useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import API from "../components/api";
 import {confirmAlert} from "react-confirm-alert";
+const bcrypt = require('bcryptjs');
+
 
 function Copyright() {
     return (
@@ -72,20 +74,44 @@ export default function SignInView() {
     });
 
     const onSubmit = () => {
-        textInput.password = bcrypt.hashSync(textInput.password, bcrypt.genSaltSync());
-        console.log(textInput);
-        API.post("/user/create", textInput)
-            .then(() => {
-                confirmAlert({
-                    title: 'Registered Successfully',
-                    message: 'You have successfully registered to Lime Tree',
-                    buttons: [
-                        {
-                            label: 'Ok'
+        let email = textInput.email;
+        API.post("/user/validate",{email:email})
+            .then(res=>{
+                if(res.data){
+                    let hashPass = res.data.password;
+                    const isValid = bcrypt.compareSync(textInput.password, hashPass);
+                    if(isValid){
+                        const token ={
+                            id: res.data._id,
+                            fname: res.data.firstName,
+                            lname: res.data.lastName,
+                            email:res.data.email,
+                            type:res.data.type
                         }
-                    ]
-                });
-            });
+                        sessionStorage.setItem("token",JSON.stringify(token));
+                    }else {
+                        confirmAlert({
+                            title: 'Login Error',
+                            message: 'You have entered invalid password.',
+                            buttons: [
+                                {
+                                    label: 'Ok'
+                                }
+                            ]
+                        });
+                    }
+                }else{
+                    confirmAlert({
+                        title: 'Login Error',
+                        message: 'Your entered email address is not registered.',
+                        buttons: [
+                            {
+                                label: 'Ok'
+                            }
+                        ]
+                    });
+                }
+            })
     };
 
     const handleTextInputChange = event => {
@@ -124,7 +150,7 @@ export default function SignInView() {
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
-                        <form className={classes.form} >
+                        <form className={classes.form} onSubmit={handleSubmit(onSubmit)} >
                             <TextField
                                 variant="filled"
                                 margin="normal"

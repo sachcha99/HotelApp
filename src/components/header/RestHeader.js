@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
 import "./RestHeader.css"
@@ -24,6 +24,7 @@ import IconButton from "@material-ui/core/IconButton";
 import * as PropTypes from "prop-types";
 import {withStyles} from '@material-ui/core/styles';
 import Badge from "@material-ui/core/Badge";
+import API from "../api";
 // import DropDown from "../common/DropDown";
 
 const StyledBadge = withStyles((theme) => ({
@@ -44,8 +45,8 @@ const Header = (props) => {
     const history = useHistory();
     const toggle = () => setIsOpen(!isOpen);
 
-
     const [navbar, setNavbar] = useState(false);
+    const token = JSON.parse(sessionStorage.getItem("token"));
 
     const goToRooms = () => {
         history.push("/Rooms");
@@ -56,15 +57,16 @@ const Header = (props) => {
     const goToRoomHistory = () => {
         history.push("/RoomHistory");
     }
-
-    const goToLogin = () => {
-        history.push("/register")
+    const goToLogOut = () => {
+        sessionStorage.removeItem("token");
+        history.push("/login")
     }
-
+    const goToLogin = () => {
+        history.push("/login")
+    }
     const goToRestaurant = () => {
         history.push("/restaurant/menu")
     }
-
     const GotoAbout = () => {
         history.push("/AdminNav")
     }
@@ -128,9 +130,14 @@ const Header = (props) => {
                                 <DropdownItem onClick={goToRoomHistory}>
                                     My Orders
                                 </DropdownItem>
-                                <DropdownItem onClick={goToLogin}>
-                                    Login
-                                </DropdownItem>
+                                {token==null ?
+                                    (<DropdownItem onClick={goToLogin}>
+                                        Login
+                                    </DropdownItem>):
+                                    (<DropdownItem onClick={goToLogOut}>
+                                        Logout
+                                    </DropdownItem>)
+                                }
                             </DropdownMenu>
                         </UncontrolledButtonDropdown>
                     </Col>
