@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,27 +12,17 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import {useForm} from "react-hook-form";
+import uniqueID from "uniqid";
+import API from "../components/api";
+import {confirmAlert} from "react-confirm-alert";
+const bcrypt = require('bcryptjs');
 
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
     },
     image: {
-        backgroundImage: 'url(https://images.unsplash.com/photo-1493770348161-369560ae357d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80)',
-        backgroundRepeat: 'no-repeat',
         backgroundColor:
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
         backgroundSize: 'cover',
@@ -59,6 +49,86 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUpView() {
     const classes = useStyles();
+    const { register, handleSubmit } = useForm();
+
+    const [textInput, setTextInput] = useState({
+        firstName:"",
+        lastName:"",
+        email: "",
+        password:"",
+        type:"customer",
+    });
+
+    const onSubmit = () => {
+        textInput.password = bcrypt.hashSync(textInput.password, bcrypt.genSaltSync());
+        console.log(textInput);
+        API.post("/user/create", textInput)
+            .then(() => {
+                confirmAlert({
+                    title: 'Registered Successfully',
+                    message: 'You have successfully registered to Lime Tree',
+                    buttons: [
+                        {
+                            label: 'Ok'
+                        }
+                    ]
+                });
+            });
+    };
+
+    const handleTextInputChange = event => {
+        const {name, value} = event.target;
+        setTextInput((prev)=>{
+            if(name==="firstName")
+            {
+                return(
+                    {
+                        firstName:value,
+                        lastName:prev.lastName,
+                        email: prev.email,
+                        password:prev.password,
+                        type:prev.type
+                    }
+                )
+            }
+            else if(name==="lastName")
+            {
+                return(
+                    {
+                        firstName:prev.firstName,
+                        lastName:value,
+                        email: prev.email,
+                        password:prev.password,
+                        type:prev.type
+                    }
+                )
+            }
+            else if(name==="email")
+            {
+                return(
+                    {
+                        firstName:prev.firstName,
+                        lastName:prev.lastName,
+                        email: value,
+                        password:prev.password,
+                        type:prev.type
+                    }
+                )
+            }
+            else if(name==="password")
+            {
+                return(
+                    {
+                        firstName:prev.firstName,
+                        lastName:prev.lastName,
+                        email: prev.email,
+                        password:value,
+                        type:prev.type
+                    }
+                )
+            }
+        })
+    };
 
     return (
         <Container component="main" maxWidth="xs">
@@ -70,7 +140,7 @@ export default function SignUpView() {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
@@ -82,6 +152,8 @@ export default function SignUpView() {
                                 id="firstName"
                                 label="First Name"
                                 autoFocus
+                                onChange={handleTextInputChange}
+                                value={textInput.firstName}
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -93,6 +165,8 @@ export default function SignUpView() {
                                 label="Last Name"
                                 name="lastName"
                                 autoComplete="lname"
+                                onChange={handleTextInputChange}
+                                value={textInput.lastName}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -104,6 +178,8 @@ export default function SignUpView() {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
+                                onChange={handleTextInputChange}
+                                value={textInput.email}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -116,12 +192,8 @@ export default function SignUpView() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                label="I want to receive inspiration, marketing promotions and updates via email."
+                                onChange={handleTextInputChange}
+                                value={textInput.password}
                             />
                         </Grid>
                     </Grid>
@@ -143,9 +215,6 @@ export default function SignUpView() {
                     </Grid>
                 </form>
             </div>
-            <Box mt={5}>
-                <Copyright />
-            </Box>
         </Container>
     );
 }

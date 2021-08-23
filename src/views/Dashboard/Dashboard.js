@@ -16,7 +16,6 @@ import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import ManageFoodView from "./ManageFoodView";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -28,6 +27,8 @@ import BarChartIcon from "@material-ui/icons/BarChart";
 import ListSubheader from "@material-ui/core/ListSubheader";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import ManageOrderView from "./ManageOrderView";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import {useHistory} from "react-router-dom";
 
 function Copyright() {
     return (
@@ -124,8 +125,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard(props) {
     const classes = useStyles();
+    const history = useHistory();
     const [open, setOpen] = React.useState(true);
     const [view, setView] = useState(null);
+
     const mainListItems = (
         <div>
             <ListItem button onClick={()=>{setView(null)}}>
@@ -155,6 +158,11 @@ export default function Dashboard(props) {
         </div>
     );
 
+    function goToLogout() {
+        sessionStorage.removeItem("token");
+        history.push("/login")
+    }
+
     const secondaryListItems = (
         <div>
             <ListSubheader inset>Saved reports</ListSubheader>
@@ -172,9 +180,9 @@ export default function Dashboard(props) {
             </ListItem>
             <ListItem button>
                 <ListItemIcon>
-                    <AssignmentIcon />
+                    <ExitToAppIcon/>
                 </ListItemIcon>
-                <ListItemText primary="Year-end sale" />
+                <ListItemText onClick={goToLogout} primary="Logout" />
             </ListItem>
         </div>
     );

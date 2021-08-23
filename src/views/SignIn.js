@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,11 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import {useHistory} from "react-router-dom";
+import {useForm} from "react-hook-form";
+import API from "../components/api";
+import {confirmAlert} from "react-confirm-alert";
+const bcrypt = require('bcryptjs');
+
 
 function Copyright() {
     return (
@@ -61,72 +66,156 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInView() {
     const classes = useStyles();
     const history = useHistory();
+    const { register, handleSubmit } = useForm();
+
+    const [textInput, setTextInput] = useState({
+        email: "",
+        password:""
+    });
+
+    const onSubmit = () => {
+        let email = textInput.email;
+        API.post("/user/validate",{email:email})
+            .then(res=>{
+                if(res.data){
+                    let hashPass = res.data.password;
+                    const isValid = bcrypt.compareSync(textInput.password, hashPass);
+                    if(isValid){
+                        const token ={
+                            id: res.data._id,
+                            fname: res.data.firstName,
+                            lname: res.data.lastName,
+                            email:res.data.email,
+                            type:res.data.type
+                        }
+                        sessionStorage.setItem("token",JSON.stringify(token));
+                        switch(token.type) {
+                            case "customer":
+                                history.push("/restaurant/menu");
+                                break;
+                            case "headChef":
+                                history.push("/restaurant/dashboard");
+                                break;
+                            default:
+                            // code block
+                        }
+                    }else {
+                        confirmAlert({
+                            title: 'Login Error',
+                            message: 'You have entered invalid password.',
+                            buttons: [
+                                {
+                                    label: 'Ok'
+                                }
+                            ]
+                        });
+                    }
+                }else{
+                    confirmAlert({
+                        title: 'Login Error',
+                        message: 'Your entered email address is not registered.',
+                        buttons: [
+                            {
+                                label: 'Ok'
+                            }
+                        ]
+                    });
+                }
+            })
+    };
+
+    const handleTextInputChange = event => {
+        const {name, value} = event.target;
+        setTextInput((prev)=>{
+            if(name==="email")
+            {
+                return(
+                    {
+                        email: value,
+                        password:prev.password
+                    }
+                )
+            }
+            else if(name==="password")
+            {
+                return(
+                    {
+                        email: prev.email,
+                        password:value,
+                    }
+                )
+            }
+        })
+    };
     return (
-        <Grid container component="main" className={classes.root}>
-            <CssBaseline />
-            <Grid item xs={false} sm={4} md={8} className={classes.image} />
-            <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
-                <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign in
-                    </Typography>
-                    <form className={classes.form} noValidate>
-                        <TextField
-                            variant="filled"
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                        />
-                        <TextField
-                            variant="filled"
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                        />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="secondary"
-                            className={classes.submit}
-                        >
-                            Sign In
-                        </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
+        <div>
+            <Grid container component="main" className={classes.root}>
+                <CssBaseline />
+                <Grid item xs={false} sm={4} md={8} className={classes.image} />
+                <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
+                    <div className={classes.paper}>
+                        <Avatar className={classes.avatar}>
+                            <LockOutlinedIcon />
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                            Sign in
+                        </Typography>
+                        <form className={classes.form} onSubmit={handleSubmit(onSubmit)} >
+                            <TextField
+                                variant="filled"
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
+                                name="email"
+                                autoComplete="email"
+                                autoFocus
+                                onChange={handleTextInputChange}
+                                value={textInput.email}
+                            />
+                            <TextField
+                                variant="filled"
+                                margin="normal"
+                                required
+                                fullWidth
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                onChange={handleTextInputChange}
+                                value={textInput.password}
+                            />
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="secondary"
+                                className={classes.submit}
+                            >
+                                Sign In
+                            </Button>
+                            <Grid container>
+                                <Grid item xs>
+                                    <Link href="#" variant="body2">
+                                        Forgot password?
+                                    </Link>
+                                </Grid>
+                                <Grid item>
+                                    <Link href="#" variant="body2">
+                                        {"Don't have an account? Sign Up"}
+                                    </Link>
+                                </Grid>
                             </Grid>
-                            <Grid item>
-                                <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
-                                </Link>
-                            </Grid>
-                        </Grid>
-                        <Box mt={5}>
-                            <Copyright />
-                        </Box>
-                    </form>
-                </div>
+                            <Box mt={5}>
+                                <Copyright />
+                            </Box>
+                        </form>
+                    </div>
+                </Grid>
             </Grid>
-        </Grid>
+        </div>
+
     );
 }
