@@ -57,8 +57,8 @@ const Header = (props) => {
         history.push("/RoomHistory");
     }
 
-    const goToReceptionHistory = () => {
-        history.push("/ReceptionHistory")
+    const goToLogin = () => {
+        history.push("/register")
     }
 
     const goToRestaurant = () => {
@@ -126,10 +126,10 @@ const Header = (props) => {
                             </DropdownToggle>
                             <DropdownMenu>
                                 <DropdownItem onClick={goToRoomHistory}>
-                                    Room Reservation History
+                                    My Orders
                                 </DropdownItem>
-                                <DropdownItem onClick={goToReceptionHistory}>
-                                    Reception Hall Reservation History
+                                <DropdownItem onClick={goToLogin}>
+                                    Login
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledButtonDropdown>
