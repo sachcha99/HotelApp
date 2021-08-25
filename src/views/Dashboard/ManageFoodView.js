@@ -5,6 +5,7 @@ import "./ManageFoodView.css";
 import {useHistory} from "react-router-dom";
 import API from "../../components/api";
 import FoodTable from "../../components/Food/FoodTable";
+import {Input} from "@material-ui/core";
 
 export default function ManageFoodView() {
     const history = useHistory();
@@ -32,6 +33,8 @@ export default function ManageFoodView() {
                         </Typography>
                     </Col>
                     <Col className="add-new-listening">
+                        <input type="text"/>{' '}
+                        <Button onClick={goToAddItem} color="primary">Search</Button>{' '}
                         <Button onClick={goToAddItem} color="warning">Add New Item</Button>
                     </Col>
                 </Row>

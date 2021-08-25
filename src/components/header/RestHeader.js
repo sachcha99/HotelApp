@@ -54,8 +54,8 @@ const Header = (props) => {
     const goToReceptionHalls = () => {
         history.push("/Receptions");
     }
-    const goToRoomHistory = () => {
-        history.push("/RoomHistory");
+    const goToMyOrders = () => {
+        history.push("/restaurant/orders")
     }
     const goToLogout = () => {
         sessionStorage.removeItem("token");
@@ -68,7 +68,7 @@ const Header = (props) => {
         history.push("/restaurant/menu")
     }
     const GotoAbout = () => {
-        history.push("/AdminNav")
+
     }
 
     const goToCart = () => {
@@ -127,7 +127,7 @@ const Header = (props) => {
                                 <PersonRoundedIcon fontSize="large"/>
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem onClick={goToRoomHistory}>
+                                <DropdownItem onClick={goToMyOrders}>
                                     My Orders
                                 </DropdownItem>
                                 {token==null ?

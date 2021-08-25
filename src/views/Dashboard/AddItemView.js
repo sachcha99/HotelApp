@@ -20,6 +20,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import AppBar from "@material-ui/core/AppBar";
+import {useHistory} from "react-router-dom";
 
 function Copyright() {
     return (
@@ -65,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddItemView() {
     const classes = useStyles();
+    const history = useHistory();
     const { register, handleSubmit } = useForm();
 
     const [textInput, setTextInput] = useState({
@@ -84,7 +86,10 @@ export default function AddItemView() {
                     message: 'Food Item has added successfully',
                     buttons: [
                         {
-                            label: 'Ok'
+                            label: 'Ok',
+                            onClick: () => {
+                                history.push({pathname: "/restaurant/dashboard", state: {view: "food_view"}})
+                            }
                         }
                     ]
                 });
@@ -242,6 +247,7 @@ export default function AddItemView() {
                                     onChange={handleTextInputChange}
                                     value={textInput.category}
                                     name="category"
+                                    required
                                 >
                                     <MenuItem value={"special"}>Specials</MenuItem>
                                     <MenuItem value={"kottu"}>Kottu</MenuItem>
@@ -256,6 +262,8 @@ export default function AddItemView() {
                             <TextField
                                 variant="filled"
                                 required
+                                type="number"
+                                InputProps={{ inputProps: { min: 100 } }}
                                 fullWidth
                                 id="price"
                                 label="Price"
@@ -278,6 +286,7 @@ export default function AddItemView() {
                         type="submit"
                         fullWidth
                         variant="contained"
+                        onClick={()=>{  history.push({pathname: "/restaurant/dashboard", state: {view: "food_view"}})}}
                     >
                         Cancel
                     </Button>

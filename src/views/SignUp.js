@@ -16,6 +16,7 @@ import {useForm} from "react-hook-form";
 import uniqueID from "uniqid";
 import API from "../components/api";
 import {confirmAlert} from "react-confirm-alert";
+import {useHistory} from "react-router-dom";
 const bcrypt = require('bcryptjs');
 
 const useStyles = makeStyles((theme) => ({
@@ -29,10 +30,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundPosition: 'center',
     },
     paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+
     },
     avatar: {
         margin: theme.spacing(1),
@@ -49,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUpView() {
     const classes = useStyles();
+    const history = useHistory();
     const { register, handleSubmit } = useForm();
 
     const [textInput, setTextInput] = useState({
@@ -61,7 +60,6 @@ export default function SignUpView() {
 
     const onSubmit = () => {
         textInput.password = bcrypt.hashSync(textInput.password, bcrypt.genSaltSync());
-        console.log(textInput);
         API.post("/user/create", textInput)
             .then(() => {
                 confirmAlert({
@@ -75,6 +73,10 @@ export default function SignUpView() {
                 });
             });
     };
+
+    const goToLogin=()=>{
+        history.push("/login");
+    }
 
     const handleTextInputChange = event => {
         const {name, value} = event.target;
@@ -131,90 +133,92 @@ export default function SignUpView() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOpenIcon />
-                </Avatar>
-                <Typography component="h1" variant="h5">
-                    Sign up
-                </Typography>
-                <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                autoComplete="fname"
-                                name="firstName"
-                                variant="filled"
-                                required
-                                fullWidth
-                                id="firstName"
-                                label="First Name"
-                                autoFocus
-                                onChange={handleTextInputChange}
-                                value={textInput.firstName}
-                            />
+        <div className="sign-up">
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div  className="sign-up-form">
+                    <Avatar className={classes.avatar}>
+                        <LockOpenIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign up
+                    </Typography>
+                    <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    autoComplete="fname"
+                                    name="firstName"
+                                    variant="filled"
+                                    required
+                                    fullWidth
+                                    id="firstName"
+                                    label="First Name"
+                                    autoFocus
+                                    onChange={handleTextInputChange}
+                                    value={textInput.firstName}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    variant="filled"
+                                    required
+                                    fullWidth
+                                    id="lastName"
+                                    label="Last Name"
+                                    name="lastName"
+                                    autoComplete="lname"
+                                    onChange={handleTextInputChange}
+                                    value={textInput.lastName}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="filled"
+                                    required
+                                    fullWidth
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    onChange={handleTextInputChange}
+                                    value={textInput.email}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    variant="filled"
+                                    required
+                                    fullWidth
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    onChange={handleTextInputChange}
+                                    value={textInput.password}
+                                />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <TextField
-                                variant="filled"
-                                required
-                                fullWidth
-                                id="lastName"
-                                label="Last Name"
-                                name="lastName"
-                                autoComplete="lname"
-                                onChange={handleTextInputChange}
-                                value={textInput.lastName}
-                            />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="secondary"
+                            className={classes.submit}
+                        >
+                            Sign Up
+                        </Button>
+                        <Grid container justifyContent="flex-end">
+                            <Grid item>
+                                <Link onClick={goToLogin} variant="body2">
+                                    Already have an account? Sign in
+                                </Link>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="filled"
-                                required
-                                fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
-                                onChange={handleTextInputChange}
-                                value={textInput.email}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                variant="filled"
-                                required
-                                fullWidth
-                                name="password"
-                                label="Password"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                                onChange={handleTextInputChange}
-                                value={textInput.password}
-                            />
-                        </Grid>
-                    </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="secondary"
-                        className={classes.submit}
-                    >
-                        Sign Up
-                    </Button>
-                    <Grid container justifyContent="flex-end">
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                Already have an account? Sign in
-                            </Link>
-                        </Grid>
-                    </Grid>
-                </form>
-            </div>
-        </Container>
+                    </form>
+                </div>
+            </Container>
+        </div>
     );
 }

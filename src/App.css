@@ -678,3 +678,27 @@ margin-left: auto;
     border-radius: 7px;
     box-shadow: 0 1px 5px rgb(138, 137, 137);
 }
+.sign-up{
+    height: 100%;
+    width: 100%;
+    position:absolute;
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+    background-image: url("https://images.unsplash.com/photo-1493770348161-369560ae357d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80");
+}
+.sign-up-form{
+    position: relative;
+    margin: 40px auto 100px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 7px;
+    box-shadow: 0 1px 5px rgb(138, 137, 137);
+    align-items: center;
+}
+.order-card{
+    margin: 4rem;
+    background-color: white;
+    padding: 1rem;
+    color: gray;
+    border-radius: 7px;
+}
