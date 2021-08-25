@@ -82,7 +82,6 @@ export default function AddItemView() {
 
     useEffect(() => {
         setTextInput(location.state.data);
-        console.log(location.state.data)
     }, [location]);
 
     const onSubmit = () => {
@@ -93,7 +92,10 @@ export default function AddItemView() {
                     message: 'Food Item has updated successfully',
                     buttons: [
                         {
-                            label: 'Ok'
+                            label: 'Ok',
+                            onClick: () => {
+                                history.push({pathname: "/restaurant/dashboard", state: {view: "food_view"}})
+                            }
                         }
                     ]
                 });
@@ -288,6 +290,7 @@ export default function AddItemView() {
                         type="submit"
                         fullWidth
                         variant="contained"
+                        onClick={()=>{  history.push({pathname: "/restaurant/dashboard", state: {view: "food_view"}})}}
                     >
                         Cancel
                     </Button>

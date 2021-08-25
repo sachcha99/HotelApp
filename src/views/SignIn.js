@@ -24,7 +24,7 @@ function Copyright() {
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-                Your Website
+                Lime Tree
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -123,7 +123,9 @@ export default function SignInView() {
                 }
             })
     };
-
+    const goToRegister=()=>{
+        history.push("/register");
+    }
     const handleTextInputChange = event => {
         const {name, value} = event.target;
         setTextInput((prev)=>{
@@ -203,7 +205,7 @@ export default function SignInView() {
                                     </Link>
                                 </Grid>
                                 <Grid item>
-                                    <Link href="#" variant="body2">
+                                    <Link onClick={goToRegister} variant="body2">
                                         {"Don't have an account? Sign Up"}
                                     </Link>
                                 </Grid>

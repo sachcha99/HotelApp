@@ -76,6 +76,7 @@ export default function FoodCard(props) {
                     id="standard-number"
                     label="Qty"
                     type="number"
+                    InputProps={{ inputProps: { min: 1, max: 10 } }}
                     onChange={handleQTY}
                     InputLabelProps={{
                         shrink: true,

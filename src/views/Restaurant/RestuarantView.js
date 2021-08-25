@@ -39,20 +39,69 @@ export default function RestaurantView(){
         <div>
             <RestHeader count={count} cartItems={cart} removeCache={removeCache}/>
             <Title title="Order Delicious Foods" />
-            <img className="headerPic" src="https://www.littlestepsasia.com/wp-content/uploads/2020/08/Best-Food-Delivery-Takeaway-Meals-In-Singapore.jpg" />
+            <img className="headerPic" src="https://rs.projects-abroad.net/v1/hero/indian-cuisine-south-africa-food-tours-product-5e146c7a97eb2.[1600].jpeg" />
             <div className="rest-body">
-                <CategoryLabel title="Specials"/>
+                <CategoryLabel title="Pizza"/>
                 <div className="itemList">
                     <Grid container spacing={1}>
-                        {foods.map((item) => (
+                        {foods.filter(food => food.category.includes('pizza')).map((item) => (
                             <Grid container item xs={3}>
                                 <FoodCard key={item.itemCode} itemName={item.itemName} description={item.description}
-                                      imgURL={item.imageURL} price={item.price} addToCart={addToCart}
+                                          imgURL={item.imageURL} price={item.price} addToCart={addToCart}
                                 />
                             </Grid>
                         ))}
                     </Grid>
                 </div>
+                <CategoryLabel title="Kottu"/>
+                <div className="itemList">
+                    <Grid container spacing={1}>
+                        {foods.filter(food => food.category.includes('kottu')).map((item) => (
+                            <Grid container item xs={3}>
+                                <FoodCard key={item.itemCode} itemName={item.itemName} description={item.description}
+                                          imgURL={item.imageURL} price={item.price} addToCart={addToCart}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                </div>
+                <CategoryLabel title="Noodles"/>
+                <div className="itemList">
+                    <Grid container spacing={1}>
+                        {foods.filter(food => food.category.includes('noodles')).map((item) => (
+                            <Grid container item xs={3}>
+                                <FoodCard key={item.itemCode} itemName={item.itemName} description={item.description}
+                                          imgURL={item.imageURL} price={item.price} addToCart={addToCart}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                </div>
+                <CategoryLabel title="Dessert"/>
+                <div className="itemList">
+                    <Grid container spacing={1}>
+                        {foods.filter(food => food.category.includes('dessert')).map((item) => (
+                            <Grid container item xs={3}>
+                                <FoodCard key={item.itemCode} itemName={item.itemName} description={item.description}
+                                          imgURL={item.imageURL} price={item.price} addToCart={addToCart}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                </div>
+                <CategoryLabel title="Beverages"/>
+                <div className="itemList">
+                    <Grid container spacing={1}>
+                        {foods.filter(food => food.category.includes('beverages')).map((item) => (
+                            <Grid container item xs={3}>
+                                <FoodCard key={item.itemCode} itemName={item.itemName} description={item.description}
+                                          imgURL={item.imageURL} price={item.price} addToCart={addToCart}
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                </div>
+
             </div>
         </div>
     );

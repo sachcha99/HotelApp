@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -28,14 +28,14 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import ManageOrderView from "./ManageOrderView";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import {useHistory} from "react-router-dom";
+import {useHistory, useLocation} from "react-router-dom";
 
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-                Your Website
+                Lime Tree
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -128,6 +128,14 @@ export default function Dashboard(props) {
     const history = useHistory();
     const [open, setOpen] = React.useState(true);
     const [view, setView] = useState(null);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        if(location.state){
+            setView(<ManageFoodView/>)
+        }
+    }, [location]);
 
     const mainListItems = (
         <div>
