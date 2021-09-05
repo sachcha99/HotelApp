@@ -10,6 +10,7 @@ import uniqueID from 'uniqid';
 import RestHeader from "../../components/header/RestHeader";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles({
     table: {
@@ -18,8 +19,9 @@ const useStyles = makeStyles({
 });
 
 export default function CheckOutView() {
+    const history = useHistory();
     const { register, handleSubmit } = useForm();
-
+    const token =JSON.parse(sessionStorage.getItem("token"));
     const [textInput, setTextInput] = useState({
         firstName:"",
         lastName:"",
@@ -125,7 +127,7 @@ export default function CheckOutView() {
             status:"pending",
             amount: sum,
             customer:textInput,
-            userId:"uid12000"
+            userId:token.id
         }
 
         console.log(Order)
@@ -168,10 +170,30 @@ export default function CheckOutView() {
     const removeCache = () => {
 
     }
+
+    const goToCancle = () =>{
+        confirmAlert({
+            title: 'Confirm to Cancel',
+            message: 'Are you sure to cancel this order?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        history.push("/restaurant/menu")
+
+                    }
+                },
+                {
+                    label: 'No'
+                }
+            ]
+        });
+
+    }
     const classes = useStyles();
 
     return (
-        <div>
+        <div className="food-cart">
             <RestHeader count={cart.length} cartItems={cart} removeCache={removeCache}/>
             <div className="checkout-view">
                 <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
@@ -259,7 +281,7 @@ export default function CheckOutView() {
                             <Input type="radio" name="radio1" checked="checked"/>{' '}Cash on delivery
                         </Grid>
                         <Grid item xs={12}>
-                            <Button color="danger">Place Order</Button>{' '}<Button color="warning">Cancel</Button>
+                            <Button color="danger">Place Order</Button>{' '}<Button color="warning" onClick={goToCancle}>Cancel</Button>
                         </Grid>
                     </Grid>
                 </form>
