@@ -12,9 +12,6 @@ import {Button, Col, Row} from "reactstrap";
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Container} from "reactstrap";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import AppBar from "@material-ui/core/AppBar";
 import RestHeader from "../../components/header/RestHeader";
 
 const StyledTableCell = withStyles((theme) => ({
@@ -88,7 +85,7 @@ export default function FoodCartView() {
 
     }
     return (
-        <div>
+        <div className="food-cart">
             <RestHeader count={cart1.length} cartItems={cart1} removeCache={removeCache}/>
             <div>
                 <h1 className="cart-title">Shopping Cart</h1>
