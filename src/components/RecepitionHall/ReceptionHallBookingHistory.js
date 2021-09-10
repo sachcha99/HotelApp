@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { Col, Row, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import {confirmAlert} from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import Hall01 from '../Images/hall01.jpg'
+import Hall01 from '../Images/reception4.jpg'
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Title from "../header/Title";
@@ -142,7 +142,7 @@ export const ReceptionHallBookingHistory = () => {
                         return(
                 <div className="cardBack" key={row._id}>
                     <Card className="text-center" >
-                        <Card.Header>Booking 001 </Card.Header>
+                        <Card.Header>Booking No - RE001 </Card.Header>
                         <Card.Body>
                             <div className="cardBody">
                                 <div >
@@ -194,14 +194,17 @@ export const ReceptionHallBookingHistory = () => {
                         </Card.Body>
                         <Card.Footer className="text-muted" >
                             {/*<text align="left">user ID:904535459</text>*/}
-                            2 days ago
+                            Just now
 
                         </Card.Footer>
 
                     </Card>
                 </div>
-                        )}
-            })}
+                        )} 
+            })
+           
+            
+            }
             </div>
         </div>
         {/* <Footer/> */}

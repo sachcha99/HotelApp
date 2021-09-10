@@ -35,7 +35,7 @@ export const RecepitonHallList = () => {
        
           <Card style={{ width: "70%", margin: "20px" }}>
           <div className="img-wrapper">
-            <img className="repImage1" src={rep1} alt="sdfd" />
+            <img className="repImage1" src={rep4} alt="sdfd" />
 </div>
             <Card.Body id="repcard-body">
               <div className="repTitleFlex">
@@ -130,7 +130,7 @@ export const RecepitonHallList = () => {
 <Card style={{ width: "70%", margin: "20px" }}>
 
 <div className="img-wrapper">
-            <img className="repImage1" src={rep4} alt="sdfd" />
+            <img className="repImage1" src={rep3} alt="sdfd" />
 </div>
 <Card.Body id="repcard-body">
     <div className="repTitleFlex">
@@ -334,7 +334,7 @@ export const RecepitonHallList = () => {
 
 <Card style={{ width: "70%", margin: "20px" }}>
 <div className="img-wrapper">
-            <img className="repImage1" src={rep3} alt="sdfd" />
+            <img className="repImage1" src={rep1} alt="sdfd" />
 </div>
   <Card.Body id="repcard-body">
     <div className="repTitleFlex">

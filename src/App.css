@@ -224,6 +224,7 @@
 }
 .hallImg{
   width: 450px;
+  height: 100%;
 }
 .cardDesc{
   margin-left: auto;
@@ -255,7 +256,7 @@ img.repImage1:hover {
   
   justify-content: center !important;
   /* margin-top: 200px; */
-  margin-top: 70px !important;
+  margin-top: 40px !important;
   margin-bottom: 50px !important;
    
  
@@ -270,9 +271,12 @@ img.repImage1:hover {
 .repTitleFlex{
   display: flex !important;
   justify-content: center !important ;
+
 }
 .repTitle{
   color: #262626;
+  font-size: 25px !important;
+  margin-top: 5px !important;
 }
 
 .repList{
