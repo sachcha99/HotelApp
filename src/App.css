@@ -170,6 +170,18 @@
   align-items: center;
   justify-content: center;
 }
+.cardBackAdmin{
+  
+
+  width: 900px;
+}
+
+
+@media only screen and (max-width: 1900px) {
+  .cardBackAdmin {
+    width: 670px;
+  }
+}
 
 #filterToggle{
   display: flex;
@@ -205,11 +217,15 @@
 .venue{
   font-size: 18px !important;
 }
+.admin-room{
+  font-size: 15px !important;
+}
 .desc-card{
   font-size: 18px !important;
 }
 .wr-table{
   width: 100%;
+  color: #9e9e9e;
   margin: 10px 0px 100px 0px;
 }
 

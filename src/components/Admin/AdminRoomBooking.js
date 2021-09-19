@@ -42,7 +42,7 @@ export const AdminRoomBooking = () => {
                           name: "John",
             email: "john@gmail.com",
             phone: "+94775556667",
-            roomName: "Room 01",
+            roomName: rowData.roomName,
             status: "approved",
             adultNo: rowData.adultNo,
             childNo: rowData.childNo,
@@ -91,7 +91,7 @@ export const AdminRoomBooking = () => {
             name: "John",
 email: "john@gmail.com",
 phone: "+94775556667",
-roomName: "Room 01",
+roomName: rowData.roomName,
 status: "rejected",
 adultNo: rowData.adultNo,
 childNo: rowData.childNo,
@@ -185,44 +185,59 @@ loyalty: rowData.loyalty
                 </div>
                 <br />
             </div>
-            <div>
+            <div  style={{display:'flex', flexWrap:'wrap'}}>
             {rows.length > 0 && rows.map((row) => {
                     if (row.status === status || status === "all") {
                         return(
-                <div className="cardBack" key={row._id}>
+                <div className="cardBackAdmin" key={row._id}>
                     <Card className="text-center" >
-                        <Card.Header>Booking 001 </Card.Header>
+                        <Card.Header>Booking ID - #{row._id} </Card.Header>
                         <Card.Body>
                             <div className="cardBody">
-                                <div >
-                                    <img className="hallImg" src={Room01} alt="" />
-                                    </div>
+                                
 
                                     <div className="cardDesc">
                                 <div className="statusParent">
                                     <h6 className="statusChild" style={row.status === "approved" ? { borderRight: "15px solid #0cce26" } : row.status == "rejected" ? { borderRight: "15px solid red" } : row.status == "recent" ? { borderRight: "15px solid #007d8d" } : { borderRight: "15px solid orange" }} >{row.status}</h6>
                                 </div>
                                 <Card.Title><h3 className="card-title-h3">Room Type : {row.roomName}</h3></Card.Title>
-
-                                <h5 className="venue">Adult No : {row.adultNo}</h5>
-                                <h5 className="venue">Child No : {row.childNo}</h5>
-                                <h5 className="venue">Room No:{row.roomNo}</h5>
-
-                                <div className='conf-date'>
+                                                <div style={{display:'flex',justifyContent: 'space-evenly', marginBottom:'15px'}}>
+                                                    <div style={{ width:'400px', padding:'15px',textAlign:'left' }}>
+                                                        
+                                                        <h5 className="admin-room">Capacity:</h5>
+                                                        <h5 style={{marginLeft:'25px'}} className="admin-room">No of Rooms : {row.roomNo}</h5>
+                                                        <h5 style={{marginLeft:'25px'}} className="admin-room">No of Adults : {row.adultNo}</h5>
+                                                        <h5  style={{marginLeft:'25px'}} className="admin-room">No of Childs : {row.childNo}</h5>
+                                                        
+                                                    </div>
+                                                    
+                                                    <div style={{backgroundColor:'#9e9e9e' , width:'400px', padding:'15px',textAlign:'left' }}>
+                                                    <h5 className="admin-room">Contact Details:</h5>
+                                                        <h5 style={{marginLeft:'25px'}} className="admin-room">Name : {row.name}</h5>
+                                                        <h5  style={{marginLeft:'25px'}} className="admin-room">E-mail : {row.email}</h5>
+                                                        <h5  style={{marginLeft:'25px'}} className="admin-room">Phone : {row.phone}</h5>
+                                                    </div>
+                                                </div>
+                                <div className='conf-date' style={{justifyContent: 'flex-start' }}>
                                     <h6 className='conf-date1'>Check In Date : {row.checkIn.split('T',[1])}</h6>
-                                    <h6 className='conf-date1'>Check Out Date : {row.checkOut.split('T',[1])}</h6>
-                                </div>
-                                <div className='conf-date'>
                                     <h6 className='conf-date1'>Check In Time : {row.checkIn.split('T').pop().split(".",1)}</h6>
+                                </div>
+                                    
+                                <div className='conf-date' style={{justifyContent: 'flex-start'}}>
+                                <h6 className='conf-date1'>Check Out Date : {row.checkOut.split('T',[1])}</h6>
                                     <h6 className='conf-date1'>Check Out Time : {row.checkOut.split('T').pop().split(".",1)}</h6>
                                 </div>
                                 <br />
-                                <Card.Text className="desc-card">
+                                <div className='conf-date' style={{justifyContent: 'flex-start'}}>
+                                <h5  className="desc-card">
                                     Remarks : {row.remarks}
-                                </Card.Text>
-                                <div className='conf-org'>
-                                    <h6 className='conf-organ'>Customer Type :  {row.loyalty? "Loyalty":"Regular"}</h6>
+                                </h5>
                                 </div>
+                                
+                                <div className='conf-date' style={{justifyContent: 'flex-start' }}>
+                                    <h6 >Customer Type :  {row.loyalty? "Loyalty":"Regular"}</h6>
+                                </div>
+                                
                                 <div className='conf-card' >
 
                                 <Button className='conf-btn conf-btn2' variant="primary" onClick={() => rejectBooking(row)}>Decline</Button>
