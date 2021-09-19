@@ -26,7 +26,7 @@ export const AdminReceptionBooking = () => {
     const [approve,setApprove] = useState("all");
 
     const [searchTerm, setSearchTerm] = useState("");
-    const [searchResults, setSearchResults] = useState([]);
+    const [searchResults, setSearchResults] = useState('');
  
  
 
@@ -46,6 +46,7 @@ export const AdminReceptionBooking = () => {
 
 
     useEffect(() => {
+        if(!searchTerm){
         API.get(`/reception/`)
             .then(res => {
                 setRows(res.data)
@@ -53,43 +54,46 @@ export const AdminReceptionBooking = () => {
             .catch(err => {
                 console.log(err)
             });
-
+        }
     
-    }, [rows]);
+    }, [rows,searchTerm]);
 
 
+    const findItems= (itemName)=>{
+        if(itemName){
+        API.get(`/reception/search/${itemName}`)
+        // .then(res => { 
+        //     setSearchResults(res.data)
+        // })
+        // .catch(err => {
+        //     console.log(err)
+        // });
 
-    // API.get(`/search/${searchTerm}`)
-    //         .then(res => {
-    //             setRows1(res.data)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //         });
-
-            // console.log(searchTerm)
-
-            // console.log(rows1)
-    
-    // const findItems= (itemName)=>{
-    //     API.post('/search', {itemName : itemName})
-    //         .then(function (res) {
-    //             let arr = res.data;
-    //             let i;
-    //             let list=[];
-    //             for (i = 0; i < arr.length; i++) {
-    //                 list.push(arr[i])
-    //             }
-    //             setRows(list);
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // }
+        // }  else{
+        //     setSearchResults(null)
+        // }
+        
+        .then(res =>{
+                let arr = res.data;
+                let i;
+                let list=[];
+                for (i = 0; i < arr.length; i++) {
+                    list.push(arr[i])
+                }
+                setRows(list);
+            })
+            .catch(err => {
+                console.log(err)
+            });
+            console.log(searchResults)
+        }
+    }
 
 
     const handleChange = event => {
+        findItems(event.target.value);
         setSearchTerm(event.target.value);
+        console.log(searchTerm)
       };
 
 
