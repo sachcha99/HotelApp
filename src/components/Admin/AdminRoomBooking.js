@@ -18,7 +18,12 @@ export const AdminRoomBooking = () => {
     const [rows, setRows] = useState('');
     const [approve,setApprove] = useState("all");
 
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState('');
+ 
+   
     useEffect(() => {
+        if(!searchTerm){
         API.get(`/room/`)
             .then(res => {
                 setRows(res.data)
@@ -26,8 +31,38 @@ export const AdminRoomBooking = () => {
             .catch(err => {
                 console.log(err)
             });
-    }, [rows]);
+        }
+    
+    }, [rows,searchTerm]);
 
+
+    const findItems= (itemName)=>{
+        if(itemName){
+        API.get(`/room/search/${itemName}`)
+       
+        
+        .then(res =>{
+                let arr = res.data;
+                let i;
+                let list=[];
+                for (i = 0; i < arr.length; i++) {
+                    list.push(arr[i])
+                }
+                setRows(list);
+            })
+            .catch(err => {
+                console.log(err)
+            });
+            console.log(searchResults)
+        }
+    }
+
+
+    const handleChange = event => {
+        findItems(event.target.value);
+        setSearchTerm(event.target.value);
+        console.log(searchTerm)
+      };
 
 
     const approveBooking = (rowData)=>{
@@ -164,7 +199,7 @@ loyalty: rowData.loyalty
                              <RoomReport/> 
                         </Col>
                         <Col className="wr-dashboard-header">
-                        <input className="form-control" type="text" placeholder="Search"  aria-label="Search" />
+                        <input className="form-control" type="text" placeholder="Search" value={searchTerm} onChange={handleChange} aria-label="Search" />
   
                         </Col>
                         <Col className="wr-submit" >
