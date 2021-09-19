@@ -33,6 +33,9 @@ export const ReceptionHallBookingHistory = () => {
     const [rows, setRows] = useState('');
     const [open, setOpen] = React.useState(false);
 
+    
+    const [StatusFilter,setStatusFilter] = useState("All");
+
     const handleCloseSnack = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -84,18 +87,23 @@ export const ReceptionHallBookingHistory = () => {
 
     const AllConference =()=>{
         setStatus("all");
+        setStatusFilter("All")
     }
     const ApprovedConference = ()=>{
         setStatus("approved")
+        setStatusFilter("Approved")
     }
     const PendingConference =()=>{
         setStatus("pending")
+        setStatusFilter("Pending")
     }
     const RejectedConference =()=>{
         setStatus("rejected")
+        setStatusFilter("Rejected")
     }
     const RecentConference =()=>{
         setStatus("recent")
+        setStatusFilter("Recent")
     }
 
 
@@ -121,7 +129,7 @@ export const ReceptionHallBookingHistory = () => {
                         <Col className="wr-submit" >
                             <UncontrolledDropdown id='filterToggle'>
                                 <DropdownToggle caret id='filterDrop'>
-                                    Status Filter
+                                {StatusFilter}
                                 </DropdownToggle>
                                 <DropdownMenu>
                                         <DropdownItem onClick={AllConference}>All</DropdownItem>
