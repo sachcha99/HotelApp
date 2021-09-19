@@ -24,6 +24,7 @@ export const AdminReceptionBooking = () => {
     const [rows, setRows] = useState('');
     const [rows1, setRows1] = useState('');
     const [approve,setApprove] = useState("all");
+    const [StatusFilter,setStatusFilter] = useState("All");
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState('');
@@ -200,18 +201,23 @@ export const AdminReceptionBooking = () => {
 
     const AllConference =()=>{
         setStatus("all");
+        setStatusFilter("All")
     }
     const ApprovedConference = ()=>{
         setStatus("approved")
+        setStatusFilter("Approved")
     }
     const PendingConference =()=>{
         setStatus("pending")
+        setStatusFilter("Pending")
     }
     const RejectedConference =()=>{
         setStatus("rejected")
+        setStatusFilter("Rejected")
     }
     const RecentConference =()=>{
         setStatus("recent")
+        setStatusFilter("Recent")
     }
 
 
@@ -238,7 +244,7 @@ export const AdminReceptionBooking = () => {
                         <Col className="wr-submit" >
                             <UncontrolledDropdown id='filterToggle'>
                                 <DropdownToggle caret id='filterDrop'>
-                                    Status Filter
+                                    {StatusFilter}
                                 </DropdownToggle>
                                 <DropdownMenu>
                                         <DropdownItem onClick={AllConference}>All</DropdownItem>

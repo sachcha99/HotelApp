@@ -37,6 +37,10 @@
   }
 } */
 
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+
 .conf-card{
   display: flex;
   justify-content: space-between;
@@ -191,7 +195,8 @@
   color: #f1fdf1 !important;
   margin-left: auto !important;
   font-size: 15px !important;
-  font-family: 'Poppins', sans-serif !important;
+  font-family: 'Raleway', sans-serif !important;
+  width: 120px;
 }
 #drop-item{
   font-size: 15px !important;
@@ -647,7 +652,7 @@ margin-bottom: 0px !important;
 }
 
 #filterDrop{
-  background-color: #585858c7 !important;
+  background-color: #5c5c5cc7 !important;
   margin-right: 40px !important;
 }
 
