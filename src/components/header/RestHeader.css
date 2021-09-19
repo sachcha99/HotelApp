@@ -1,0 +1,5 @@
+.rest-nav-bar{
+    background:linear-gradient(90deg, rgba(44,64,29,1) 0%, rgba(59,93,34,1) 38%, rgba(115,168,59,1) 100%) !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
