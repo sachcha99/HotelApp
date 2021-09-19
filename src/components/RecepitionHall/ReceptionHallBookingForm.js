@@ -361,7 +361,7 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
                             Close
                         </Button>
                   
-                        <Button type="submit" className="bookingBtn" variant="primary">{ row ? `Update`:`Make an Enquiry`}</Button>
+                        <Button type="submit" className="bookingBtn" variant="primary">{ row ? `Update`:`Reserve`}</Button>
 
                     </Modal.Footer>
                 </form>
