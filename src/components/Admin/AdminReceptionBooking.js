@@ -11,7 +11,7 @@ import { MDBCol } from "mdbreact";
 import Snackbar from '@material-ui/core/Snackbar';
 import Fade from '@material-ui/core/Fade';
 import Slide from '@material-ui/core/Slide';
-// import { ReceptionReport } from './ReceptionReport';
+import { ReceptionReport } from './ReceptionReport';
 
 
 function TransitionUp(props) {
@@ -228,7 +228,7 @@ export const AdminReceptionBooking = () => {
                             <h4>Manage My Bookings</h4>
                         </Col>
                         <Col className="wr-dashboard-header">
-                             {/* <ReceptionReport/> */}
+                             <ReceptionReport/>
                         </Col>
                         <Col className="wr-dashboard-header">
                         <input className="form-control" type="text" placeholder="Search" value={searchTerm} onChange={handleChange} aria-label="Search" />
