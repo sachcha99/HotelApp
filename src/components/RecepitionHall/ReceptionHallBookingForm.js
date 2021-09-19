@@ -6,21 +6,22 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import Select from '@material-ui/core/Select';
 import GroupIcon from '@material-ui/icons/Group';
 import DescriptionIcon from '@material-ui/icons/Description';
-import ScheduleIcon from '@material-ui/icons/Schedule';
-import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
 import AssistantIcon from '@material-ui/icons/Assistant';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FastfoodIcon from '@material-ui/icons/Fastfood';
 import FormLabel from '@material-ui/core/FormLabel';
 import API from "../api";
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -70,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const ReceptionHallBookingForm = ({row}) => {
+export const ReceptionHallBookingForm = ({row,receptionType}) => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
@@ -96,7 +97,7 @@ export const ReceptionHallBookingForm = ({row}) => {
         setMenu(row.menu);
         setRemarks(row.remarks);
      }
-    }, [open])
+    }, [show])
     
 
     const handleClick = () => {
@@ -119,7 +120,7 @@ export const ReceptionHallBookingForm = ({row}) => {
             name: "John",
             email: "john@gmail.com",
             phone: "+94775556667",
-            receptionName: "Room 01",
+            receptionName: receptionType? receptionType : 'Unknown',
             status: "pending",
             capacity: capacity,
             entType: Ent,
@@ -154,7 +155,7 @@ export const ReceptionHallBookingForm = ({row}) => {
                     name: "John", 
                     email: "john@gmail.com",
                     phone: "+94775556667",    
-                    receptionName: "Room 01",
+                    receptionName: row.receptionName,
                     status: "pending",  
                     capacity: capacity,  
                     entType: Ent,    
@@ -209,7 +210,7 @@ export const ReceptionHallBookingForm = ({row}) => {
         
             <div className="repBtn" >
                 {row ? 
-                 <Button className='conf-btn conf-btn2' variant="primary" onClick={handleShow} >Edit</Button> :
+                 <Button className=' conf-btn2' variant="primary" onClick={handleShow} ><EditOutlinedIcon fontSize="small" /> Edit</Button> :
                  <Button variant="primary" className="repBtn1" onClick={handleShow}  >Make an Enquiry</Button>
          }
           </div>
@@ -360,7 +361,7 @@ export const ReceptionHallBookingForm = ({row}) => {
                             Close
                         </Button>
                   
-                        <Button type="submit" variant="primary">{ row ? `Update`:`Make an Enquiry`}</Button>
+                        <Button type="submit" className="bookingBtn" variant="primary">{ row ? `Update`:`Reserve`}</Button>
 
                     </Modal.Footer>
                 </form>

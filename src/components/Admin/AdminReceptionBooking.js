@@ -7,21 +7,43 @@ import { Col, Row, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownI
 import {confirmAlert} from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 import Hall01 from '../Images/hall01.jpg'
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
-import Title from "../header/Title";
-import image from '../Images/rreception2.jpg'
 import { MDBCol } from "mdbreact";
+import Snackbar from '@material-ui/core/Snackbar';
+import Fade from '@material-ui/core/Fade';
+import Slide from '@material-ui/core/Slide';
+// import { ReceptionReport } from './ReceptionReport';
+
+
+function TransitionUp(props) {
+    return <Slide {...props} direction="up" />;
+  }
+
 
 export const AdminReceptionBooking = () => {
     const [status, setStatus] = useState("all");
     const [rows, setRows] = useState('');
+    const [rows1, setRows1] = useState('');
     const [approve,setApprove] = useState("all");
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState([]);
  
  
+
+    const [open, setOpen] = React.useState(false);
+    const [transition, setTransition] = React.useState(undefined);
+  
+    const handleClick = (Transition) => () => {
+      setTransition(() => Transition);
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+  
+
+
 
     useEffect(() => {
         API.get(`/reception/`)
@@ -36,25 +58,38 @@ export const AdminReceptionBooking = () => {
     }, [rows]);
 
 
-    const findItems= (itemName)=>{
-        API.post('/search', {itemName : itemName})
-            .then(function (res) {
-                let arr = res.data;
-                let i;
-                let list=[];
-                for (i = 0; i < arr.length; i++) {
-                    list.push(arr[i])
-                }
-                setRows(list);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
+
+    // API.get(`/search/${searchTerm}`)
+    //         .then(res => {
+    //             setRows1(res.data)
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         });
+
+            // console.log(searchTerm)
+
+            // console.log(rows1)
+    
+    // const findItems= (itemName)=>{
+    //     API.post('/search', {itemName : itemName})
+    //         .then(function (res) {
+    //             let arr = res.data;
+    //             let i;
+    //             let list=[];
+    //             for (i = 0; i < arr.length; i++) {
+    //                 list.push(arr[i])
+    //             }
+    //             setRows(list);
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // }
 
 
     const handleChange = event => {
-        findItems(event.target.value);
+        setSearchTerm(event.target.value);
       };
 
 
@@ -80,7 +115,8 @@ export const AdminReceptionBooking = () => {
                     menu: rowData.menu,
                     remarks: rowData.remarks
                 }
-                API.put("/reception/update", approveData).then();
+                API.put("/reception/update", approveData).then(handleClick(TransitionUp));
+    
             }
             // else if(rows[i].status=="approved" && rows[i]._id!=rowData._id){
             //     setApprove("recent")
@@ -187,9 +223,14 @@ export const AdminReceptionBooking = () => {
                         <Col className="wr-dashboard-header">
                             <h4>Manage My Bookings</h4>
                         </Col>
-                        <MDBCol md="6">
-      <input className="form-control" type="text" placeholder="Search" value={searchTerm} onChange={handleChange} aria-label="Search" />
-    </MDBCol>
+                        <Col className="wr-dashboard-header">
+                             {/* <ReceptionReport/> */}
+                        </Col>
+                        <Col className="wr-dashboard-header">
+                        <input className="form-control" type="text" placeholder="Search" value={searchTerm} onChange={handleChange} aria-label="Search" />
+   
+                        </Col>
+                        
                         <Col className="wr-submit" >
                             <UncontrolledDropdown id='filterToggle'>
                                 <DropdownToggle caret id='filterDrop'>
@@ -264,6 +305,9 @@ export const AdminReceptionBooking = () => {
                         )}
             })}
             </div>
+            <Snackbar  className="approveSnack" autoHideDuration={3000} open={open} onClose={handleClose} TransitionComponent={transition} 
+            message="Successfully Approved"key={transition ? transition.name : ''}
+       />
         </div>
         {/* <Footer/> */}
         </div>

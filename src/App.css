@@ -52,6 +52,7 @@
   margin-left: 10px;
   font-size: 15px !important;
   font-family: 'Poppins', sans-serif !important;
+  line-height: 180%;
 }
 
 .conf-btn{
@@ -97,15 +98,23 @@
 }
 
 .conf-btn2{
-  background: #f03c5a !important;
-  color: white !important;
-  border-color: #f03c5a !important;
+  
   margin-left: auto !important;
   transition: 0.5s !important;
+  padding-left: auto !important;
+  padding-right: auto !important;
+  width: 85px;
+  background: white !important;
+  border-width: 2px !important;
+  border-color: black !important;
+  color: black !important;
+
 }
 .conf-btn2:hover{
-  background: #a5031e !important;
- 
+  background: #2f3130!important;
+  color: white !important;
+  border-width: 2px !important;
+  border-color: black !important;
 }
 
 .conf-btn3{
@@ -200,16 +209,10 @@
   font-size: 18px !important;
 }
 .wr-table{
-  width: 95%;
-  margin: 10px auto 100px;
+  width: 100%;
+  margin: 10px 0px 100px 0px;
 }
-.wr-table-header{
-  background: rgb(148, 148, 148);
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-  color: rgb(0, 0, 0);
-}
+
 .wr-dashboard-header{
   text-align: left;
 }
@@ -220,7 +223,8 @@
   display: flex;
 }
 .hallImg{
-  width: 500px;
+  width: 450px;
+  height: 100%;
 }
 .cardDesc{
   margin-left: auto;
@@ -228,22 +232,52 @@
 }
 /* -------------------------------------------------- ReceptionHall ----------------------------------------------------------------------------- */
 .repImage1{ 
+  object-fit:cover !important;
   height: 500px!important ;
-
+  width: 100% !important;
+  transition: transform 2s  ease-in-out;
 }
+.img-wrapper{
+  overflow:hidden;
+  height: 500px!important ;
+  
+  
+}
+
+
+img.repImage1:hover {
+  transition: transform 2s  ease-in-out;
+  transform: scale(1.04);
+}
+
+
+
 .repCard{
   display: flex !important;
   
   justify-content: center !important;
   /* margin-top: 200px; */
+  margin-top: 40px !important;
+  margin-bottom: 50px !important;
+   
+ 
+}
+#repcard-body:hover {
+  transition:  1s !important;
+
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22) !important;
+  
 }
 
 .repTitleFlex{
   display: flex !important;
   justify-content: center !important ;
+
 }
 .repTitle{
   color: #262626;
+  font-size: 25px !important;
+  margin-top: 5px !important;
 }
 
 .repList{
@@ -260,7 +294,7 @@
 
 .repListHR{
   color: #a2a660;
-  width: 500px;
+  width: 350px;
 }
 .repBtn{
   display: flex;
@@ -270,15 +304,28 @@
   margin-left: auto !important;
   width: 420px;
   height: 50px;
-  background-color: #172859 ;
+  background-color: rgb(50, 206, 120) !important;
+  border-color: rgb(50, 206, 120) !important;
+  width: 220px !important;
 }
+
+.bookingBtn{
+  background-color: #037208 !important;
+  border-color: #037208 !important;
+}
+
+.bookingBtn:hover{
+  background-color: #025306 !important;
+  border-color: #025306 !important;
+}
+
 .repFlex{
   display: flex;
   padding: 20px 60px 20px 60px !important;
 }
 .repFeature{
- margin-left: 50px !important;
- margin-top: 20px;
+ margin-left: 150px !important;
+ margin-top: 10px;
  line-height: 200%;
  
 
@@ -293,8 +340,17 @@
 .repDesc{
   padding: 20px;
 }
-
-
+.hr1{
+  border: 1px solid rgb(139, 138, 138);
+  width: 90%;
+  margin-left: 30px;
+  
+}
+.hr-mainRe{
+  width: 80%;
+  margin: auto;
+  color: rgb(139, 138, 138);
+}
 
 
 
@@ -306,13 +362,35 @@
   display: flex !important;
   justify-content: center !important;
 }
+
+.roomFlex:hover{
+ 
+  transition:  1s !important;
+
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22) !important;
+}
 .roomImage1{
-  height: 375px;
-  width: 550px;
+  height: 375px !important;
+  width: 530px !important;
+  object-fit:cover !important;
+  
+  transition: transform 1s  ease-in-out;
+}
+.room-img-wrapper{
+  overflow:hidden;
+  height: 375px !important;
+  min-width: 530px !important;
+  
+  
+}
+img.roomImage1:hover {
+  transition: transform 1s  ease-in-out;
+  transform: scale(1.04);
 }
 
 .roomFlex{
   display: flex;
+  transition:  1s !important;
 }
 .roomBtn{
   display: flex;
@@ -321,6 +399,16 @@
   margin-left: auto !important;
   width: 200px;
   height: 40px;
+  background-color:rgb(50, 206, 120) !important;
+  border-color: rgb(50, 206, 120) !important;
+  transition:  1s !important;
+}
+.roomBtn1:hover{
+  
+  background-color:rgb(40, 167, 97) !important;
+  transition:  1s !important;
+  border-color: rgb(36, 145, 85) !important;
+ 
 }
 
 .roomBtn2{
@@ -344,7 +432,7 @@
 
 .roomIconList{
   margin-left: 20px;
-  width: 150px;
+  width: 170px;
 }
 
 /* .roomCostFlex{
@@ -511,14 +599,13 @@
 }
 .repMTitle{
 margin-left: 30px;
+font-family: "popin";
+font-style: oblique;
+font-size: 27px;
+margin-bottom: 0px !important;
 }
 
-.hr1{
-  color: #000;
-  width: 90%;
-  margin-left: 30px;
-  
-}
+
 
 
 
@@ -529,16 +616,23 @@ margin-left: 30px;
 }
 
 .wr-table-header{
-
-  background-color: #aeb912c7 !important;
+  padding: 8px !important;
+  border-radius: 5px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  background: linear-gradient(90deg, rgba(215,215,215,1) 0%, rgba(255,255,255,1) 81%);
+  font-size: 21px !important;
 }
 
 .wr-dashboard-header{
   font-size: 10px !important;
+  padding-left: 40px!important;
+  padding-top: 8px !important;
 }
 
 #filterDrop{
-  background-color: #aeb912c7 !important;
+  background-color: #585858c7 !important;
+  margin-right: 40px !important;
 }
 
 
@@ -546,7 +640,7 @@ margin-left: 30px;
 
 .mainBgPic{
   /* background: url("../src/components/Images/bgroom.jpg"); */
-  background-color: #d3d3d3a4;
+  background: radial-gradient(circle, rgb(184, 184, 184) 0%, rgba(238, 241, 236, 0.903) 100%);
   margin-top: 120px;
   padding-top: 80px;
 }
@@ -558,6 +652,115 @@ margin-left: 30px;
 width: 300px !important;
 margin-left: auto;
 
+}
+
+
+/* snack bar */
+.approveSnack{
+background: #032970 !;
+text-align: center;
+}
+
+
+.approveSnack:hover{
+  background-color: #175922 !important;
+}
+
+
+
+/* History card*/
+.card-title-h3{
+text-align: left;
+margin-left: 30px;
+margin-bottom: 25px;
+}
+
+.statusType{
+  margin-left: auto;
+}
+
+
+.card-his-body{
+  text-align: left;
+  margin-left: 70px;
+  line-height: 180%;
+
+  color: #4b4b4b;
+}
+
+.card-his-bodyFlex{
+display: flex;
+color: #4b4b4b;
+}
+.card-his-body-date{
+margin-left: auto;
+text-align: left;
+margin-top: 20px;
+margin-right: 100px;
+
+}
+
+.card-his-body-date1{
+  margin-left: auto;
+  text-align: left;
+  margin-top: 10px;
+  margin-right: 40px;
+  display: flex;
+  line-height: 240% !important;
+  
+  
+  }
+
+.card-his-body-menu{
+  margin-left: auto;
+  text-align: left;
+  margin-right: 160px;
+}
+
+.card-his-body-remarks{
+  margin-left: auto;
+  text-align: left;
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 15px;
+  color: #555555;
+}
+
+#card-his-bodyIcon{
+  padding-bottom: 4px !important;
+  margin-right: 8px !important;
+  font-size: 26px !important;
+  color: #00164ad0 !important;
+}
+
+.card-his-btn{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.card-his-btnDelete{
+
+  background: none !important;
+  color: #dd0a0a !important;
+  margin-left: auto;
+  transition: 0.5s !important;
+  margin-right: 6px;
+  border: none !important;
+}
+
+.card-his-btnDelete:hover{
+ background-color: rgb(214, 214, 214) !important;
+ border-radius: 50px;
+}
+
+
+.reportBtn{
+  /* margin-left: 200px; */
+  background-color: #fcfcfc !important;
+ color: #000 !important;
+ border-color: #2f3130 !important;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 .category-label{
