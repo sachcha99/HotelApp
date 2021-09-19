@@ -243,6 +243,7 @@
   
 }
 
+
 img.repImage1:hover {
   transition: transform 2s  ease-in-out;
   transform: scale(1.04);
@@ -308,6 +309,12 @@ img.repImage1:hover {
   background-color: #037208 !important;
   border-color: #037208 !important;
 }
+
+.bookingBtn:hover{
+  background-color: #025306 !important;
+  border-color: #025306 !important;
+}
+
 .repFlex{
   display: flex;
   padding: 20px 60px 20px 60px !important;
@@ -351,14 +358,35 @@ img.repImage1:hover {
   display: flex !important;
   justify-content: center !important;
 }
+
+.roomFlex:hover{
+ 
+  transition:  1s !important;
+
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22) !important;
+}
 .roomImage1{
   height: 375px !important;
   width: 530px !important;
-  object-fit: cover;
+  object-fit:cover !important;
+  
+  transition: transform 1s  ease-in-out;
+}
+.room-img-wrapper{
+  overflow:hidden;
+  height: 375px !important;
+  min-width: 530px !important;
+  
+  
+}
+img.roomImage1:hover {
+  transition: transform 1s  ease-in-out;
+  transform: scale(1.04);
 }
 
 .roomFlex{
   display: flex;
+  transition:  1s !important;
 }
 .roomBtn{
   display: flex;
@@ -369,6 +397,14 @@ img.repImage1:hover {
   height: 40px;
   background-color:rgb(50, 206, 120) !important;
   border-color: rgb(50, 206, 120) !important;
+  transition:  1s !important;
+}
+.roomBtn1:hover{
+  
+  background-color:rgb(40, 167, 97) !important;
+  transition:  1s !important;
+  border-color: rgb(36, 145, 85) !important;
+ 
 }
 
 .roomBtn2{
@@ -715,3 +751,10 @@ margin-right: 100px;
 }
 
 
+.reportBtn{
+  /* margin-left: 200px; */
+  background-color: #fcfcfc !important;
+ color: #000 !important;
+ border-color: #2f3130 !important;
+  font-family: 'Poppins', sans-serif !important;
+}

@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const ReceptionHallBookingForm = ({row}) => {
+export const ReceptionHallBookingForm = ({row,receptionType}) => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
@@ -120,7 +120,7 @@ export const ReceptionHallBookingForm = ({row}) => {
             name: "John",
             email: "john@gmail.com",
             phone: "+94775556667",
-            receptionName: "Grand Ballroom",
+            receptionName: receptionType? receptionType : 'Unknown',
             status: "pending",
             capacity: capacity,
             entType: Ent,
@@ -155,7 +155,7 @@ export const ReceptionHallBookingForm = ({row}) => {
                     name: "John", 
                     email: "john@gmail.com",
                     phone: "+94775556667",    
-                    receptionName: "Room 01",
+                    receptionName: row.receptionName,
                     status: "pending",  
                     capacity: capacity,  
                     entType: Ent,    

@@ -11,6 +11,7 @@ import { MDBCol } from "mdbreact";
 import Snackbar from '@material-ui/core/Snackbar';
 import Fade from '@material-ui/core/Fade';
 import Slide from '@material-ui/core/Slide';
+// import { ReceptionReport } from './ReceptionReport';
 
 
 function TransitionUp(props) {
@@ -58,17 +59,17 @@ export const AdminReceptionBooking = () => {
 
 
 
-    API.get(`/search/${searchTerm}`)
-            .then(res => {
-                setRows1(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            });
+    // API.get(`/search/${searchTerm}`)
+    //         .then(res => {
+    //             setRows1(res.data)
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         });
 
-            console.log(searchTerm)
+            // console.log(searchTerm)
 
-            console.log(rows1)
+            // console.log(rows1)
     
     // const findItems= (itemName)=>{
     //     API.post('/search', {itemName : itemName})
@@ -222,9 +223,14 @@ export const AdminReceptionBooking = () => {
                         <Col className="wr-dashboard-header">
                             <h4>Manage My Bookings</h4>
                         </Col>
-                        <MDBCol md="6">
-      <input className="form-control" type="text" placeholder="Search" value={searchTerm} onChange={handleChange} aria-label="Search" />
-    </MDBCol>
+                        <Col className="wr-dashboard-header">
+                             {/* <ReceptionReport/> */}
+                        </Col>
+                        <Col className="wr-dashboard-header">
+                        <input className="form-control" type="text" placeholder="Search" value={searchTerm} onChange={handleChange} aria-label="Search" />
+   
+                        </Col>
+                        
                         <Col className="wr-submit" >
                             <UncontrolledDropdown id='filterToggle'>
                                 <DropdownToggle caret id='filterDrop'>

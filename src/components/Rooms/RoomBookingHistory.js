@@ -98,7 +98,6 @@ export const RoomBookingHistory = () => {
     }
 
 
-
     return (
         <div>
                         <Snackbar open={open} autoHideDuration={3000} onClose={handleCloseSnack}>
@@ -140,7 +139,7 @@ export const RoomBookingHistory = () => {
                         return(
                 <div className="cardBack" key={row._id}>
                     <Card className="text-center" >
-                        <Card.Header>Booking 001 </Card.Header>
+                        <Card.Header>Booking #1256 </Card.Header>
                         <Card.Body>
                             <div className="cardBody">
                                 <div >
@@ -162,18 +161,18 @@ export const RoomBookingHistory = () => {
                                 <h6 className="card-his-body"><EmojiPeopleIcon  id="card-his-bodyIcon"/>No of Adults : {row.adultNo}</h6>
                                 <h6 className="card-his-body"><ChildCareIcon id="card-his-bodyIcon"/>No of Childs : {row.childNo}</h6>
                                 
-                                <h6 className='card-his-body'><LocalActivityIcon id="card-his-bodyIcon"/>Customer Type :  {row.loyalty? "Loyalty":"Regular"}</h6>
+                                <h6 className='card-his-body'><LocalActivityIcon id="card-his-bodyIcon"/>Customer Type :  {row.loyalty === false ? 'Loyalty' : 'Regular'}</h6>
                            
                                 </div>
                                 <div className='card-his-body-date1'>
                                     <div>
-                                    <h6 className='conf-date1'><TodayOutlinedIcon id="card-his-bodyIcon"/>Check In Date : {row.checkIn.split('T',[1])}</h6>
-                                    <h6 className='conf-date1'><ScheduleIcon id="card-his-bodyIcon"/>Check In Time : {row.checkIn.split('T').pop().split(".",1)}</h6>
+                                    <h6 className='conf-date1'><TodayOutlinedIcon id="card-his-bodyIcon"/>Check-in Date : {row.checkIn.split('T',[1])}</h6>
+                                    <h6 className='conf-date1'><ScheduleIcon id="card-his-bodyIcon"/>Check-in Time : {row.checkIn.split('T').pop().split(".",1)}</h6>
                                    
                                        </div>
                                     <div>
-                                    <h6 className='conf-date1'><TodayOutlinedIcon id="card-his-bodyIcon"/>Check Out Date : {row.checkOut.split('T',[1])}</h6>
-                                    <h6 className='conf-date1'><ScheduleIcon id="card-his-bodyIcon"/>Check In Time : {row.checkIn.split('T').pop().split(".",1)}</h6>
+                                    <h6 className='conf-date1'><TodayOutlinedIcon id="card-his-bodyIcon"/>Check-out Date : {row.checkOut.split('T',[1])}</h6>
+                                    <h6 className='conf-date1'><ScheduleIcon id="card-his-bodyIcon"/>Check-out Time : {row.checkOut.split('T').pop().split(".",1)}</h6>
                                     </div>
                                 </div>
 
@@ -205,7 +204,7 @@ export const RoomBookingHistory = () => {
                         </Card.Body>
                         <Card.Footer className="text-muted" >
                             {/*<text align="left">user ID:904535459</text>*/}
-                            2 days ago
+                            Just Now
 
                         </Card.Footer>
 

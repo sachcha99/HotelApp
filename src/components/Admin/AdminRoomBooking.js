@@ -11,6 +11,7 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Title from "../header/Title";
 import image from '../Images/roomreseve.jpg'
+import { RoomReport } from './RoomReport';
 
 export const AdminRoomBooking = () => {
     const [status, setStatus] = useState("all");
@@ -151,13 +152,20 @@ loyalty: rowData.loyalty
 
     return (
         <div>
-             
+           
         <div id="admin-card-back">
             <div className="wr-table1">
                 <div className="wr-table-header">
                     <Row>
                         <Col className="wr-dashboard-header">
                             <h4>Manage My Bookings</h4>
+                        </Col>
+                        <Col className="wr-dashboard-header">
+                             <RoomReport/> 
+                        </Col>
+                        <Col className="wr-dashboard-header">
+                        <input className="form-control" type="text" placeholder="Search"  aria-label="Search" />
+  
                         </Col>
                         <Col className="wr-submit" >
                             <UncontrolledDropdown id='filterToggle'>

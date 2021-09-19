@@ -25,11 +25,12 @@ import image from '../Images/rroom.jpg'
 
 export const RoomList = () => {
 
-  const [readmore, setReadmore] = useState(false);
+  const [readmore1, setReadmore1] = useState(false);
+  const [readmore2, setReadmore2] = useState(false);
+  const [readmore3, setReadmore3] = useState(false);
+  const [readmore4, setReadmore4] = useState(false);
 
-  const ReadMoreBtn = () => {
-    setReadmore(!readmore)
-  }
+  
   return (
     <div>
       <Header />
@@ -46,8 +47,8 @@ export const RoomList = () => {
             <div className="roomFlex">
 
 
-
-              <img className="roomImage1" src={rep1} alt="sdfd" />
+              <div className="room-img-wrapper">
+              <img className="roomImage1" src={rep1} alt="sdfd" /></div>
               <Card.Body>
                 <div className="roomTitleFlex">
                   <Card.Title className="roomTitle">Luxury Room City View</Card.Title>
@@ -89,8 +90,8 @@ export const RoomList = () => {
 
 
                 <div className="roomBtn" >
-                  <Button variant="primary" className="roomBtn2" onClick={ReadMoreBtn} >Read more</Button>
-                  <RoomBookingForm />
+                  <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore1(!readmore1)}} >Read more</Button>
+                  <RoomBookingForm roomType={'Luxury Room City View'} />
                 </div>
 
               </Card.Body>
@@ -101,7 +102,7 @@ export const RoomList = () => {
         <br></br>
         
 
-        {readmore ? <RoomDetails /> : ""}
+        {readmore1 ? <RoomDetails /> : ""}
 
 
 
@@ -125,8 +126,9 @@ export const RoomList = () => {
             <div className="roomFlex">
 
 
-
+            <div className="room-img-wrapper">
               <img className="roomImage1" src={rep2} alt="sdfd" />
+              </div>
               <Card.Body>
                 <div className="roomTitleFlex">
                   <Card.Title className="roomTitle">Deluxe Room Ocean Facing</Card.Title>
@@ -168,8 +170,8 @@ export const RoomList = () => {
 
 
                 <div className="roomBtn" >
-                  <Button variant="primary" className="roomBtn2" onClick={ReadMoreBtn} >Read more</Button>
-                  <RoomBookingForm />
+                  <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore2(!readmore2)}} >Read more</Button>
+                  <RoomBookingForm roomType={'Deluxe Room Ocean Facing'} />
                 </div>
 
               </Card.Body>
@@ -180,7 +182,7 @@ export const RoomList = () => {
         <br></br>
         
 
-        {readmore ? <RoomDetails /> : ""}
+        {readmore2 ? <RoomDetails /> : ""}
 
 
 
@@ -197,8 +199,9 @@ export const RoomList = () => {
             <div className="roomFlex">
 
 
-
+            <div className="room-img-wrapper">
               <img className="roomImage1" src={rep3} alt="sdfd" />
+              </div>
               <Card.Body>
                 <div className="roomTitleFlex">
                   <Card.Title className="roomTitle">Deluxe Bed Room Suite City View</Card.Title>
@@ -240,8 +243,8 @@ export const RoomList = () => {
 
 
                 <div className="roomBtn" >
-                  <Button variant="primary" className="roomBtn2" onClick={ReadMoreBtn} >Read more</Button>
-                  <RoomBookingForm />
+                  <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore3(!readmore3)}} >Read more</Button>
+                  <RoomBookingForm roomType={'Deluxe Bed Room Suite City View'} />
                 </div>
 
               </Card.Body>
@@ -252,7 +255,7 @@ export const RoomList = () => {
         <br></br>
         
 
-        {readmore ? <RoomDetails /> : ""}
+        {readmore3 ? <RoomDetails /> : ""}
 
 
 
@@ -269,8 +272,9 @@ export const RoomList = () => {
             <div className="roomFlex">
 
 
-
+            <div className="room-img-wrapper">
               <img className="roomImage1" src={rep4} alt="sdfd" />
+              </div>
               <Card.Body>
                 <div className="roomTitleFlex">
                   <Card.Title className="roomTitle">Deluxe Bed Room Suite Ocean View</Card.Title>
@@ -312,8 +316,8 @@ export const RoomList = () => {
 
 
                 <div className="roomBtn" >
-                  <Button variant="primary" className="roomBtn2" onClick={ReadMoreBtn} >Read more</Button>
-                  <RoomBookingForm />
+                  <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore4(!readmore4)}} >Read more</Button>
+                  <RoomBookingForm roomType={'Deluxe Bed Room Suite Ocean View'} />
                 </div>
 
               </Card.Body>
@@ -324,9 +328,9 @@ export const RoomList = () => {
         <br></br>
         
 
-        {readmore ? <RoomDetails /> : ""}
+        {readmore4 ? <RoomDetails /> : ""}
         </div>
-        
+      <Footer/>        
       </div>
 
       );

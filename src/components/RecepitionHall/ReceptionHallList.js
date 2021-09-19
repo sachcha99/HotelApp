@@ -115,7 +115,7 @@ export const RecepitonHallList = () => {
                 </div>
               </div>
 
-              <ReceptionHallBookingForm />
+              <ReceptionHallBookingForm receptionType={'Grand Ballroom'} />
 
             </Card.Body>
           </Card>
@@ -210,7 +210,7 @@ export const RecepitonHallList = () => {
       </div>
     </div>
 
-    <ReceptionHallBookingForm />
+    <ReceptionHallBookingForm receptionType={'Banquet Hall'}/>
 
   </Card.Body>
 </Card>
@@ -309,7 +309,7 @@ export const RecepitonHallList = () => {
       </div>
     </div>
 
-    <ReceptionHallBookingForm />
+    <ReceptionHallBookingForm receptionType={'Sangeeth Hall'}/>
 
   </Card.Body>
 </Card>
@@ -414,7 +414,7 @@ export const RecepitonHallList = () => {
       </div>
     </div>
 
-    <ReceptionHallBookingForm />
+    <ReceptionHallBookingForm receptionType={'Queens Hall'} />
 
   </Card.Body>
 </Card>

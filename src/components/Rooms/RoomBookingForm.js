@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const RoomBookingForm = ({row}) => {
+export const RoomBookingForm = ({row,roomType}) => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
@@ -113,7 +113,6 @@ export const RoomBookingForm = ({row}) => {
             setRemarks(row.remarks);
             if( row.loyalty){
                 setSwitchState(true );
-                console.log(switchState)
             }
             
         }
@@ -145,7 +144,7 @@ export const RoomBookingForm = ({row}) => {
             name: "John",
             email: "john@gmail.com",
             phone: "+94775556667",
-            roomName: "Luxury Room City View",
+            roomName: roomType? roomType : 'Unkown Room Type',
             status: "pending",
             adultNo: adultNo,
             childNo: childNo,
@@ -172,14 +171,13 @@ export const RoomBookingForm = ({row}) => {
                 setShow(false)
             });
         }if(row){
-
             const room = {
                 
                 _id: row._id, 
                 name: "John",
                 email: "john@gmail.com",
                 phone: "+94775556667",
-                roomName: "Room 01",
+                roomName: row.roomName,
                 status: "pending",
                 adultNo: adultNo,
                 childNo: childNo,
@@ -187,7 +185,7 @@ export const RoomBookingForm = ({row}) => {
                 checkIn: checkIn,
                 checkOut: checkOut,
                 remarks: remarks,
-                loyalty: switchState.switch
+                loyalty: false
     
             }
 
@@ -241,7 +239,7 @@ export const RoomBookingForm = ({row}) => {
                 size="lg"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Reserve a room</Modal.Title>
+                    <Modal.Title>{row ? `Update Room Reservation` : `Reserve a room`}</Modal.Title>
                 </Modal.Header>
                 <form onSubmit={handleSubmit}>
                     <Modal.Body>
