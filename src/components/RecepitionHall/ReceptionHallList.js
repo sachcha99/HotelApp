@@ -19,11 +19,14 @@ import React from "react";
 import { ReceptionHallBookingForm } from "../RecepitionHall/ReceptionHallBookingForm";
 import Title from "../header/Title";
 import image from '../Images/rreception1.jpg'
+import Pageloader from "../Preloader/Pageloader";
 
 export const RecepitonHallList = () => {
   return (
     <div>
+      
       <Header />
+      <Pageloader/>
       {/* <div className="PicTitileHallReserve">Reserve a ReceptionHall</div> */}
       <Title className="PicTitileRoomReserve" title="Reserve a Reception Hall" />
       <img className="headerPic" src={image} />
