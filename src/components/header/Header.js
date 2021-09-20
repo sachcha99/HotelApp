@@ -17,6 +17,7 @@ import {
 } from 'reactstrap';
 import Logo from '../Images/logo2.png'
 // import DropDown from "../common/DropDown";
+import loginbtn from './../Images/loginbtn.png'
 
 const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -93,7 +94,8 @@ const Header = (props) => {
                         <NavLink  className="navItem" onClick={GotoAbout}>About</NavLink>
                     </NavItem>
                 </Nav>
-                <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="small" style={{  fontSize:"large"  }} >
+                <img className="loginbtn" alt="login" src={loginbtn}/>
+                {/* <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="small" style={{  fontSize:"large"  }} >
                     <DropdownToggle  caret className="userOption" >
                        <PersonRoundedIcon fontSize="large" /> 
                     </DropdownToggle>
@@ -105,7 +107,7 @@ const Header = (props) => {
                             Reception Hall Reservation History 
                             </DropdownItem>
                     </DropdownMenu>
-                </UncontrolledButtonDropdown>
+                </UncontrolledButtonDropdown> */}
             </Collapse>
         </Navbar>
     </div>;
