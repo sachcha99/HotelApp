@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Preloader from "./components/Preloader/Preloader";
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    <Preloader/>
   </React.StrictMode>,
   document.getElementById('root')
 );
