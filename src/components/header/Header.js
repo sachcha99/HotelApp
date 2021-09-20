@@ -104,9 +104,12 @@ const Header = (props) => {
                 {!token ? 
                 <img className="loginbtn" alt="login" src={loginbtn} onClick={goToLogin}/>:
                  <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="small" style={{  fontSize:"large"  }} >
+                <img className="loginbtn" alt="login" src={loginbtn}/>
+                <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="small" style={{  fontSize:"large"  }} >
                     <DropdownToggle  caret className="userOption" >
                         <div >{token.fname}</div>
                        <PersonRoundedIcon fontSize="large" /> 
+                       <h5 className="userName" >John</h5>
                     </DropdownToggle>
                     <DropdownMenu>
                     <DropdownItem onClick={goToRoomHistory}>
@@ -119,7 +122,8 @@ const Header = (props) => {
                             Logout
                             </DropdownItem>
                     </DropdownMenu>
-                </UncontrolledButtonDropdown> }
+                </UncontrolledButtonDropdown> 
+                </UncontrolledButtonDropdown>}
             </Collapse>
         </Navbar>
     </div>;
