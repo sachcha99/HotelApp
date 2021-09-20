@@ -11,6 +11,15 @@ import { MDBCol } from "mdbreact";
 import Snackbar from '@material-ui/core/Snackbar';
 import Fade from '@material-ui/core/Fade';
 import Slide from '@material-ui/core/Slide';
+import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
+import GroupIcon from '@material-ui/icons/Group';
+import LibraryMusicIcon from '@material-ui/icons/LibraryMusic';
+import AssistantIcon from '@material-ui/icons/Assistant';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
+import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
+
+import SearchIcon from '@material-ui/icons/Search';
 import { ReceptionReport } from './ReceptionReport';
 
 
@@ -231,17 +240,20 @@ export const AdminReceptionBooking = () => {
                 <div className="wr-table-header">
                     <Row>
                         <Col className="wr-dashboard-header">
-                            <h4>Manage My Bookings</h4>
+                        <Col>
+                            <div className="chilBar">Manage My Bookings</div>
                         </Col>
-                        <Col className="wr-dashboard-header">
-                             <ReceptionReport/>
+                             
                         </Col>
-                        <Col className="wr-dashboard-header">
-                        <input className="form-control" type="text" placeholder="Search" value={searchTerm} onChange={handleChange} aria-label="Search" />
-   
+                        <Col>
+                        
+                        <input className="form-control" id="searchBar"type="text" placeholder="Search" 
+                        value={searchTerm} onChange={handleChange} aria-label="Search" />
+                       
                         </Col>
                         
                         <Col className="wr-submit" >
+                        
                             <UncontrolledDropdown id='filterToggle'>
                                 <DropdownToggle caret id='filterDrop'>
                                     {StatusFilter}
@@ -254,12 +266,104 @@ export const AdminReceptionBooking = () => {
                                         <DropdownItem onClick={RecentConference}>Recent</DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
+
+                            <ReceptionReport/>
                         </Col>
+                        
                     </Row>
                 </div>
                 <br />
             </div>
             <div>
+
+
+
+            {rows.length > 0 && rows.map((row) => {
+                    if (row.status === status || status === "all") {
+                        return(
+                <div className="cardBack" key={row._id}>
+                    <Card className="text-center" >
+                        <Card.Header>Booking No - RE001 </Card.Header>
+                        <Card.Body>
+                            <div className="cardBody">
+                               
+
+                                    <div className="cardDesc">
+                                <div className="statusParent">
+                                    <Card.Title><h4 className="card-title-h3">Reception Hall Type : {row.receptionName}</h4></Card.Title>
+                                    <div className="statusType">
+                                    <h6 className="statusChild" style={row.status === "approved" ? { borderRight: "15px solid #0cce26" } : row.status == "rejected" ? { borderRight: "15px solid red" } : row.status == "recent" ? { borderRight: "15px solid #007d8d" } : { borderRight: "15px solid orange" }} >{row.status}</h6>
+                                    </div>
+                                </div >
+                                <div className="card-his-bodyFlex">
+                                <div>
+                                <h6 className="card-his-body"><GroupIcon  id="card-his-bodyIcon"/>Capacity : {row.capacity}</h6>
+                                <h6 className="card-his-body"><AssistantIcon id="card-his-bodyIcon"/>Category : {row.category}</h6>
+                                <h6 className="card-his-body"><LibraryMusicIcon id="card-his-bodyIcon"/>Entertainment Type : {row.entType}</h6>
+                                </div>
+                                <div className='card-his-body-dateAdmin'>
+                                    <div>
+                                    <h6 className='conf-date1Admin'><TodayOutlinedIcon id="card-his-bodyIcon"/>Date of the Function  {row.funcDate.split('T',[1])}</h6>
+                            
+                                    <h6 className='conf-date1Admin'><ScheduleIcon id="card-his-bodyIcon"/>Time of the Function : {row.funcDate.split('T').pop().split(".",1)}</h6>
+                                    </div>
+                                </div>
+
+                                </div>
+                                <br />
+                                <div className="card-his-bodyFlex">
+                                <Card.Text >
+                                <StarRateRoundedIcon style={{ color: "#827700", marginLeft: "45px",paddingBottom:"2px" }} />   Remarks - {row.remarks}
+                                </Card.Text>
+                                <div className='card-his-body-menu'>
+                                    <h6 className='conf-organ'><FastfoodIcon id="card-his-bodyIcon"/>Menu Selection :  {row.menu}</h6>
+                                </div>
+
+                                </div>
+                                <div className='card-his-btn' >
+
+                                <Button className='conf-btn conf-btn2' variant="primary" onClick={() => rejectBooking(row)}>Decline</Button>
+
+                                <Button className='conf-btn conf-btn1' variant="primary" onClick={() => approveBooking(row)} >Approve</Button>
+
+
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </Card.Body>
+                        <Card.Footer className="text-muted" >
+                            {/*<text align="left">user ID:904535459</text>*/}
+                            Just now
+
+                        </Card.Footer>
+
+                    </Card>
+                </div>
+                        )} 
+            })
+           
+            
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             {rows.length > 0 && rows.map((row) => {
                     if (row.status === status || status === "all") {
                         return(
@@ -307,21 +411,33 @@ export const AdminReceptionBooking = () => {
 
                                 <Button className='conf-btn conf-btn2' variant="primary" onClick={() => rejectBooking(row)}>Decline</Button>
 
-<Button className='conf-btn conf-btn1' variant="primary" onClick={() => approveBooking(row)} >Approve</Button>
+                                <Button className='conf-btn conf-btn1' variant="primary" onClick={() => approveBooking(row)} >Approve</Button>
                                     </div>
                                 </div>
                             </div>
                         </Card.Body>
                         <Card.Footer className="text-muted" >
-                            {/*<text align="left">user ID:904535459</text>*/}
-                            2 days ago
+                            <text align="left">user ID:904535459</text>
+                             2 days ago
 
                         </Card.Footer>
 
                     </Card>
                 </div>
                         )}
-            })}
+            })} 
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
             <Snackbar  className="approveSnack" autoHideDuration={3000} open={open} onClose={handleClose} TransitionComponent={transition} 
             message="Successfully Approved"key={transition ? transition.name : ''}

@@ -22,6 +22,8 @@ import image from '../Images/rreception1.jpg'
 import Pageloader from "../Preloader/Pageloader";
 
 export const RecepitonHallList = () => {
+
+  
   return (
     <div>
       

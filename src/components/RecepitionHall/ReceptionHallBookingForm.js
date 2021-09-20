@@ -22,6 +22,7 @@ import API from "../api";
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import SlideAlert from '../Common/SlideAlert';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -76,7 +77,7 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
     const classes = useStyles();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
     const [Ent, setEnt] = useState();
     const [Category, setCategory] = useState();
     const [Menu, setMenu] = useState();
@@ -84,8 +85,30 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
     const [remarks, setRemarks] = useState();
     const [date, setDate] = useState();
     const [open, setOpen] = React.useState(false);
+    const [Alertopen, setAlertopen] = React.useState(false);
+
+    const token =JSON.parse(sessionStorage.getItem("token"));
+
+    const handleShow = () =>{ 
+        
+      
+        if(token){
+            setShow(true);
+        }else{
+            handleClickOpen()
+           
+        }
+    
+    }
 
 
+  const handleClickOpen = () => {
+    setAlertopen(true);
+  };
+
+  const handleAlertClose = () => {
+    setAlertopen(false);
+  };
 
     useEffect(() => {
      if(row){
@@ -101,7 +124,9 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
     
 
     const handleClick = () => {
-        setOpen(true);
+    
+            setOpen(true);
+       
     };
 
     const handleCloseSnack = (event, reason) => {
@@ -197,7 +222,7 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
         setMenu();
         setRemarks();
 
-
+        
     }
 
     return (
@@ -207,10 +232,12 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
                     {row ? `Reception Hall Reservation Successfully Updated ` : `Reception Hall Reservation Successful`}
                 </Alert>
             </Snackbar>
-        
+             <SlideAlert open={Alertopen} handleClose={handleAlertClose}/>
+          
             <div className="repBtn" >
                 {row ? 
                  <Button className=' conf-btn2' variant="primary" onClick={handleShow} ><EditOutlinedIcon fontSize="small" /> Edit</Button> :
+                
                  <Button variant="primary" className="repBtn1" onClick={handleShow}  >Make an Enquiry</Button>
          }
           </div>

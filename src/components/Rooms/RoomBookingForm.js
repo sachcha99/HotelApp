@@ -18,6 +18,7 @@ import Switch from '@material-ui/core/Switch';
 import API from "../api";
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+import SlideAlert from '../Common/SlideAlert';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -89,7 +90,7 @@ export const RoomBookingForm = ({row,roomType}) => {
     const classes = useStyles();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
     const [Rooms, setRooms] = useState();
     const [adultNo, setAdultNo] = useState();
     const [childNo, setChildNo] = useState();
@@ -98,8 +99,30 @@ export const RoomBookingForm = ({row,roomType}) => {
     const [remarks, setRemarks] = useState();
     const [switchState, setSwitchState] = useState({ switch: false });
     const [open, setOpen] = React.useState(false);
+    const [Alertopen, setAlertopen] = React.useState(false);
+
+    const token =JSON.parse(sessionStorage.getItem("token"));
+
+    const handleShow = () =>{ 
+
+      
+    if(token){
+        setShow(true);
+    }else{
+        handleClickOpen()
+       
+    }
+
+}
 
 
+const handleClickOpen = () => {
+setAlertopen(true);
+};
+
+const handleAlertClose = () => {
+setAlertopen(false);
+};
 
 
     useEffect(() => {
@@ -226,6 +249,7 @@ export const RoomBookingForm = ({row,roomType}) => {
                 {row ? 'Room Reservation Successful Updated':'Room Reservation Successful'}
                 </Alert>
             </Snackbar>
+            <SlideAlert open={Alertopen} handleClose={handleAlertClose}/>
          {row ?
             <Button className='conf-btn conf-btn2' variant="primary" onClick={handleShow}>Edit</Button>:
             <Button variant="primary" className="roomBtn1" onClick={handleShow} >Reserve</Button>
