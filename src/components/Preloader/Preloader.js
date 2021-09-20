@@ -10,7 +10,7 @@ class Preloader extends Component {
       setTimeout(() => {
         preload.style.display = "none";
       }, 1000);
-    }, 5000);
+    }, 4800);
   }
 
   componentDidMount() {

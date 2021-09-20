@@ -3,14 +3,19 @@ import "./Preloader.css";
 import  image  from "../Images/logonew.png";
 import Header from "../header/Header";
 
-class Pageloader extends Component {
-    pageloader() {
-    let preload = document.querySelector(".pageloader");
-    
-  }
+class PageLoaderTimeOut extends Component {
+    pageLoaderTimeOut() {
+        let preload = document.querySelector(".pageloader");
+        setTimeout(() => {
+          preload.style.opacity = "0";
+          setTimeout(() => {
+            preload.style.display = "none";
+          }, 1000);
+        }, 1000);
+      }
 
   componentDidMount() {
-    this.pageloader();
+    this.pageLoaderTimeOut();
   }
 
   render() {
@@ -30,4 +35,4 @@ class Pageloader extends Component {
   }
 }
 
-export default Pageloader;
+export default PageLoaderTimeOut;

@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const ReceptionHallBookingForm = ({row,receptionType}) => {
+export const ReceptionHallBookingForm = ({row,receptionType,imageName}) => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
@@ -83,17 +83,31 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
     const [Menu, setMenu] = useState();
     const [capacity, setCapacity] = useState();
     const [remarks, setRemarks] = useState();
+    const [userId, setuserId] = useState();
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [phone, setPhone] = useState();
     const [date, setDate] = useState();
+    const [sumbitDate, setsumbitDate] = useState();
+    const [photoPath, setphotoPath] = useState();
     const [open, setOpen] = React.useState(false);
     const [Alertopen, setAlertopen] = React.useState(false);
 
     const token =JSON.parse(sessionStorage.getItem("token"));
-
+    const today = new Date()
+   
     const handleShow = () =>{ 
         
       
         if(token){
             setShow(true);
+            setuserId(token.id)
+            setEmail(token.email)
+            setName(token.fname+" "+token.lname)
+            setPhone("1234567896")
+            setsumbitDate(today)
+            setphotoPath(imageName)
+            
         }else{
             handleClickOpen()
            
@@ -142,18 +156,22 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
         event.preventDefault();
         if(!row)
       {  const reception = {
-            name: "John",
-            email: "john@gmail.com",
-            phone: "+94775556667",
+            userId:userId,
+            name: name,
+            email: email,
+            phone: phone,
             receptionName: receptionType? receptionType : 'Unknown',
             status: "pending",
             capacity: capacity,
             entType: Ent,
             category: Category,
             funcDate: date,
+            addDate: sumbitDate,
+            photoPath: photoPath,
             menu: Menu,
             remarks: remarks
         }
+        console.log(reception)
 
         //send post request to add a new reception hall reservation to the db
         API.post('/reception/create', reception)
@@ -176,16 +194,19 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
 
                 const reception = {
     
-                    _id: row._id,   
-                    name: "John", 
-                    email: "john@gmail.com",
-                    phone: "+94775556667",    
+                    _id: row._id,
+                    userId:row.userId,
+                    name: row.name,
+                    email: row.email,
+                    phone: row.phone,  
                     receptionName: row.receptionName,
                     status: "pending",  
                     capacity: capacity,  
                     entType: Ent,    
                     category: Category,    
-                    funcDate: date,    
+                    funcDate: date,   
+                    addDate: row.addDate,
+                    photoPath: row.photoPath, 
                     menu: Menu,
                     remarks: remarks
     

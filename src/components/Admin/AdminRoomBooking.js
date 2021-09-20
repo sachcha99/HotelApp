@@ -12,6 +12,7 @@ import Footer from "../footer/Footer";
 import Title from "../header/Title";
 import image from '../Images/roomreseve.jpg'
 import { RoomReport } from './RoomReport';
+import CalcDate from '../Common/CalcDate';
 
 export const AdminRoomBooking = () => {
     const [status, setStatus] = useState("all");
@@ -22,13 +23,14 @@ export const AdminRoomBooking = () => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState('');
- 
+    let  [count, setCount] = useState('0');
    
     useEffect(() => {
         if(!searchTerm){
         API.get(`/room/`)
             .then(res => {
                 setRows(res.data)
+                setCount(rows.length)
             })
             .catch(err => {
                 console.log(err)
@@ -76,46 +78,28 @@ export const AdminRoomBooking = () => {
                 rowData.status="approved"
                 const approveData={
                     _id:rowData._id,
-                          name: "John",
-            email: "john@gmail.com",
-            phone: "+94775556667",
-            roomName: rowData.roomName,
-            status: "approved",
-            adultNo: rowData.adultNo,
-            childNo: rowData.childNo,
-            roomNo: rowData.roomNo,
-            checkIn: rowData.checkIn,
-            checkOut: rowData.checkOut,
-            remarks: rowData.remarks,
-            loyalty: rowData.loyalty,
+                    userId:rowData.userId,
+                    name: rowData.name,
+                    email: rowData.email,
+                    phone: rowData.phone, 
+                    roomName: rowData.roomName,
+                    status: "approved",
+                    adultNo: rowData.adultNo,
+                    childNo: rowData.childNo,
+                    roomNo: rowData.roomNo,
+                    checkIn: rowData.checkIn,
+                    checkOut: rowData.checkOut,
+                    addDate: rowData.addDate,
+                    photoPath: rowData.photoPath, 
+                    remarks: rowData.remarks,
+                    loyalty: rowData.loyalty,
                 }
                 API.put("/room/update", approveData).then();
             }
-            // else if(rows[i].status=="approved" && rows[i]._id!=rowData._id){
-            //     setApprove("recent")
-            //     rowData.status="recent"
-            //     const approveData={
-            //         _id:rows[i]._id,
-            //         name: "John",
-            //         email: "john@gmail.com",
-            //         phone: "+94775556667",
-            //         roomName: "Room 01",
-            //         status: "pending",
-            //         adultNo: rows[i].adultNo,
-            //         childNo: rows[i].childNo,
-            //         roomNo: rows[i].roomNo,
-            //         checkIn: rows[i].checkIn,
-            //         checkOut: rows[i].checkOut,
-            //         remarks: rows[i].remarks,
-            //         loyalty: rows[i].loyalty,
-                    
-            //     }
-            //     API.put("/room/update", approveData).then();
-            // }
+          
         }
 
 
-        //window.location.reload();
     }
 
 
@@ -124,19 +108,22 @@ export const AdminRoomBooking = () => {
         setApprove("rejected")
         rowData.status="rejected"
         const approveData={
-            _id:rowData._id,
-            name: "John",
-email: "john@gmail.com",
-phone: "+94775556667",
-roomName: rowData.roomName,
-status: "rejected",
-adultNo: rowData.adultNo,
-childNo: rowData.childNo,
-roomNo: rowData.roomNo,
-checkIn: rowData.checkIn,
-checkOut: rowData.checkOut,
-remarks: rowData.remarks,
-loyalty: rowData.loyalty
+                    _id:rowData._id,
+                    userId:rowData.userId,
+                    name: rowData.name,
+                    email: rowData.email,
+                    phone: rowData.phone, 
+                    roomName: rowData.roomName,
+                    status: "rejected",
+                    adultNo: rowData.adultNo,
+                    childNo: rowData.childNo,
+                    roomNo: rowData.roomNo,
+                    checkIn: rowData.checkIn,
+                    checkOut: rowData.checkOut,
+                    addDate: rowData.addDate,
+                    photoPath: rowData.photoPath, 
+                    remarks: rowData.remarks,
+                    loyalty: rowData.loyalty
         }
 
         API.put("/room/update", approveData).then();
@@ -200,19 +187,23 @@ loyalty: rowData.loyalty
                 <div className="wr-table-header">
                     <Row>
                         <Col className="wr-dashboard-header">
-                            <h4>Manage My Bookings</h4>
+                        <Col>
+                            <div className="chilBar">Manage My Bookings</div>
                         </Col>
-                        <Col className="wr-dashboard-header">
-                             <RoomReport/> 
+                             
                         </Col>
-                        <Col className="wr-dashboard-header">
-                        <input className="form-control" type="text" placeholder="Search" value={searchTerm} onChange={handleChange} aria-label="Search" />
-  
+                        <Col>
+                        
+                        <input className="form-control" id="searchBar"type="text" placeholder="Search" 
+                        value={searchTerm} onChange={handleChange} aria-label="Search" />
+                       
                         </Col>
+                        
                         <Col className="wr-submit" >
+                        
                             <UncontrolledDropdown id='filterToggle'>
                                 <DropdownToggle caret id='filterDrop'>
-                                {StatusFilter}
+                                    {StatusFilter}
                                 </DropdownToggle>
                                 <DropdownMenu>
                                         <DropdownItem onClick={AllConference}>All</DropdownItem>
@@ -222,16 +213,26 @@ loyalty: rowData.loyalty
                                         <DropdownItem onClick={RecentConference}>Recent</DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
+
+                            <RoomReport/>
                         </Col>
                     </Row>
                 </div>
                 <br />
             </div>
+            <div className="CountingHead"> {StatusFilter} Room Reservations ({count})</div>
             <div  style={{display:'flex', flexWrap:'wrap'}}>
             {rows.length > 0 && rows.map((row) => {
+               
                     if (row.status === status || status === "all") {
-                        return(
+                        
+                        return( 
+
+
+            <div>
+                
                 <div className="cardBackAdmin" key={row._id}>
+                   
                     <Card className="text-center" >
                         <Card.Header>Booking ID - #{row._id} </Card.Header>
                         <Card.Body>
@@ -290,19 +291,23 @@ loyalty: rowData.loyalty
                             </div>
                         </Card.Body>
                         <Card.Footer className="text-muted" >
-                            {/*<text align="left">user ID:904535459</text>*/}
-                            2 days ago
+                        <CalcDate DateC={row.addDate.split('T',[1])}/>
 
                         </Card.Footer>
 
                     </Card>
 
                 </div>
+                </div>
                  )}
-                })}
+                 
+                })
+                }
+                
             </div>
             {/* <Footer/> */}
             </div>
         </div>
+        
     )
 }

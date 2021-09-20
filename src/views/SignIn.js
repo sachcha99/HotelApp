@@ -86,6 +86,7 @@ export default function SignInView() {
                             fname: res.data.firstName,
                             lname: res.data.lastName,
                             email:res.data.email,
+                            phone:res.data.phone,
                             type:res.data.type
                         }
                         sessionStorage.setItem("token",JSON.stringify(token));

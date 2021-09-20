@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const RoomBookingForm = ({row,roomType}) => {
+export const RoomBookingForm = ({row,roomType,imageName}) => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
@@ -97,17 +97,31 @@ export const RoomBookingForm = ({row,roomType}) => {
     const [checkIn, setCheckIn] = useState();
     const [checkOut, setCheckOut] = useState();
     const [remarks, setRemarks] = useState();
+    const [userId, setuserId] = useState();
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [phone, setPhone] = useState();
+    const [date, setDate] = useState();
+    const [sumbitDate, setsumbitDate] = useState();
+    const [photoPath, setphotoPath] = useState();
     const [switchState, setSwitchState] = useState({ switch: false });
     const [open, setOpen] = React.useState(false);
     const [Alertopen, setAlertopen] = React.useState(false);
 
     const token =JSON.parse(sessionStorage.getItem("token"));
+    const today = new Date()
 
     const handleShow = () =>{ 
 
       
     if(token){
         setShow(true);
+        setuserId(token.id)
+        setEmail(token.email)
+        setName(token.fname+" "+token.lname)
+        setPhone("1234567896")
+        setsumbitDate(today)
+        setphotoPath(imageName)
     }else{
         handleClickOpen()
        
@@ -164,9 +178,10 @@ setAlertopen(false);
         event.preventDefault();
         if(!row){
         const room = {
-            name: "John",
-            email: "john@gmail.com",
-            phone: "+94775556667",
+            userId:userId,
+            name: name,
+            email: email,
+            phone: phone,
             roomName: roomType? roomType : 'Unkown Room Type',
             status: "pending",
             adultNo: adultNo,
@@ -175,7 +190,9 @@ setAlertopen(false);
             checkIn: checkIn,
             checkOut: checkOut,
             remarks: remarks,
-            loyalty: switchState.switch
+            loyalty: switchState.switch,
+            addDate: sumbitDate,
+            photoPath: photoPath
 
         }
 
@@ -196,10 +213,12 @@ setAlertopen(false);
         }if(row){
             const room = {
                 
-                _id: row._id, 
-                name: "John",
-                email: "john@gmail.com",
-                phone: "+94775556667",
+               
+                _id: row._id,
+                userId:row.userId,
+                name: row.name,
+                email: row.email,
+                phone: row.phone, 
                 roomName: row.roomName,
                 status: "pending",
                 adultNo: adultNo,
@@ -208,7 +227,9 @@ setAlertopen(false);
                 checkIn: checkIn,
                 checkOut: checkOut,
                 remarks: remarks,
-                loyalty: false
+                loyalty: false,
+                addDate: row.addDate,
+                photoPath: row.photoPath, 
     
             }
 
