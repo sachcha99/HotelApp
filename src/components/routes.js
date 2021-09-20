@@ -22,6 +22,7 @@ const hist = createBrowserHistory();
 const routes = () => (
     <Router history={hist}>
         <Route exact path="/" component={Home}/>
+        <Route exact path="/home" component={Home}/>
         <Route exact path="/RoomHistory" component={RoomBookingHistory}/>
         <Route exact path="/ReceptionHistory" component={ReceptionHallBookingHistory}/>
         <Route exact path="/Receptions" component={RecepitonHallList}/>

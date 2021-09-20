@@ -37,7 +37,7 @@ export default function App() {
                                     Galle Road,<br></br>
                                     Sri Lanka<br></br>
                                     (Phone/Fax: +94-115-457-578)<br></br>
-                                    email: info@icaf.com<br></br>
+                                    email: info@lemontree.com<br></br>
                                 </p>
                             </MDBCol>
                             <MDBCol lg='6' md='12' className='mb-4 mb-md-0'>
