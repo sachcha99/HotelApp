@@ -19,7 +19,7 @@ import React, { useState, useEffect } from 'react';
 import { RoomBookingForm } from "../Rooms/RoomBookingForm";
 import Title from "../header/Title";
 import image from '../Images/rroom.jpg'
-
+import Pageloader from "../Preloader/Pageloader";
 
 
 
@@ -34,6 +34,7 @@ export const RoomList = () => {
   return (
     <div>
       <Header />
+      <Pageloader/>
       <Title className="PicTitileRoomReserve" title="Reserve a Room" />
       <img className="headerPic" src={image} />
       <div className="mainBgPic">
