@@ -94,10 +94,11 @@ const Header = (props) => {
                         <NavLink  className="navItem" onClick={GotoAbout}>About</NavLink>
                     </NavItem>
                 </Nav>
-                <img className="loginbtn" alt="login" src={loginbtn}/>
-                {/* <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="small" style={{  fontSize:"large"  }} >
+                {/* <img className="loginbtn" alt="login" src={loginbtn}/> */}
+                <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="small" style={{  fontSize:"large"  }} >
                     <DropdownToggle  caret className="userOption" >
                        <PersonRoundedIcon fontSize="large" /> 
+                       <h5 className="userName" >John</h5>
                     </DropdownToggle>
                     <DropdownMenu>
                     <DropdownItem onClick={goToRoomHistory}>
@@ -107,7 +108,7 @@ const Header = (props) => {
                             Reception Hall Reservation History 
                             </DropdownItem>
                     </DropdownMenu>
-                </UncontrolledButtonDropdown> */}
+                </UncontrolledButtonDropdown>
             </Collapse>
         </Navbar>
     </div>;
