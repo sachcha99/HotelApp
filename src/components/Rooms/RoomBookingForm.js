@@ -18,6 +18,7 @@ import Switch from '@material-ui/core/Switch';
 import API from "../api";
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+import SlideAlert from '../Common/SlideAlert';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -84,22 +85,58 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const RoomBookingForm = ({row,roomType}) => {
+export const RoomBookingForm = ({row,roomType,imageName}) => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
     const [Rooms, setRooms] = useState();
     const [adultNo, setAdultNo] = useState();
     const [childNo, setChildNo] = useState();
     const [checkIn, setCheckIn] = useState();
     const [checkOut, setCheckOut] = useState();
     const [remarks, setRemarks] = useState();
+    const [userId, setuserId] = useState();
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [phone, setPhone] = useState();
+    const [date, setDate] = useState();
+    const [sumbitDate, setsumbitDate] = useState();
+    const [photoPath, setphotoPath] = useState();
     const [switchState, setSwitchState] = useState({ switch: false });
     const [open, setOpen] = React.useState(false);
+    const [Alertopen, setAlertopen] = React.useState(false);
+
+    const token =JSON.parse(sessionStorage.getItem("token"));
+    const today = new Date()
+
+    const handleShow = () =>{ 
+
+      
+    if(token){
+        setShow(true);
+        setuserId(token.id)
+        setEmail(token.email)
+        setName(token.fname+" "+token.lname)
+        setPhone("1234567896")
+        setsumbitDate(today)
+        setphotoPath(imageName)
+    }else{
+        handleClickOpen()
+       
+    }
+
+}
 
 
+const handleClickOpen = () => {
+setAlertopen(true);
+};
+
+const handleAlertClose = () => {
+setAlertopen(false);
+};
 
 
     useEffect(() => {
@@ -141,9 +178,10 @@ export const RoomBookingForm = ({row,roomType}) => {
         event.preventDefault();
         if(!row){
         const room = {
-            name: "John",
-            email: "john@gmail.com",
-            phone: "+94775556667",
+            userId:userId,
+            name: name,
+            email: email,
+            phone: phone,
             roomName: roomType? roomType : 'Unkown Room Type',
             status: "pending",
             adultNo: adultNo,
@@ -152,7 +190,9 @@ export const RoomBookingForm = ({row,roomType}) => {
             checkIn: checkIn,
             checkOut: checkOut,
             remarks: remarks,
-            loyalty: switchState.switch
+            loyalty: switchState.switch,
+            addDate: sumbitDate,
+            photoPath: photoPath
 
         }
 
@@ -173,10 +213,12 @@ export const RoomBookingForm = ({row,roomType}) => {
         }if(row){
             const room = {
                 
-                _id: row._id, 
-                name: "John",
-                email: "john@gmail.com",
-                phone: "+94775556667",
+               
+                _id: row._id,
+                userId:row.userId,
+                name: row.name,
+                email: row.email,
+                phone: row.phone, 
                 roomName: row.roomName,
                 status: "pending",
                 adultNo: adultNo,
@@ -185,7 +227,9 @@ export const RoomBookingForm = ({row,roomType}) => {
                 checkIn: checkIn,
                 checkOut: checkOut,
                 remarks: remarks,
-                loyalty: false
+                loyalty: false,
+                addDate: row.addDate,
+                photoPath: row.photoPath, 
     
             }
 
@@ -226,6 +270,7 @@ export const RoomBookingForm = ({row,roomType}) => {
                 {row ? 'Room Reservation Successful Updated':'Room Reservation Successful'}
                 </Alert>
             </Snackbar>
+            <SlideAlert open={Alertopen} handleClose={handleAlertClose}/>
          {row ?
             <Button className='conf-btn conf-btn2' variant="primary" onClick={handleShow}>Edit</Button>:
             <Button variant="primary" className="roomBtn1" onClick={handleShow} >Reserve</Button>

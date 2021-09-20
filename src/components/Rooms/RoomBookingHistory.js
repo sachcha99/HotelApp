@@ -22,6 +22,8 @@ import ScheduleIcon from '@material-ui/icons/Schedule';
 import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+import CalcDate from '../Common/CalcDate';
+import Pageloader from '../Preloader/Pageloader';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -32,8 +34,12 @@ export const RoomBookingHistory = () => {
     const [status, setStatus] = useState("all");
     const [rows, setRows] = useState('');
     const [open, setOpen] = React.useState(false);
-
+    const token =JSON.parse(sessionStorage.getItem("token"));
     const [StatusFilter,setStatusFilter] = useState("All");
+    const [IsProgress,setIsProgress] = useState(true);
+    let  [count, setCount] = useState('0');
+   
+    
     const handleCloseSnack = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -42,13 +48,17 @@ export const RoomBookingHistory = () => {
         setOpen(false);
     };
     useEffect(() => {
-        API.get(`/room/`)
+        API.get(`/room/${token.id}`)
             .then(res => {
                 setRows(res.data)
+                setIsProgress(false)
+                setCount(rows.length)
             })
             .catch(err => {
                 console.log(err)
             });
+
+
     }, [rows]);
 
 
@@ -112,6 +122,8 @@ export const RoomBookingHistory = () => {
                 </Alert>
             </Snackbar>
 <Header/>
+{IsProgress ? <Pageloader/> : 
+<div>
 <Title className="PicTitileRoomReserve" title="Room Reservation History"/>
             <img className="headerPic" src={image}/>  
         <div id="admin-card-back">
@@ -140,8 +152,10 @@ export const RoomBookingHistory = () => {
                 <br />
             </div>
             <div>
+            <div className="CountingHeadUser"> {StatusFilter} Reception Hall Reservations ({count})</div>
             {rows.length > 0 && rows.map((row) => {
                     if (row.status === status || status === "all") {
+                        
                         return(
                 <div className="cardBack" key={row._id}>
                     <Card className="text-center" >
@@ -149,7 +163,7 @@ export const RoomBookingHistory = () => {
                         <Card.Body>
                             <div className="cardBody">
                                 <div >
-                                    <img className="hallImg" src={Room01} alt="" />
+                                    <img className="hallImg" src={row.photoPath} alt="" />
                                     </div>
 
                                     <div className="cardDesc">
@@ -200,7 +214,7 @@ export const RoomBookingHistory = () => {
                             
                                 <div className='card-his-btn' >
 
-<Button className='card-his-btnDelete' variant="primary"  onClick={() => deleteBooking(row)}>Cancel</Button>
+                                <Button className='card-his-btnDelete' variant="primary"  onClick={() => deleteBooking(row)}>Cancel</Button>
 
 
                                     <RoomBookingForm row={row}/>
@@ -209,9 +223,8 @@ export const RoomBookingHistory = () => {
                             </div>
                         </Card.Body>
                         <Card.Footer className="text-muted" >
-                            {/*<text align="left">user ID:904535459</text>*/}
-                            Just Now
-
+                           <CalcDate DateC={row.addDate.split('T',[1])}/>
+                        
                         </Card.Footer>
 
                     </Card>
@@ -222,6 +235,7 @@ export const RoomBookingHistory = () => {
             </div>
             {/* <Footer/> */}
             </div>
-        </div>
+            </div> }
+</div>
     )
 }

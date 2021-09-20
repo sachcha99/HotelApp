@@ -22,6 +22,7 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
+import CalcDate from '../Common/CalcDate';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -32,8 +33,8 @@ export const ReceptionHallBookingHistory = () => {
     const [status, setStatus] = useState("all");
     const [rows, setRows] = useState('');
     const [open, setOpen] = React.useState(false);
-
-    
+    const token =JSON.parse(sessionStorage.getItem("token"));
+    let  [count, setCount] = useState('0');
     const [StatusFilter,setStatusFilter] = useState("All");
 
     const handleCloseSnack = (event, reason) => {
@@ -48,9 +49,10 @@ export const ReceptionHallBookingHistory = () => {
     };
 
     useEffect(() => {
-        API.get(`/reception/`)
+        API.get(`/reception/${token.id}`)
             .then(res => {
                 setRows(res.data)
+                setCount(rows.length)
             })
             .catch(err => {
                 console.log(err)
@@ -145,6 +147,7 @@ export const ReceptionHallBookingHistory = () => {
                 <br />
             </div>
             <div>
+            <div className="CountingHeadUser"> {StatusFilter} Room Reservations ({count})</div>
             {rows.length > 0 && rows.map((row) => {
                     if (row.status === status || status === "all") {
                         return(
@@ -154,12 +157,12 @@ export const ReceptionHallBookingHistory = () => {
                         <Card.Body>
                             <div className="cardBody">
                                 <div >
-                                    <img className="hallImg" src={Hall01} alt="" />
+                                    <img className="hallImg" src={row.photoPath} alt={row.photoPath} />
                                     </div>
 
                                     <div className="cardDesc">
                                 <div className="statusParent">
-                                    <Card.Title><h4 className="card-title-h3">Reception Hall Type : {row.receptionName}</h4></Card.Title>
+                                    <Card.Title><h4 className="card-title-h3">Reception Hall Type  : {row.receptionName}</h4></Card.Title>
                                     <div className="statusType">
                                     <h6 className="statusChild" style={row.status === "approved" ? { borderRight: "15px solid #0cce26" } : row.status == "rejected" ? { borderRight: "15px solid red" } : row.status == "recent" ? { borderRight: "15px solid #007d8d" } : { borderRight: "15px solid orange" }} >{row.status}</h6>
                                     </div>
@@ -201,8 +204,7 @@ export const ReceptionHallBookingHistory = () => {
                             </div>
                         </Card.Body>
                         <Card.Footer className="text-muted" >
-                            {/*<text align="left">user ID:904535459</text>*/}
-                            Just now
+                            <CalcDate DateC={row.addDate.split('T',[1])}/>
 
                         </Card.Footer>
 

@@ -19,14 +19,16 @@ import React from "react";
 import { ReceptionHallBookingForm } from "../RecepitionHall/ReceptionHallBookingForm";
 import Title from "../header/Title";
 import image from '../Images/rreception1.jpg'
-import Pageloader from "../Preloader/Pageloader";
+import PageLoaderTimeOut from "../Preloader/PageLoaderTimeOut";
 
 export const RecepitonHallList = () => {
+
+  
   return (
     <div>
       
       <Header />
-      <Pageloader/>
+      <PageLoaderTimeOut/>
       {/* <div className="PicTitileHallReserve">Reserve a ReceptionHall</div> */}
       <Title className="PicTitileRoomReserve" title="Reserve a Reception Hall" />
       <img className="headerPic" src={image} />
@@ -118,7 +120,7 @@ export const RecepitonHallList = () => {
                 </div>
               </div>
 
-              <ReceptionHallBookingForm receptionType={'Grand Ballroom'} />
+              <ReceptionHallBookingForm receptionType={'Grand Ballroom'}  imageName={rep4}/>
 
             </Card.Body>
           </Card>
@@ -213,7 +215,7 @@ export const RecepitonHallList = () => {
       </div>
     </div>
 
-    <ReceptionHallBookingForm receptionType={'Banquet Hall'}/>
+    <ReceptionHallBookingForm receptionType={'Banquet Hall'} imageName={rep3}/>
 
   </Card.Body>
 </Card>
@@ -312,7 +314,7 @@ export const RecepitonHallList = () => {
       </div>
     </div>
 
-    <ReceptionHallBookingForm receptionType={'Sangeeth Hall'}/>
+    <ReceptionHallBookingForm receptionType={'Sangeeth Hall'} imageName={rep2}/>
 
   </Card.Body>
 </Card>
@@ -417,7 +419,7 @@ export const RecepitonHallList = () => {
       </div>
     </div>
 
-    <ReceptionHallBookingForm receptionType={'Queens Hall'} />
+    <ReceptionHallBookingForm receptionType={'Queens Hall'} imageName={rep1}/>
 
   </Card.Body>
 </Card>

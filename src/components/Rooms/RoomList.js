@@ -19,7 +19,7 @@ import React, { useState, useEffect } from 'react';
 import { RoomBookingForm } from "../Rooms/RoomBookingForm";
 import Title from "../header/Title";
 import image from '../Images/rroom.jpg'
-import Pageloader from "../Preloader/Pageloader";
+import PageLoaderTimeOut from "../Preloader/PageLoaderTimeOut";
 
 
 
@@ -34,7 +34,7 @@ export const RoomList = () => {
   return (
     <div>
       <Header />
-      <Pageloader/>
+      <PageLoaderTimeOut/>
       <Title className="PicTitileRoomReserve" title="Reserve a Room" />
       <img className="headerPic" src={image} />
       <div className="mainBgPic">
@@ -92,7 +92,7 @@ export const RoomList = () => {
 
                 <div className="roomBtn" >
                   <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore1(!readmore1)}} >Read more</Button>
-                  <RoomBookingForm roomType={'Luxury Room City View'} />
+                  <RoomBookingForm roomType={'Luxury Room City View'} imageName={rep1}/>
                 </div>
 
               </Card.Body>
@@ -172,7 +172,7 @@ export const RoomList = () => {
 
                 <div className="roomBtn" >
                   <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore2(!readmore2)}} >Read more</Button>
-                  <RoomBookingForm roomType={'Deluxe Room Ocean Facing'} />
+                  <RoomBookingForm roomType={'Deluxe Room Ocean Facing'} imageName={rep2} />
                 </div>
 
               </Card.Body>
@@ -245,7 +245,7 @@ export const RoomList = () => {
 
                 <div className="roomBtn" >
                   <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore3(!readmore3)}} >Read more</Button>
-                  <RoomBookingForm roomType={'Deluxe Bed Room Suite City View'} />
+                  <RoomBookingForm roomType={'Deluxe Bed Room Suite City View'}  imageName={rep3}/>
                 </div>
 
               </Card.Body>
@@ -318,7 +318,7 @@ export const RoomList = () => {
 
                 <div className="roomBtn" >
                   <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore4(!readmore4)}} >Read more</Button>
-                  <RoomBookingForm roomType={'Deluxe Bed Room Suite Ocean View'} />
+                  <RoomBookingForm roomType={'Deluxe Bed Room Suite Ocean View'} imageName={rep4}/>
                 </div>
 
               </Card.Body>

@@ -22,8 +22,9 @@ import loginbtn from './../Images/loginbtn.png'
 const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const history = useHistory();
-    const toggle = () => setIsOpen(!isOpen);
+    const token =JSON.parse(sessionStorage.getItem("token"));
 
+    const toggle = () => setIsOpen(!isOpen);
 
     const [navbar, setNavbar] = useState(false);
 
@@ -47,7 +48,13 @@ const Header = (props) => {
     const GotoAbout = () => {
         history.push("/AdminNav")
     }
-
+    const goToLogin = () => {
+        history.push("/login")
+    }
+    const goToLogOut = () => {
+        sessionStorage.removeItem("token");
+        history.push("/")
+    }
     const changeNavbar = () => {
         if(window.scrollY>=80){
             setNavbar(true)
@@ -94,9 +101,13 @@ const Header = (props) => {
                         <NavLink  className="navItem" onClick={GotoAbout}>About</NavLink>
                     </NavItem>
                 </Nav>
-                {/* <img className="loginbtn" alt="login" src={loginbtn}/> */}
+                {!token ? 
+                <img className="loginbtn" alt="login" src={loginbtn} onClick={goToLogin}/>:
+                 <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="small" style={{  fontSize:"large"  }} >
+                <img className="loginbtn" alt="login" src={loginbtn}/>
                 <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="small" style={{  fontSize:"large"  }} >
                     <DropdownToggle  caret className="userOption" >
+                        <div >{token.fname}</div>
                        <PersonRoundedIcon fontSize="large" /> 
                        <h5 className="userName" >John</h5>
                     </DropdownToggle>
@@ -107,8 +118,12 @@ const Header = (props) => {
                             <DropdownItem onClick={goToReceptionHistory}>
                             Reception Hall Reservation History 
                             </DropdownItem>
+                            <DropdownItem onClick={goToLogOut}>
+                            Logout
+                            </DropdownItem>
                     </DropdownMenu>
-                </UncontrolledButtonDropdown>
+                </UncontrolledButtonDropdown> 
+                </UncontrolledButtonDropdown>}
             </Collapse>
         </Navbar>
     </div>;

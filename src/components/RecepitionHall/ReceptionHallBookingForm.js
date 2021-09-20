@@ -22,6 +22,7 @@ import API from "../api";
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import SlideAlert from '../Common/SlideAlert';
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -71,21 +72,57 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const ReceptionHallBookingForm = ({row,receptionType}) => {
+export const ReceptionHallBookingForm = ({row,receptionType,imageName}) => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
     const [Ent, setEnt] = useState();
     const [Category, setCategory] = useState();
     const [Menu, setMenu] = useState();
     const [capacity, setCapacity] = useState();
     const [remarks, setRemarks] = useState();
+    const [userId, setuserId] = useState();
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [phone, setPhone] = useState();
     const [date, setDate] = useState();
+    const [sumbitDate, setsumbitDate] = useState();
+    const [photoPath, setphotoPath] = useState();
     const [open, setOpen] = React.useState(false);
+    const [Alertopen, setAlertopen] = React.useState(false);
+
+    const token =JSON.parse(sessionStorage.getItem("token"));
+    const today = new Date()
+   
+    const handleShow = () =>{ 
+        
+      
+        if(token){
+            setShow(true);
+            setuserId(token.id)
+            setEmail(token.email)
+            setName(token.fname+" "+token.lname)
+            setPhone("1234567896")
+            setsumbitDate(today)
+            setphotoPath(imageName)
+            
+        }else{
+            handleClickOpen()
+           
+        }
+    
+    }
 
 
+  const handleClickOpen = () => {
+    setAlertopen(true);
+  };
+
+  const handleAlertClose = () => {
+    setAlertopen(false);
+  };
 
     useEffect(() => {
      if(row){
@@ -101,7 +138,9 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
     
 
     const handleClick = () => {
-        setOpen(true);
+    
+            setOpen(true);
+       
     };
 
     const handleCloseSnack = (event, reason) => {
@@ -117,18 +156,22 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
         event.preventDefault();
         if(!row)
       {  const reception = {
-            name: "John",
-            email: "john@gmail.com",
-            phone: "+94775556667",
+            userId:userId,
+            name: name,
+            email: email,
+            phone: phone,
             receptionName: receptionType? receptionType : 'Unknown',
             status: "pending",
             capacity: capacity,
             entType: Ent,
             category: Category,
             funcDate: date,
+            addDate: sumbitDate,
+            photoPath: photoPath,
             menu: Menu,
             remarks: remarks
         }
+        console.log(reception)
 
         //send post request to add a new reception hall reservation to the db
         API.post('/reception/create', reception)
@@ -151,16 +194,19 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
 
                 const reception = {
     
-                    _id: row._id,   
-                    name: "John", 
-                    email: "john@gmail.com",
-                    phone: "+94775556667",    
+                    _id: row._id,
+                    userId:row.userId,
+                    name: row.name,
+                    email: row.email,
+                    phone: row.phone,  
                     receptionName: row.receptionName,
                     status: "pending",  
                     capacity: capacity,  
                     entType: Ent,    
                     category: Category,    
-                    funcDate: date,    
+                    funcDate: date,   
+                    addDate: row.addDate,
+                    photoPath: row.photoPath, 
                     menu: Menu,
                     remarks: remarks
     
@@ -197,7 +243,7 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
         setMenu();
         setRemarks();
 
-
+        
     }
 
     return (
@@ -207,10 +253,12 @@ export const ReceptionHallBookingForm = ({row,receptionType}) => {
                     {row ? `Reception Hall Reservation Successfully Updated ` : `Reception Hall Reservation Successful`}
                 </Alert>
             </Snackbar>
-        
+             <SlideAlert open={Alertopen} handleClose={handleAlertClose}/>
+          
             <div className="repBtn" >
                 {row ? 
                  <Button className=' conf-btn2' variant="primary" onClick={handleShow} ><EditOutlinedIcon fontSize="small" /> Edit</Button> :
+                
                  <Button variant="primary" className="repBtn1" onClick={handleShow}  >Make an Enquiry</Button>
          }
           </div>
