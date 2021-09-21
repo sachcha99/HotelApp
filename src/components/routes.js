@@ -25,7 +25,7 @@ const routes = () => (
         <Route exact path="/home" component={Home}/>
         <Route exact path="/RoomHistory" component={RoomBookingHistory}/>
         <Route exact path="/ReceptionHistory" component={ReceptionHallBookingHistory}/>
-        <Route exact path="/Receptions" component={RecepitonHallList}/>
+        <Route  path="/Receptions" component={RecepitonHallList}/>
         <Route exact path="/Rooms" component={RoomList}/>
         <Route exact path="/AdminNav" component={AdminNav}/>
         <Route path="/login" component={SignInView}/>
