@@ -52,9 +52,9 @@ useEffect(() => {
 
 return(
     <div className="DateAgo">
-      {Year != 0 ? <div className="DateAgoBody"> {Year} years </div>:''}
-      {Month != 0 ? <div className="DateAgoBody"> {Month} months </div>:''}
-      {Day != 0 ? <div className="DateAgoBody"> {Day} Days Ago </div>:<div className="DateAgoBody">Today</div>}
+      {Year > 0 ? <div className="DateAgoBody"> {Year} years </div>:''}
+      {Month > 0 ? <div className="DateAgoBody"> {Month} months </div>:''}
+      {Day > 0 ? <div className="DateAgoBody"> {Day} Days Ago </div>:<div className="DateAgoBody">Today</div>}
       
      
     </div>
