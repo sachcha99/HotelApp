@@ -21,10 +21,24 @@ import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 import PersonIcon from '@mui/icons-material/Person';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
 import EmailIcon from '@mui/icons-material/Email';
+import CachedIcon from '@mui/icons-material/Cached';
 import CalcDate from '../Common/CalcDate';
-
-import SearchIcon from '@material-ui/icons/Search';
+import { Container, createStyles, makeStyles } from "@material-ui/core";
+import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
+import RemoveDoneRoundedIcon from '@mui/icons-material/RemoveDoneRounded';
 import { ReceptionReport } from './ReceptionReport';
+import MuiAlert from '@mui/material/Alert';
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+const useStyles =  makeStyles({
+    rotateIcon: {
+      animation: "spin 1.5s linear infinite",
+     
+    }
+  })
 
 
 function TransitionUp(props) {
@@ -33,28 +47,72 @@ function TransitionUp(props) {
 
 
 export const AdminReceptionBooking = () => {
+    const classes = useStyles();
     const [status, setStatus] = useState("all");
     const [rows, setRows] = useState('');
     const [rows1, setRows1] = useState('');
     const [approve,setApprove] = useState("all");
     const [StatusFilter,setStatusFilter] = useState("All");
-    let  [count, setCount] = useState('0');
+    let  count=0;
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [loadingDel, setLoadingDel] = useState(false);
+    const [loadingBtn, setloadingBtn] = useState("AproveLoadingBtn");
+    const [loadingBtnDel, setloadingBtnDel] = useState("DeclineLoadingBtn");
  
     const token =JSON.parse(sessionStorage.getItem("token"));
 
     const [open, setOpen] = React.useState(false);
+    const [openDel, setOpenDel] = React.useState(false);
     const [transition, setTransition] = React.useState(undefined);
+
+  const  fetchData = () => {
+    setLoading( true );
+    setloadingBtn("AproveLoadingBtnTrue")
+    
+        //Faking API call here
+        setTimeout(() => {
+            setLoading( false );
+            setloadingBtn("AproveLoadingBtnFalse")
+        }, 1000);
+      };
+
+      const  fetchDataDel = () => {
+        setLoadingDel( true );
+        setloadingBtnDel("DeclineLoadingBtnTrue")
+        
+            //Faking API call here
+            setTimeout(() => {
+                setLoadingDel( false );
+                setloadingBtnDel("DeclineLoadingBtnFalse")
+            }, 1000);
+          };
+
+      
   
     const handleClick = (Transition) => () => {
+     fetchData()
+     setTimeout(() => {
       setTransition(() => Transition);
       setOpen(true);
+    }, 1000);
     };
   
     const handleClose = () => {
       setOpen(false);
+      setOpenDel(false);
     };
+
+    const handleClickDel = (Transition) => () => {
+        fetchDataDel()
+        setTimeout(() => {
+        setTransition(() => Transition);
+        setOpenDel(true);
+    }, 1000);
+      };
+    
+      
   
 
 
@@ -70,7 +128,6 @@ export const AdminReceptionBooking = () => {
             });
         }
 
-        Coounting(StatusFilter)
     
     }, [rows,searchTerm]);
 
@@ -86,6 +143,7 @@ export const AdminReceptionBooking = () => {
                     list.push(arr[i])
                 }
                 setRows(list);
+                
             })
             .catch(err => {
                 console.log(err)
@@ -94,35 +152,33 @@ export const AdminReceptionBooking = () => {
         }
     }
 
-    const Coounting = ({statusw}) => {
-      let  cnt =0
-      let i=0
-      
-        for(i;i<rows.length;i++){
-            if(rows[i].status==StatusFilter){
-                cnt++
-            }
-            else if(rows[i].status=="all"){
-                cnt++
-                console.log(rows[i].status)
-            }
+  
+
+
+      {rows.length > 0 && rows.map((row) => {
+        if (row.status === status || status === "all") {
+           
+            count++
+            
         }
-        setCount(cnt)
-      };
+      }
+    )} 
 
     const handleChange = event => {
         findItems(event.target.value);
         setSearchTerm(event.target.value);
-        console.log(searchTerm)
+        
       };
 
 
 
     const approveBooking = (rowData)=>{
+   
 
         for (let i=0;i<rows.length;i++){
 
             if(rows[i]._id==rowData._id){
+                   
                 setApprove("approved")
                 rowData.status="approved"
                 const approveData={
@@ -172,7 +228,7 @@ export const AdminReceptionBooking = () => {
             remarks: rowData.remarks
         }
 
-        API.put("/reception/update", approveData).then();
+        API.put("/reception/update", approveData).then(handleClickDel(TransitionUp));
         
     }
 
@@ -275,7 +331,8 @@ export const AdminReceptionBooking = () => {
             <div>
 
 
-            <div className="CountingHead"> {StatusFilter} Reception Hall Reservations ({count})</div>
+           {!count ==0? <div className="CountingHead"> {StatusFilter} Reception Hall Reservations ({count})</div>:
+           <div className="ZeroCountingHead"> No Any Reception Hall Reservations</div>}
             {rows.length > 0 && rows.map((row) => {
                     if (row.status === status || status === "all") {
                         return(
@@ -337,9 +394,46 @@ export const AdminReceptionBooking = () => {
                                
                                 <div className='card-his-btn' >
 
-                                <Button className='conf-btn conf-btn2' variant="primary" onClick={() => rejectBooking(row)}>Decline</Button>
+                                {/* <Button className='conf-btn conf-btn2' variant="primary" onClick={() => rejectBooking(row)}>Decline</Button> */}
 
-                                <Button className='conf-btn conf-btn1' variant="primary" onClick={() => approveBooking(row)} >Approve</Button>
+                                <Button variant="primary" className={"DeclineLoadingBtn" + (row.status != `rejected` ? '' : 'False')}
+                                   variant="primary" onClick={() => rejectBooking(row)} disabled={loading}>
+                                 {loadingDel &&  (
+                                      <Container maxWidth="sm">
+                                     <CachedIcon className={classes.rotateIcon} id="refreshIcon"/>
+                                      <style>{`
+                                            @keyframes spin {
+                                                 0% { transform: rotate(0deg); }
+                                                 100% { transform: rotate(360deg); }
+                                            }
+                                        `}</style>
+                                         {loadingDel && <span>Applying</span>}
+                                    </Container>
+                                     )}
+                                     {!loadingDel && row.status == "rejected" ?<RemoveDoneRoundedIcon  id="refreshIcon"/>:''}
+                                     {!loadingDel && <span>{ row.status != "rejected" ? `Decline`:`Declined`}</span>}
+                                    </Button>
+
+                                {/* <Button className='conf-btn conf-btn1' variant="primary" onClick={() => approveBooking(row)} >Approve</Button> */}
+
+                               
+                                <Button className={"AproveLoadingBtn" + (row.status != `approved` ? '' : 'False')} variant="primary" onClick={() => approveBooking(row)} disabled={loading}>
+                                 {loading &&  (
+                                      <Container maxWidth="sm">
+                                      <CachedIcon className={classes.rotateIcon} id="refreshIcon"/>
+                                      <style>{`
+                                            @keyframes spin {
+                                                 0% { transform: rotate(0deg); }
+                                                 100% { transform: rotate(360deg); }
+                                            }
+                                        `}</style>
+                                         {loading && <span>Applying</span>}
+                                    </Container>
+                                     )}
+                                     { !loading && row.status == "approved" ?<DoneAllRoundedIcon  id="refreshIcon"/>:''}
+                                     {!loading && <span>{row.status != "approved"  ? `Give Approve`:`Approved`}</span>}
+                                    </Button>
+                                  
 
 
                                     
@@ -348,7 +442,7 @@ export const AdminReceptionBooking = () => {
                             </div>
                         </Card.Body>
                         <Card.Footer className="text-muted" >
-                        <CalcDate DateC={row.addDate.split('T',[1])}/>
+                        <CalcDate DateC={(row.addDate.split('T',[1]).pop().split("-",3))}/>
 
                         </Card.Footer>
 
@@ -363,11 +457,19 @@ export const AdminReceptionBooking = () => {
 
 
             </div>
-            <Snackbar  className="approveSnack" autoHideDuration={3000} open={open} onClose={handleClose} TransitionComponent={transition} 
-            message="Successfully Approved"key={transition ? transition.name : ''}
-       />
+            {/* <Snackbar  className="approveSnack" autoHideDuration={3000} open={open} onClose={handleClose} TransitionComponent={transition} 
+            message="Successfully Approved"key={transition ? transition.name : ''}  /> */}
+           <Snackbar  className="declineSnack" autoHideDuration={3000} open={openDel} onClose={handleClose} TransitionComponent={transition} 
+            message="Successfully Decline" severity="success" key={transition ? transition.name : ''}/>
+
+         <Snackbar open={open} autoHideDuration={3000} onClose={handleClose} TransitionComponent={transition} >
+          <Alert id="approveSnack"  onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+              Successfully Approved
+          </Alert>
+         </Snackbar>
         </div>
         {/* <Footer/> */}
         </div>
     )
 }
+
