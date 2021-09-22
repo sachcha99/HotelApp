@@ -8,53 +8,73 @@ const [Month,setMonth]= React.useState('');
 
 
 let today = new Date();
+let  past
 
   
-const date1 = DateC;
-const date2 = new Date("07/30/2019");
+const mmm = parseInt(DateC[1]);
+const ddd = parseInt(DateC[2]);
+const yyy = parseInt(DateC[0]);
 
-const calculateDays =(past)=>{
+const calculateDays =()=>{
 
     const dd = String(today.getDate()).padStart(2, '0');
     const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     const yyyy = today.getFullYear();
     
-    today = mm + '/' + dd + '/' + yyyy;
+     today = mm + '/' + dd + '/' + yyyy;
+     past=mmm + '/' + ddd + '/' + yyy;
     
-    
-    const diffInMs   = new Date(today) - new Date(past)
-    const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+     
+    // const diffInMs   = new Date(today) - new Date(past)
+    // const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
 
-    genarateDateNew(diffInDays)
+    if(yyy>=yyyy){
+        setYear(yyy-yyyy)
+    }else{
+        setYear(yyyy-yyy)
+        
+    }
+
+    if(mmm>=mm){
+        setMonth(mmm-mm)
+    }else{
+        setMonth(mm-mmm)
+      
+    }
+
+    if(ddd>=dd){
+        setDay(ddd-dd)
+    }else{
+        setDay(dd-ddd)
+        
+    }
+
+
 
 }
 
-const genarateDateNew =(Days)=>{
 
-    const years  = Math.floor(Days/365)
-    setYear(years)
-    const months = Math.floor(Days%365/30)
-    setMonth(months)
-    const days   = Math.floor(Days%365%30)
-    setDay(days)
-
-}
 
 
 
 
 useEffect(() => {
-    calculateDays(date1)
-    console.log(date1)
-    console.log(today)
+    calculateDays()
+    console.log(past,today)
+   
 }, []);
 
 
 return(
     <div className="DateAgo">
-      {Year > 0 ? <div className="DateAgoBody"> {Year} years </div>:''}
-      {Month > 0 ? <div className="DateAgoBody"> {Month} months </div>:''}
-      {Day > 0 ? <div className="DateAgoBody"> {Day} Days Ago </div>:<div className="DateAgoBody">Today</div>}
+      {Year > 0 ? <div className="DateAgoBody">Reserved Date : {ddd}/{mmm}/{yyy}  </div>:''}
+      {Month > 1 && Year == 0 ?   <div className="DateAgoBody"> {Month} months & </div>:''}
+      {Month ==1 && Year == 0 ?   <div className="DateAgoBody"> {Month} month & </div>:''}
+      {Day > 1 && Year == 0  ? <div className="DateAgoBody"> {Day} days Ago </div>:''}
+      {Day ==1 && Year == 0  ? <div className="DateAgoBody"> {Day} day Ago </div>:''}
+
+      {Day ==0 && Year == 0  ? <div className="DateAgoBody"> Today </div>:''}
+     
       
      
     </div>

@@ -23,14 +23,13 @@ export const AdminRoomBooking = () => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState('');
-    let  [count, setCount] = useState('0');
+    let  count=0;
    
     useEffect(() => {
         if(!searchTerm){
         API.get(`/room/`)
             .then(res => {
                 setRows(res.data)
-                setCount(rows.length)
             })
             .catch(err => {
                 console.log(err)
@@ -61,6 +60,15 @@ export const AdminRoomBooking = () => {
         }
     }
 
+
+    {rows.length > 0 && rows.map((row) => {
+        if (row.status === status || status === "all") {
+           
+            count++
+            
+        }
+      }
+    )} 
 
     const handleChange = event => {
         findItems(event.target.value);
@@ -291,7 +299,7 @@ export const AdminRoomBooking = () => {
                             </div>
                         </Card.Body>
                         <Card.Footer className="text-muted" >
-                        <CalcDate DateC={row.addDate.split('T',[1])}/>
+                        <CalcDate DateC={(row.addDate.split('T',[1]).pop().split("-",3))}/>
 
                         </Card.Footer>
 

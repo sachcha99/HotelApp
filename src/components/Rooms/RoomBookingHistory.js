@@ -37,7 +37,7 @@ export const RoomBookingHistory = () => {
     const token =JSON.parse(sessionStorage.getItem("token"));
     const [StatusFilter,setStatusFilter] = useState("All");
     const [IsProgress,setIsProgress] = useState(true);
-    let  [count, setCount] = useState('0');
+    let  count=0;
    
     
     const handleCloseSnack = (event, reason) => {
@@ -52,7 +52,6 @@ export const RoomBookingHistory = () => {
             .then(res => {
                 setRows(res.data)
                 setIsProgress(false)
-                setCount(rows.length)
             })
             .catch(err => {
                 console.log(err)
@@ -61,6 +60,14 @@ export const RoomBookingHistory = () => {
 
     }, [rows]);
 
+    {rows.length > 0 && rows.map((row) => {
+        if (row.status === status || status === "all") {
+           
+            count++
+            
+        }
+      }
+    )} 
 
     const handleClick = () => {
         setOpen(true);
@@ -223,7 +230,7 @@ export const RoomBookingHistory = () => {
                             </div>
                         </Card.Body>
                         <Card.Footer className="text-muted" >
-                           <CalcDate DateC={row.addDate.split('T',[1])}/>
+                           <CalcDate DateC={(row.addDate.split('T',[1]).pop().split("-",3))}/>
                         
                         </Card.Footer>
 

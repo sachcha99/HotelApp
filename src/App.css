@@ -701,6 +701,12 @@ margin-bottom: 0px !important;
   margin-bottom: 25px;
   margin-left: 30px;
 }
+.ZeroCountingHead{
+  margin-top: 15%;
+  text-align: center;
+  font-family: "Raleway";
+  font-size: 25px;
+}
 
 /* Search ////////////////////////////////////// */
 #searchBar{
@@ -749,21 +755,108 @@ margin-left: auto;
   align-items: center;
 }
 .DateAgoBody{
-  margin-left: 10px;
-  font-family: "Raleway" !important;
+  margin-left: 5px;
+  font-size: 14px !important;
+  color: rgb(124, 124, 124) !important;
 }
 
 /* snack bar */
-.approveSnack{
-background: #032970 !;
-text-align: center;
+/* .approveSnack{
+  background: 'linear-gradient(to right bottom, #00897B, #FFE082)',
+
 }
 
 
 .approveSnack:hover{
   background-color: #175922 !important;
 }
+ */
+.AproveLoadingBtn{
+   
+  margin-left: 10px !important;
+  background: #34c948 !important;
+  width: 173px;
+  height: 45px;
+  color: rgb(255, 255, 255) !important;
+  border-color: #0cce26 !important;
+  transition: 0.5s !important;
+}
+/* .AproveLoadingBtnTrue{
+  margin-left: 10px !important;
+  background: #0cce26 !important;
+  height: 45px;
+  color: rgb(0, 0, 0) !important;
+  border-color: #0cce26 !important;
+  transition: 0.5s !important;
+} */
 
+.AproveLoadingBtnFalse{
+  width: 173px;
+  height: 45px;
+  background: transparent !important;
+  color:#0cce26 !important;
+  margin-left: 10px !important;
+  border-color: #ffffff !important;
+  pointer-events: none;
+ cursor: default;
+ 
+}
+
+
+.AproveLoadingBtn:hover{
+  background: #51df64 !important;
+  color: rgb(77, 77, 77) !important;
+  border-width: 2px !important;
+  border-color: #51df64 !important;
+
+}
+
+
+.DeclineLoadingBtn{
+   
+  background: #c93434 !important;
+  width: 173px;
+  height: 45px;
+  color: rgb(255, 255, 255) !important;
+  border-color: #ce0c0c !important;
+  margin-left: auto !important;
+
+
+  
+}
+/* .DeclineLoadingBtnTrue{
+  margin-left: 10px !important;
+  background: #ce0c0c !important;
+  height: 45px;
+  color: rgb(0, 0, 0) !important;
+  border-color: #ce0c0c !important;
+  transition: 0.5s !important;
+} */
+
+.DeclineLoadingBtnFalse{
+  width: 173px;
+  height: 45px;
+  background: transparent !important;
+  color:#df5151 !important;
+  border-color: #ffffff !important;
+  pointer-events: none;
+  cursor: default;
+  margin-left: auto !important;
+ 
+}
+
+
+.DeclineLoadingBtn:hover{
+  background: #d14141 !important;
+  color: rgb(54, 54, 54) !important;
+  border-width: 2px !important;
+  border-color: #d14141 !important;
+
+}
+#refreshIcon{
+  margin-right: 3px !important;
+  
+}
 
 
 /* History card User*/

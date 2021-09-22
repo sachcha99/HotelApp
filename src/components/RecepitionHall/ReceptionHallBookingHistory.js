@@ -34,7 +34,7 @@ export const ReceptionHallBookingHistory = () => {
     const [rows, setRows] = useState('');
     const [open, setOpen] = React.useState(false);
     const token =JSON.parse(sessionStorage.getItem("token"));
-    let  [count, setCount] = useState('0');
+    let  count =0
     const [StatusFilter,setStatusFilter] = useState("All");
 
     const handleCloseSnack = (event, reason) => {
@@ -52,7 +52,6 @@ export const ReceptionHallBookingHistory = () => {
         API.get(`/reception/${token.id}`)
             .then(res => {
                 setRows(res.data)
-                setCount(rows.length)
             })
             .catch(err => {
                 console.log(err)
@@ -60,6 +59,14 @@ export const ReceptionHallBookingHistory = () => {
     }, [rows]);
 
 
+    {rows.length > 0 && rows.map((row) => {
+        if (row.status === status || status === "all") {
+           
+            count++
+            
+        }
+      }
+    )} 
 
     const deleteBooking = (row)=>{
         console.log(row._id)
@@ -146,8 +153,11 @@ export const ReceptionHallBookingHistory = () => {
                 </div>
                 <br />
             </div>
+           
+            
             <div>
             <div className="CountingHeadUser"> {StatusFilter} Room Reservations ({count})</div>
+            
             {rows.length > 0 && rows.map((row) => {
                     if (row.status === status || status === "all") {
                         return(
@@ -204,8 +214,8 @@ export const ReceptionHallBookingHistory = () => {
                             </div>
                         </Card.Body>
                         <Card.Footer className="text-muted" >
-                            <CalcDate DateC={row.addDate.split('T',[1])}/>
-
+                            <CalcDate DateC={(row.addDate.split('T',[1]).pop().split("-",3))}/>
+                                
                         </Card.Footer>
 
                     </Card>
