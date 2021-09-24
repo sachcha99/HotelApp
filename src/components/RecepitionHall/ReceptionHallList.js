@@ -220,7 +220,7 @@ export const RecepitonHallList = () => {
   </Card.Body>
 </Card>
 </div>
-<hr/>
+<hr className="hr-mainRe"/>
 
 
 
@@ -319,7 +319,7 @@ export const RecepitonHallList = () => {
   </Card.Body>
 </Card>
 </div>
-<hr/>
+<hr className="hr-mainRe"/>
 
 
 

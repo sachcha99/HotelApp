@@ -6,12 +6,19 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
+import {useHistory} from "react-router-dom";
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
  const SlideAlert = ( {open,handleClose}) => {
+  const history = useHistory();
+  const goToLogin =()=>{
+    history.push("/login")
+  }
   
 
   return (
@@ -19,24 +26,25 @@ const Transition = React.forwardRef(function Transition(props, ref) {
       {/* <Button variant="outlined" onClick={handleClickOpen}>
         Slide in alert dialog
       </Button> */}
-      <Dialog
+      <Dialog 
         open={open}
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+      ><div id="AlertBox">
+        <DialogTitle><div><InfoOutlinedIcon className="alertBoxIcon"/>Google's location service</div></DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
+           <div> Let Google help apps determine location. This means sending anonymous
+            location data to Google, even when no apps are running.</div>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} fontColor="red">Cancel</Button>
-          <Button onClick={handleClose}>Login</Button>
+          <Button onClick={handleClose} id="alertCancelBtn">Cancel</Button>
+          <Button onClick={goToLogin} id="alertLoginBtn">Go to login</Button>
         </DialogActions>
+        </div>
       </Dialog>
     </div>
   );
