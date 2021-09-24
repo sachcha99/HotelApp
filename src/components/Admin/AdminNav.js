@@ -30,6 +30,7 @@ import  {RoomBookingHistory}  from '../Rooms/RoomBookingHistory';
 import  {ReceptionHallBookingHistory}  from '../RecepitionHall/ReceptionHallBookingHistory';
 import {AdminReceptionBooking} from './AdminReceptionBooking'
 import {AdminRoomBooking} from './AdminRoomBooking'
+import AdminLoader from '../Preloader/AdminLoader';
 
 
 const drawerWidth = 240;
@@ -120,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
   const [fontcolour, setfontcolour] = React.useState('')
 
 
-  const [viewTab, setView] = React.useState(<AdminReceptionBooking/>)
+  const [viewTab, setView] = React.useState(<AdminRoomBooking/>)
 
 
   const token =JSON.parse(sessionStorage.getItem("token"));

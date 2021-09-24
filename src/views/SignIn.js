@@ -97,6 +97,9 @@ export default function SignInView() {
                             case "headChef":
                                 history.push("/restaurant/dashboard");
                                 break;
+                            case "admin":
+                                history.push("/home")
+                                break;
                             default:
                             // code block
                         }

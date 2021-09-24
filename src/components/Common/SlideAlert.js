@@ -34,8 +34,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button onClick={handleClose}>Agree</Button>
+          <Button onClick={handleClose} fontColor="red">Cancel</Button>
+          <Button onClick={handleClose}>Login</Button>
         </DialogActions>
       </Dialog>
     </div>

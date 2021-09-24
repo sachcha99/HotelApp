@@ -28,6 +28,7 @@ import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
 import RemoveDoneRoundedIcon from '@mui/icons-material/RemoveDoneRounded';
 import { ReceptionReport } from './ReceptionReport';
 import MuiAlert from '@mui/material/Alert';
+import AdminLoader from '../Preloader/AdminLoader';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -58,8 +59,9 @@ export const AdminReceptionBooking = () => {
     const [searchResults, setSearchResults] = useState('');
     const [loading, setLoading] = useState(false);
     const [loadingDel, setLoadingDel] = useState(false);
-    const [loadingBtn, setloadingBtn] = useState("AproveLoadingBtn");
-    const [loadingBtnDel, setloadingBtnDel] = useState("DeclineLoadingBtn");
+    const [AdminLoading, setAdminLoading] = useState(true);
+
+    const [RowID, setRowID] = useState('');
  
     const token =JSON.parse(sessionStorage.getItem("token"));
 
@@ -69,33 +71,36 @@ export const AdminReceptionBooking = () => {
 
   const  fetchData = () => {
     setLoading( true );
-    setloadingBtn("AproveLoadingBtnTrue")
     
         //Faking API call here
         setTimeout(() => {
             setLoading( false );
-            setloadingBtn("AproveLoadingBtnFalse")
         }, 1000);
       };
 
       const  fetchDataDel = () => {
         setLoadingDel( true );
-        setloadingBtnDel("DeclineLoadingBtnTrue")
         
             //Faking API call here
             setTimeout(() => {
                 setLoadingDel( false );
-                setloadingBtnDel("DeclineLoadingBtnFalse")
             }, 1000);
           };
 
+// preloading
+          setTimeout(() => {
+            setAdminLoading(false)
+          },1500)
+
       
   
-    const handleClick = (Transition) => () => {
+    const handleClick = (Transition,id) => () => {
      fetchData()
+     setRowID(id)
      setTimeout(() => {
       setTransition(() => Transition);
       setOpen(true);
+    
     }, 1000);
     };
   
@@ -104,7 +109,8 @@ export const AdminReceptionBooking = () => {
       setOpenDel(false);
     };
 
-    const handleClickDel = (Transition) => () => {
+    const handleClickDel = (Transition,id) => () => {
+        setRowID(id)
         fetchDataDel()
         setTimeout(() => {
         setTransition(() => Transition);
@@ -198,7 +204,8 @@ export const AdminReceptionBooking = () => {
                     menu: rowData.menu,
                     remarks: rowData.remarks
                 }
-                API.put("/reception/update", approveData).then(handleClick(TransitionUp));
+                
+                API.put("/reception/update", approveData).then(handleClick(TransitionUp,rowData._id));
     
             }
         }
@@ -208,6 +215,7 @@ export const AdminReceptionBooking = () => {
 
 
     const rejectBooking = (rowData)=>{
+        
         setApprove("rejected")
         rowData.status="rejected"
         const approveData={
@@ -228,7 +236,7 @@ export const AdminReceptionBooking = () => {
             remarks: rowData.remarks
         }
 
-        API.put("/reception/update", approveData).then(handleClickDel(TransitionUp));
+        API.put("/reception/update", approveData).then(handleClickDel(TransitionUp,rowData._id));
         
     }
 
@@ -277,6 +285,7 @@ export const AdminReceptionBooking = () => {
     const RejectedConference =()=>{
         setStatus("rejected")
         setStatusFilter("Rejected")
+        
     }
     const RecentConference =()=>{
         setStatus("recent")
@@ -288,7 +297,8 @@ export const AdminReceptionBooking = () => {
 
     return (
         <div>
-
+            {AdminLoading ? 
+            <AdminLoader/> :
         <div id="filter-card-back">
             <div className="wr-table1">
                 <div className="wr-table-header">
@@ -396,9 +406,9 @@ export const AdminReceptionBooking = () => {
 
                                 {/* <Button className='conf-btn conf-btn2' variant="primary" onClick={() => rejectBooking(row)}>Decline</Button> */}
 
-                                <Button variant="primary" className={"DeclineLoadingBtn" + (row.status != `rejected` ? '' : 'False')}
+                                <Button variant="primary" className={(row.status != `rejected` ? 'DeclineLoadingBtn' : 'DeclineLoadingBtnFalse')}
                                    variant="primary" onClick={() => rejectBooking(row)} disabled={loading}>
-                                 {loadingDel &&  (
+                                 { loadingDel ?  (
                                       <Container maxWidth="sm">
                                      <CachedIcon className={classes.rotateIcon} id="refreshIcon"/>
                                       <style>{`
@@ -407,18 +417,21 @@ export const AdminReceptionBooking = () => {
                                                  100% { transform: rotate(360deg); }
                                             }
                                         `}</style>
-                                         {loadingDel && <span>Applying</span>}
+                                         {RowID ==row._id && loadingDel && <span>Applying</span>}
+                                         
                                     </Container>
-                                     )}
+                                     ):''}
                                      {!loadingDel && row.status == "rejected" ?<RemoveDoneRoundedIcon  id="refreshIcon"/>:''}
-                                     {!loadingDel && <span>{ row.status != "rejected" ? `Decline`:`Declined`}</span>}
+                                     {/* {!loadingDel && <span>{ row.status != "rejected" ? `Decline`:`Declined`}</span>} */}
+                                     {!loadingDel && row.status != "rejected" && <span>Decline</span>}
+                                     {!loadingDel && row.status == "rejected" && <span>Declined</span>}
                                     </Button>
 
                                 {/* <Button className='conf-btn conf-btn1' variant="primary" onClick={() => approveBooking(row)} >Approve</Button> */}
 
                                
                                 <Button className={"AproveLoadingBtn" + (row.status != `approved` ? '' : 'False')} variant="primary" onClick={() => approveBooking(row)} disabled={loading}>
-                                 {loading &&  (
+                                 { loading &&  (
                                       <Container maxWidth="sm">
                                       <CachedIcon className={classes.rotateIcon} id="refreshIcon"/>
                                       <style>{`
@@ -427,11 +440,13 @@ export const AdminReceptionBooking = () => {
                                                  100% { transform: rotate(360deg); }
                                             }
                                         `}</style>
-                                         {loading && <span>Applying</span>}
+                                         {RowID ==row._id && loading && <span>Applying</span>}
                                     </Container>
                                      )}
                                      { !loading && row.status == "approved" ?<DoneAllRoundedIcon  id="refreshIcon"/>:''}
-                                     {!loading && <span>{row.status != "approved"  ? `Give Approve`:`Approved`}</span>}
+                                     {/* {!loading && <span>{row.status != "approved"  ? `Give Approve`:`Approved`}</span>} */}
+                                     {!loading && row.status != "approved" && <span>Approve</span>}
+                                     {!loading && row.status == "approved" && <span>Approved</span>}
                                     </Button>
                                   
 
@@ -467,8 +482,7 @@ export const AdminReceptionBooking = () => {
               Successfully Approved
           </Alert>
          </Snackbar>
-        </div>
-        {/* <Footer/> */}
+        </div>}
         </div>
     )
 }

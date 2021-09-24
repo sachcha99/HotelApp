@@ -123,8 +123,8 @@
   z-index: 33333;
 }
 .pageloader .spinner {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   background-color: rgb(19, 19, 19);
   border-radius: 100px;
   -webkit-animation: sk-rotateplane 1.5s infinite ease-in-out;
@@ -163,8 +163,8 @@
 }
 
 .pageloaderPic{
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
 }
 
 /* 

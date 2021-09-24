@@ -1,10 +1,19 @@
 import React,{useState,useEffect} from 'react'
-
 import Modal from 'react-bootstrap/Modal';
 import { Button } from 'reactstrap';
 import { DataGrid, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import API from "../api";
 import { id } from 'date-fns/locale';
+import { Container, createStyles, makeStyles } from "@material-ui/core";
+
+import CachedIcon from '@mui/icons-material/Cached';
+
+const useStyles =  makeStyles({
+  rotateIcon: {
+    animation: "spin 1.5s linear infinite",
+   
+  }
+})
 
 function CustomToolbar() {
     return (
@@ -14,10 +23,25 @@ function CustomToolbar() {
     );
   }
 export const ReceptionReport = () => {
-
+    const classes = useStyles();
+    
+    const [loadingGenBtn, setloadingGenBtn] = useState(false);
     const [rows, setRows] = useState();
+    const [modalShow, setModalShow] = useState(false);
 
-   const [modalShow, setModalShow] = useState(false);
+
+    const  ModelOpen = () => {
+      
+      setloadingGenBtn( true );
+      
+          //Faking API call here
+          setTimeout(() => {
+            setloadingGenBtn( false );
+            setModalShow(true)
+          }, 1000);
+        };
+
+
     useEffect(() => {
         API.get(`/reception/`)
             .then(res => {
@@ -103,7 +127,24 @@ export const ReceptionReport = () => {
         <div>
 
             <>
-                <Button className="reportBtn" onClick={() => setModalShow(true)}>Generate Report</Button>
+                {/* <Button className="reportBtn" onClick={() => setModalShow(true)}>Generate Report</Button> */}
+
+                <Button variant="primary" className="reportBtn"  variant="primary" onClick={() => ModelOpen()} disabled={loadingGenBtn}>
+                                 { loadingGenBtn ?  (
+                                      <Container maxWidth="sm">
+                                     <CachedIcon className={classes.rotateIcon} id="refreshIcon"/>
+                                      <style>{`
+                                            @keyframes spin {
+                                                 0% { transform: rotate(0deg); }
+                                                 100% { transform: rotate(360deg); }
+                                            }
+                                        `}</style>
+                                         {loadingGenBtn && <span>Generating</span>}
+                                         
+                                    </Container>
+                                     ):''}
+                                     {!loadingGenBtn  && <span>Generate Report</span>}
+                                    </Button>
 
             </>
             <Modal
