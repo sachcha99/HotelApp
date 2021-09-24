@@ -147,7 +147,7 @@ export const ReceptionReport = () => {
                                     </Button>
 
             </>
-            <Modal
+            <Modal  className="ReportModel"
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 size="lg"

@@ -5,12 +5,16 @@ import Footer from "../footer/Footer";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import PropTypes from 'prop-types';
-import Rating from '@mui/material/Rating';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
 import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
 import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
+import { useForm } from "react-hook-form";
+
+import Rating from "@material-ui/lab/Rating";
+import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+
 import AboutImg from'../Images/about2.jpg';
 const customIcons = {
   1: {
@@ -51,6 +55,41 @@ const About=() =>{
       };
 
   const [value, setValue] = React.useState('Controlled');
+
+
+  const [rating, setRating] = useState(2);
+  const [ratingStatus, setratingStatus] = React.useState('Normal');
+
+useEffect(()=>{
+    if(rating==1)
+    {
+      setratingStatus("Bad")
+      console.log(rating);
+    }
+    if(rating==2)
+    {
+      setratingStatus("Ok")
+      console.log(rating);
+    }
+    if(rating==3)
+    {
+      setratingStatus("Good")
+      console.log(rating);
+    }
+    if(rating==4)
+    {
+      setratingStatus("Very Good")
+      console.log(rating);
+    }
+    if(rating==5)
+    {
+      setratingStatus("Excellent")
+      console.log(rating);
+    }
+},[rating])
+ 
+
+ 
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -94,22 +133,25 @@ const About=() =>{
                 <div className="">
                     
                          <input type="hidden" name="_subject" value="Lemon Tree Hotel New User Feedback"/>
-                         <input type='email' id="outlined-textarea" className="aboutFormTextFeild" name="email" defaultValue={(token ? token.email:'')}  placeholder="Email" /><br/>
+                         <input type='email' id="outlined-textarea" className="aboutFormTextFeild" required name="email" defaultValue={(token ? token.email:'')}  placeholder="Email" /><br/>
+                         
                          <input type="hidden" name="_autoresponse" value="Thank You "/>
                          <input type="hidden" name="_template" value="table"/>
                          {/* <TextField id="outlined-textarea" className="aboutFormTextFeildDesc"   placeholder="Description" /><br/> */}
-                         <textarea className="aboutFormTextFeildDesc" name="description" placeholder="Description" ></textarea>
+                         <textarea className="aboutFormTextFeildDesc" name="description" required placeholder="Description" ></textarea>
 
 
                      <div className="aboutFormRating"> Rating  </div>    
-                        
-                       <center>  <Rating
-                            name="highlight-selected-only"
+                     <input name="rating" type="hidden" value={ratingStatus}     />
+
+                       <center>  <Rating  
+                             
+                            name="Rate 5"
                             defaultValue={2}
                             IconContainerComponent={IconContainer}
                             highlightSelectedOnly
-                           
-                            /></center>
+                            onChange={(_, v) => { setRating(v) }}/>
+                        </center>
                 </div>
                
                 <button  className="aboutFormBtn" >Send</button>

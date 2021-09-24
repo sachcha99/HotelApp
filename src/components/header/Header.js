@@ -136,7 +136,7 @@ const Header = (props) => {
                  </DropdownToggle>
                  <DropdownMenu>
                  <DropdownItem onClick={goToAdmin}>
-                         Admin DashBoard
+                         Admin Dashboard
                          </DropdownItem>
                          <DropdownItem onClick={goToLogOut}>
                          Logout

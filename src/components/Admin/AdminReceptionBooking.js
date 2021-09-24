@@ -29,6 +29,7 @@ import RemoveDoneRoundedIcon from '@mui/icons-material/RemoveDoneRounded';
 import { ReceptionReport } from './ReceptionReport';
 import MuiAlert from '@mui/material/Alert';
 import AdminLoader from '../Preloader/AdminLoader';
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -347,7 +348,7 @@ export const AdminReceptionBooking = () => {
                     if (row.status === status || status === "all") {
                         return(
                 <div className="cardBack" key={row._id}>
-                    <Card className="text-center" >
+                    <Card className="text-centerAdmin" >
                         <Card.Header>Booking No - RE001 </Card.Header>
                         <Card.Body>
                             <div className="cardBody">
@@ -474,14 +475,25 @@ export const AdminReceptionBooking = () => {
             </div>
             {/* <Snackbar  className="approveSnack" autoHideDuration={3000} open={open} onClose={handleClose} TransitionComponent={transition} 
             message="Successfully Approved"key={transition ? transition.name : ''}  /> */}
-           <Snackbar  className="declineSnack" autoHideDuration={3000} open={openDel} onClose={handleClose} TransitionComponent={transition} 
-            message="Successfully Decline" severity="success" key={transition ? transition.name : ''}/>
+           <Snackbar autoHideDuration={3000} open={openDel} onClose={handleClose} TransitionComponent={transition} 
+            severity="success" key={transition ? transition.name : ''}>
+                  <div id="declineSnack" >
+                    <CheckCircleOutlinedIcon id="declineSnackIcon" /><div> Successfully Declined </div>
+                  </div>
+            </Snackbar>
 
-         <Snackbar open={open} autoHideDuration={3000} onClose={handleClose} TransitionComponent={transition} >
+            <Snackbar autoHideDuration={3000} open={open} onClose={handleClose} TransitionComponent={transition} 
+            severity="success" key={transition ? transition.name : ''}>
+                  <div id="approveSnack" >
+                    <CheckCircleOutlinedIcon id="approveSnackIcon" /><div> Successfully Approved </div>
+                  </div>
+            </Snackbar>
+
+         {/* <Snackbar open={open} autoHideDuration={3000} onClose={handleClose} TransitionComponent={transition} >
           <Alert id="approveSnack"  onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-              Successfully Approved
+               Successfully Approved
           </Alert>
-         </Snackbar>
+         </Snackbar> */}
         </div>}
         </div>
     )
