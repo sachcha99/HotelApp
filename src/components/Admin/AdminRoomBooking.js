@@ -11,6 +11,7 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Title from "../header/Title";
 import image from '../Images/roomreseve.jpg'
+import AdminLoader from '../Preloader/AdminLoader';
 import { RoomReport } from './RoomReport';
 import CalcDate from '../Common/CalcDate';
 
@@ -24,6 +25,12 @@ export const AdminRoomBooking = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState('');
     let  count=0;
+    const [AdminLoading, setAdminLoading] = useState(true);
+
+    // preloading
+    setTimeout(() => {
+        setAdminLoading(false)
+      },1500)
    
     useEffect(() => {
         if(!searchTerm){
@@ -189,7 +196,8 @@ export const AdminRoomBooking = () => {
 
     return (
         <div>
-           
+         {AdminLoading ? 
+            <AdminLoader/> :  
         <div id="admin-card-back">
             <div className="wr-table1">
                 <div className="wr-table-header">
@@ -313,8 +321,8 @@ export const AdminRoomBooking = () => {
                 }
                 
             </div>
-            {/* <Footer/> */}
-            </div>
+           
+            </div>}
         </div>
         
     )

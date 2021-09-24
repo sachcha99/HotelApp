@@ -23,30 +23,37 @@ const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const history = useHistory();
     const token =JSON.parse(sessionStorage.getItem("token"));
-
+    const [UserType, setUserType] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
     const [navbar, setNavbar] = useState(false);
 
+    const goToHome = () => {
+        history.push("/");
+    }
+
     const goToRooms = () => {
-        history.push("/Rooms");
+        history.push("/rooms");
     }
     const goToReceptionHalls = () => {
-        history.push("/Receptions");
+        history.push("/receptions");
     }
     const goToRoomHistory = () => {
-        history.push("/RoomHistory");
+        history.push("/roomHistory");
     }
 
     const goToReceptionHistory = () => {
-        history.push("/ReceptionHistory")
+        history.push("/receptionHistory")
     }
 
     const goToRestaurant=()=>{
         history.push("/restaurant/menu");
     }
     const GotoAbout = () => {
-        history.push("/AdminNav")
+        history.push("/about")
+    }
+    const goToAdmin = () => {
+        history.push("/admin")
     }
     const goToLogin = () => {
         history.push("/login")
@@ -73,7 +80,7 @@ const Header = (props) => {
             <Collapse className="navCollaspe" isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                     <NavItem>
-                        <NavLink className="navItem" href="/" >Home</NavLink>
+                        <NavLink className="navItem" onClick={goToHome} >Home</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink className="navItem" onClick={goToRooms} >Accommodation</NavLink>
@@ -102,7 +109,8 @@ const Header = (props) => {
                     </NavItem>
                 </Nav>
                 {!token ? 
-                <img className="loginbtn" alt="login" src={loginbtn} onClick={goToLogin}/>:
+                <img className="loginbtn" alt="login" src={loginbtn} onClick={goToLogin}/>: 
+                (token.type == "customer" ?
                 
                 <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="small" style={{  fontSize:"medium"  }} >
                     <DropdownToggle  caret className="userOption" >
@@ -120,7 +128,21 @@ const Header = (props) => {
                             Logout
                             </DropdownItem>
                     </DropdownMenu>
-                </UncontrolledButtonDropdown> }
+                </UncontrolledButtonDropdown> :
+                 <UncontrolledButtonDropdown  className="accountMenu ml-auto" size="small" style={{  fontSize:"medium"  }} >
+                 <DropdownToggle  caret className="userOption" >
+                    <PersonRoundedIcon fontSize="large" /> 
+                    <h6 className="userName" >{token.fname}</h6>
+                 </DropdownToggle>
+                 <DropdownMenu>
+                 <DropdownItem onClick={goToAdmin}>
+                         Admin DashBoard
+                         </DropdownItem>
+                         <DropdownItem onClick={goToLogOut}>
+                         Logout
+                         </DropdownItem>
+                 </DropdownMenu>
+             </UncontrolledButtonDropdown>)}
             </Collapse>
         </Navbar>
     </div>;

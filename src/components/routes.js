@@ -16,6 +16,7 @@ import RestuarantView from "../views/Restaurant/RestuarantView";
 import FoodCartView from "../views/Restaurant/ItemCartView";
 import CheckOutView from "../views/Restaurant/CheckOutView";
 import MyOrdersView from "../views/Restaurant/MyOrdersView";
+import About from './Common/About';
 
 const hist = createBrowserHistory();
 
@@ -23,11 +24,12 @@ const routes = () => (
     <Router history={hist}>
         <Route exact path="/" component={Home}/>
         <Route exact path="/home" component={Home}/>
-        <Route exact path="/RoomHistory" component={RoomBookingHistory}/>
-        <Route exact path="/ReceptionHistory" component={ReceptionHallBookingHistory}/>
-        <Route  path="/Receptions" component={RecepitonHallList}/>
-        <Route exact path="/Rooms" component={RoomList}/>
-        <Route exact path="/AdminNav" component={AdminNav}/>
+        <Route exact path="/roomHistory" component={RoomBookingHistory}/>
+        <Route exact path="/receptionHistory" component={ReceptionHallBookingHistory}/>
+        <Route  path="/receptions" component={RecepitonHallList}/>
+        <Route exact path="/rooms" component={RoomList}/>
+        <Route exact path="/admin" component={AdminNav}/>
+        <Route exact path="/about" component={About}/>
         <Route path="/login" component={SignInView}/>
         <Route path="/register" component={SignUpView}/>
         <Route path="/restaurant/dashboard" component={Dashboard}/>
