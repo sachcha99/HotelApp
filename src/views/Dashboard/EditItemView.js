@@ -3,9 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -14,39 +12,21 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 import {useForm} from "react-hook-form";
 import API from "../../components/api";
 import {confirmAlert} from "react-confirm-alert";
-import clsx from "clsx";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import AppBar from "@material-ui/core/AppBar";
 import {useHistory} from "react-router-dom";
-import {useLocation} from "react-router";
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
     },
     paper: {
-        marginTop: theme.spacing(8),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     },
     avatar: {
-        margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main,
     },
     input: {
@@ -64,25 +44,20 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function AddItemView() {
+export default function EditItemView(props) {
     const classes = useStyles();
     const history = useHistory();
-    const location = useLocation();
 
     const { register, handleSubmit } = useForm();
 
     const [textInput, setTextInput] = useState({
-        itemCode:"",
-        itemName:"",
-        description:"",
-        imageURL:"",
-        category:"",
-        price:""
+        itemCode:props.row.itemCode,
+        itemName:props.row.itemName,
+        description:props.row.description,
+        imageURL:props.row.imageURL,
+        category:props.row.category,
+        price:props.row.price
     });
-
-    useEffect(() => {
-        setTextInput(location.state.data);
-    }, [location]);
 
     const onSubmit = () => {
         API.put("/food/update", textInput)
@@ -94,7 +69,7 @@ export default function AddItemView() {
                         {
                             label: 'Ok',
                             onClick: () => {
-                                history.push({pathname: "/restaurant/dashboard", state: {view: "food_view"}})
+
                             }
                         }
                     ]
@@ -173,7 +148,7 @@ export default function AddItemView() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="sm" style={{ backgroundColor: '#ffff',padding:24}}>
             <CssBaseline/>
             <AppBar position="absolute" color={"secondary"}>
                 <Toolbar className={classes.toolbar}>
@@ -193,7 +168,7 @@ export default function AddItemView() {
                 </Typography>
                 <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
                     <Grid container spacing={2}>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <TextField
                                 variant="filled"
                                 required
@@ -201,12 +176,13 @@ export default function AddItemView() {
                                 id="itemCode"
                                 label="Item Code"
                                 name="itemCode"
+                                inputRef={register("itemCode")}
                                 onChange={handleTextInputChange}
                                 value={textInput.itemCode}
                                 disabled
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <TextField
                                 variant="filled"
                                 required
@@ -244,7 +220,7 @@ export default function AddItemView() {
                                 value={textInput.imageURL}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <FormControl variant="filled" fullWidth>
                                 <InputLabel id="demo-simple-select-filled-label">Select a category</InputLabel>
                                 <Select
@@ -252,10 +228,9 @@ export default function AddItemView() {
                                     id="demo-simple-select-filled"
                                     onChange={handleTextInputChange}
                                     value={textInput.category}
-                                    defaultValue=""
                                     name="category"
+                                    required
                                 >
-                                    <MenuItem value={"special"}>Specials</MenuItem>
                                     <MenuItem value={"kottu"}>Kottu</MenuItem>
                                     <MenuItem value={"noodles"}>Noodles</MenuItem>
                                     <MenuItem value={"pizza"}>Pizza</MenuItem>
@@ -264,10 +239,12 @@ export default function AddItemView() {
                                 </Select>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <TextField
                                 variant="filled"
                                 required
+                                type="number"
+                                InputProps={{ inputProps: { min: 100 } }}
                                 fullWidth
                                 id="price"
                                 label="Price"
@@ -277,28 +254,34 @@ export default function AddItemView() {
                             />
                         </Grid>
                     </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="secondary"
-                        className={classes.submit}
-                    >
-                        Edit Item
-                    </Button>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        onClick={()=>{  history.push({pathname: "/restaurant/dashboard", state: {view: "food_view"}})}}
-                    >
-                        Cancel
-                    </Button>
+                    <br/>
+                    <hr/>
+                    <Grid container spacing={2}>
+                        <Grid item xs={4}>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="secondary"
+                            >
+                                Edit Item
+                            </Button>
+                        </Grid>
+                        {/*<Grid item xs={6}>*/}
+                        {/*    <Button*/}
+                        {/*        type="submit"*/}
+                        {/*        fullWidth*/}
+                        {/*        color="warning"*/}
+                        {/*        variant="contained"*/}
+                        {/*        className={classes.submit}*/}
+                        {/*        onClick={()=>{}}*/}
+                        {/*    >*/}
+                        {/*        Cancel*/}
+                        {/*    </Button>*/}
+                        {/*</Grid>*/}
+                    </Grid>
                 </form>
             </div>
-            <Box mt={5}>
-                <Copyright/>
-            </Box>
             <br/>
         </Container>
     );
