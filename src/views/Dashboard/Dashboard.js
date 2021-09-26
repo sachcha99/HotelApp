@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import {alpha, makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Box from '@material-ui/core/Box';
@@ -10,7 +10,6 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
@@ -19,16 +18,17 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ManageFoodView from "./ManageFoodView";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import DashboardIcon from "@material-ui/icons/Dashboard";
 import ListItemText from "@material-ui/core/ListItemText";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 import BarChartIcon from "@material-ui/icons/BarChart";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import AssignmentIcon from "@material-ui/icons/Assignment";
 import ManageOrderView from "./ManageOrderView";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {useHistory, useLocation} from "react-router-dom";
+import ReportView from "../Dashboard/ReportsView";
+import {InputBase} from "@material-ui/core";
+import SearchIcon from '@material-ui/icons/Search';
+import API from "../../components/api";
 
 function Copyright() {
     return (
@@ -121,6 +121,45 @@ const useStyles = makeStyles((theme) => ({
     fixedHeight: {
         height: 240,
     },
+    search: {
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
+        },
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(1),
+            width: 'auto',
+        },
+    },
+    searchIcon: {
+        padding: theme.spacing(0, 2),
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    inputRoot: {
+        color: 'inherit',
+    },
+    inputInput: {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            width: '12ch',
+            '&:focus': {
+                width: '20ch',
+            },
+        },
+    },
 }));
 
 export default function Dashboard(props) {
@@ -128,36 +167,38 @@ export default function Dashboard(props) {
     const history = useHistory();
     const [open, setOpen] = React.useState(true);
     const [view, setView] = useState(null);
-
-    const location = useLocation();
+    const [search, setSearch] = useState("Search...");
+    let searchCode='';
 
     useEffect(() => {
-        if(location.state){
-            setView(<ManageFoodView/>)
-        }
-    }, [location]);
+        setView(<ManageOrderView/>);
+    }, []);
+
+    const setDashboardView = (view)=>{
+        setView(view);
+    }
 
     const mainListItems = (
         <div>
-            <ListItem button onClick={()=>{setView(null)}}>
-                <ListItemIcon>
-                    <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-            </ListItem>
-            <ListItem button onClick={()=>{setView(<ManageOrderView/>)}}>
+            <ListItem button onClick={()=>{
+                setView(<ManageOrderView/>)
+                setSearch("Order No")
+            }}>
                 <ListItemIcon>
                     <ShoppingCartIcon />
                 </ListItemIcon>
                 <ListItemText primary="Orders" />
             </ListItem>
-            <ListItem button onClick={()=>{setView(<ManageFoodView/>)}}>
+            <ListItem button onClick={()=>{
+                setView(<ManageFoodView dashboard={setDashboardView}/>)
+                setSearch("Item Code")
+            }}>
                 <ListItemIcon>
                     <FastfoodIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Foods" />
             </ListItem>
-            <ListItem button onClick={()=>{setView(null)}}>
+            <ListItem button onClick={()=>{setView(<ReportView/>)}}>
                 <ListItemIcon>
                     <BarChartIcon />
                 </ListItemIcon>
@@ -173,19 +214,6 @@ export default function Dashboard(props) {
 
     const secondaryListItems = (
         <div>
-            <ListSubheader inset>Saved reports</ListSubheader>
-            <ListItem button>
-                <ListItemIcon>
-                    <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Current month" />
-            </ListItem>
-            <ListItem button>
-                <ListItemIcon>
-                    <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Last quarter" />
-            </ListItem>
             <ListItem button>
                 <ListItemIcon>
                     <ExitToAppIcon/>
@@ -201,8 +229,31 @@ export default function Dashboard(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+    function getSearchFood(code){
+        API.get(`/food/${code}`)
+            .then(res => {
+                return res.data;
+            })
+            .catch(err => {
+                return null;
+            });
+    }
+
+    function searchSelected(event){
+        event.preventDefault();
+        console.log(searchCode);
+        if(searchCode && search=="Order No"){
+
+        }
+        if(searchCode && search=="Item Code"){
+            let data = getSearchFood(searchCode);
+            console.log(data)
+        }
+    }
+    function handleSearch(event){
+        searchCode = event.target.value;
+    }
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -225,6 +276,23 @@ export default function Dashboard(props) {
                     {/*        <NotificationsIcon />*/}
                     {/*    </Badge>*/}
                     {/*</IconButton>*/}
+                    <div className={classes.search}>
+                        <div className={classes.searchIcon}>
+                            <SearchIcon />
+                        </div>
+                        <form onSubmit={searchSelected}>
+                            <InputBase
+                                placeholder={search}
+                                onChange={handleSearch}
+                                classes={{
+                                    root: classes.inputRoot,
+                                    input: classes.inputInput,
+                                }}
+                                inputProps={{ 'aria-label': 'search' }}
+                            />
+                        </form>
+
+                    </div>
                 </Toolbar>
             </AppBar>
             <Drawer
