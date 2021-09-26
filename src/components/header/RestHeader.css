@@ -1,5 +1,17 @@
-.rest-nav-bar{
-    background:linear-gradient(90deg, rgba(44,64,29,1) 0%, rgba(59,93,34,1) 38%, rgba(115,168,59,1) 100%) !important;
+.navBarr1{
+    background: linear-gradient(90deg, rgba(44,64,29,1) 0%, rgba(59,93,34,1) 38%, rgba(115,168,59,1) 100%) !important;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
+}
+.navBarr{
+    background: linear-gradient(90deg, rgba(44,64,29,0.7399334733893557) 0%, rgba(59,93,34,0.7315301120448179) 38%, rgba(115,168,59,0.7315301120448179) 100%) !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+.login-btn{
+    height:50px;
+    margin-top: 8px;
+    margin-right :20px;
+    cursor: pointer;
+    transition: 1s;
 }
