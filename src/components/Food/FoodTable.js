@@ -12,6 +12,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import {confirmAlert} from "react-confirm-alert";
 import {useHistory} from "react-router-dom";
 import API from "../api";
+import EditItemView from "../../views/Dashboard/EditItemView";
 
 //const token =JSON.parse(sessionStorage.getItem("token"));
 
@@ -64,7 +65,8 @@ const FoodTable = (props) => {
     }
 
     const goToEditItem =(row)=>{
-        history.push({pathname: "/restaurant/food/edit", state: {data: row}});
+        //history.push({pathname: "/restaurant/food/edit", state: {data: row}});
+        props.dashboard(<EditItemView row={row}/>);
     }
 
     return (
@@ -72,6 +74,7 @@ const FoodTable = (props) => {
             <Table className={classes.table} aria-label="customized table">
                 <TableHead>
                     <TableRow>
+                        <StyledTableCell>Item Code</StyledTableCell>
                         <StyledTableCell>Item Name</StyledTableCell>
                         <StyledTableCell>Image</StyledTableCell>
                         <StyledTableCell align="left">Description</StyledTableCell>
@@ -85,7 +88,8 @@ const FoodTable = (props) => {
                     {props.rows.length > 0 && props.rows.map((row) => {
                         return (
                             <StyledTableRow key={row._id}>
-                                <StyledTableCell style={{width: "12.5%"}} align="left">{row.itemName}</StyledTableCell>
+                                <StyledTableCell style={{width: "12%"}} align="left">{row.itemCode}</StyledTableCell>
+                                <StyledTableCell style={{width: "15%"}} align="left">{row.itemName}</StyledTableCell>
                                 <StyledTableCell style={{width: "15%"}} align="left">
                                     <CardMedia
                                         component="img"
@@ -95,7 +99,7 @@ const FoodTable = (props) => {
                                     />
                                 </StyledTableCell>
                                 <StyledTableCell style={{width: "25%"}} align="left">{row.description}</StyledTableCell>
-                                <StyledTableCell style={{width: "12.5%"}} align="left">{row.category}</StyledTableCell>
+                                <StyledTableCell style={{width: "10%"}} align="left">{row.category}</StyledTableCell>
                                 <StyledTableCell style={{width: "11%"}} align="left">{"Rs."+row.price}</StyledTableCell>
                                 <StyledTableCell style={{width: "2%"}} align="left">
                                     <Button color="warning" onClick={()=>{goToEditItem(row)}}>Edit</Button>
