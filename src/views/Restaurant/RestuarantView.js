@@ -6,6 +6,7 @@ import API from "../../components/api";
 import './Restaurant.css'
 import Grid from "@material-ui/core/Grid";
 import FoodCard from "../../components/Food/FoodCard";
+import Footer from "../../components/footer/Footer";
 
 let cart =[];
 
@@ -103,6 +104,7 @@ export default function RestaurantView(){
                 </div>
 
             </div>
+            <Footer/>
         </div>
     );
 }
