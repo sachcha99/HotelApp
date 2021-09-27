@@ -24,8 +24,7 @@ import IconButton from "@material-ui/core/IconButton";
 import * as PropTypes from "prop-types";
 import {withStyles} from '@material-ui/core/styles';
 import Badge from "@material-ui/core/Badge";
-import API from "../api";
-// import DropDown from "../common/DropDown";
+import loginbtn from './../Images/loginbtn.png'
 
 const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -72,26 +71,34 @@ const Header = (props) => {
     }
 
     const goToCart = () => {
-        const cart = JSON.parse(localStorage.getItem("cart"));
-        if(cart){
+        const cart = localStorage.getItem("cart");
+        if (cart) {
             if (props.cartItems) {
                 localStorage.setItem("cart", JSON.stringify(props.cartItems)); //store cart
                 history.push("/restaurant/cart");
             }
-        }else{
+        } else {
             if (props.cartItems) {
                 localStorage.setItem("cart", JSON.stringify(props.cartItems)); //store cart
                 history.push("/restaurant/cart");
                 props.removeCache();
             }
         }
+    }
 
+    const changeNavbar = () => {
+        if(window.scrollY>=80){
+            setNavbar(true)
+        }else{
+            setNavbar(false)
+        }
 
     }
+    window.addEventListener('scroll',changeNavbar);
 
     return <div>
 
-        <Navbar className={"rest-nav-bar"} fixed="top" light expand="md">
+        <Navbar className={navbar ? "navBarr1" : "navBarr"}  fixed="top" light expand="md">
             <NavbarBrand href="/home"><img className="mainLogo" src={Logo}/></NavbarBrand>
             <NavbarToggler onClick={toggle}/>
             <Collapse className="navCollaspe" isOpen={isOpen} navbar>
@@ -116,30 +123,33 @@ const Header = (props) => {
                     <Col className="cart">
                         <IconButton onClick={goToCart} aria-label="cart">
                             <StyledBadge badgeContent={props.count} color="secondary">
-                                <ShoppingCartIcon style={{ color: "white" }}fontSize="large"/>
+                                <ShoppingCartIcon style={{color: "white"}} fontSize="large"/>
                             </StyledBadge>
                         </IconButton>
                     </Col>
                     <Col>
-                        <UncontrolledButtonDropdown className="accountMenu ml-auto" size="lg"
-                                                    style={{fontSize: "large"}}>
-                            <DropdownToggle caret className="rest-user">
-                                <PersonRoundedIcon fontSize="large"/>
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem onClick={goToMyOrders}>
-                                    My Orders
-                                </DropdownItem>
-                                {token==null ?
-                                    (<DropdownItem onClick={goToLogin}>
-                                        Login
-                                    </DropdownItem>):
-                                    (<DropdownItem onClick={goToLogout}>
-                                        Logout
-                                    </DropdownItem>)
-                                }
-                            </DropdownMenu>
-                        </UncontrolledButtonDropdown>
+                        {!token ?
+                            <img className="login-btn" alt="login" src={loginbtn} onClick={goToLogin}/> :
+                            <UncontrolledButtonDropdown className="accountMenu ml-auto" size="lg"
+                                                        style={{fontSize: "large"}}>
+                                <DropdownToggle caret className="rest-user">
+                                    <PersonRoundedIcon fontSize="large"/>
+                                </DropdownToggle>
+                                <DropdownMenu>
+                                    <DropdownItem onClick={goToMyOrders}>
+                                        My Orders
+                                    </DropdownItem>
+                                    {token == null ?
+                                        (<DropdownItem onClick={goToLogin}>
+                                            Login
+                                        </DropdownItem>) :
+                                        (<DropdownItem onClick={goToLogout}>
+                                            Logout
+                                        </DropdownItem>)
+                                    }
+                                </DropdownMenu>
+                            </UncontrolledButtonDropdown>
+                        }
                     </Col>
                 </Row>
             </Collapse>

@@ -21,32 +21,18 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import AppBar from "@material-ui/core/AppBar";
 import {useHistory} from "react-router-dom";
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+import ManageFoodView from "./ManageFoodView";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
     },
     paper: {
-        marginTop: theme.spacing(8),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
     },
     avatar: {
-        margin: theme.spacing(1),
         backgroundColor: theme.palette.secondary.main,
     },
     input: {
@@ -64,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function AddItemView() {
+export default function AddItemView(props) {
     const classes = useStyles();
     const history = useHistory();
     const { register, handleSubmit } = useForm();
@@ -88,7 +74,8 @@ export default function AddItemView() {
                         {
                             label: 'Ok',
                             onClick: () => {
-                                history.push({pathname: "/restaurant/dashboard", state: {view: "food_view"}})
+                                //history.push({pathname: "/restaurant/dashboard", state: {view: "food_view"}})
+                                props.dashboard(<ManageFoodView/>);
                             }
                         }
                     ]
@@ -99,7 +86,7 @@ export default function AddItemView() {
     const handleTextInputChange = event => {
         const {name, value} = event.target;
         setTextInput((prev)=>{
-           if(name==="itemName")
+            if(name==="itemName")
             {
                 return(
                     {
@@ -167,7 +154,7 @@ export default function AddItemView() {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="sm" style={{ backgroundColor: '#ffff',padding:24}}>
             <CssBaseline/>
             <AppBar position="absolute" color={"secondary"}>
                 <Toolbar className={classes.toolbar}>
@@ -186,7 +173,7 @@ export default function AddItemView() {
                 </Typography>
                 <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
                     <Grid container spacing={2}>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <TextField
                                 variant="filled"
                                 required
@@ -200,7 +187,7 @@ export default function AddItemView() {
                                 disabled
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <TextField
                                 variant="filled"
                                 required
@@ -238,7 +225,7 @@ export default function AddItemView() {
                                 value={textInput.imageURL}
                             />
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <FormControl variant="filled" fullWidth>
                                 <InputLabel id="demo-simple-select-filled-label">Select a category</InputLabel>
                                 <Select
@@ -249,7 +236,6 @@ export default function AddItemView() {
                                     name="category"
                                     required
                                 >
-                                    <MenuItem value={"special"}>Specials</MenuItem>
                                     <MenuItem value={"kottu"}>Kottu</MenuItem>
                                     <MenuItem value={"noodles"}>Noodles</MenuItem>
                                     <MenuItem value={"pizza"}>Pizza</MenuItem>
@@ -258,7 +244,7 @@ export default function AddItemView() {
                                 </Select>
                             </FormControl>
                         </Grid>
-                        <Grid item xs={12}>
+                        <Grid item xs={6}>
                             <TextField
                                 variant="filled"
                                 required
@@ -273,29 +259,22 @@ export default function AddItemView() {
                             />
                         </Grid>
                     </Grid>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="secondary"
-                        className={classes.submit}
-                    >
-                        Add Item
-                    </Button>
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        onClick={()=>{  history.push({pathname: "/restaurant/dashboard", state: {view: "food_view"}})}}
-                    >
-                        Cancel
-                    </Button>
+                    <br/>
+                    <hr/>
+                    <Grid container spacing={2}>
+                        <Grid item xs={4}>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                color="secondary"
+                            >
+                                Add Item
+                            </Button>
+                        </Grid>
+                    </Grid>
                 </form>
             </div>
-            <Box mt={5}>
-                <Copyright/>
-            </Box>
-            <br/>
         </Container>
     );
 }

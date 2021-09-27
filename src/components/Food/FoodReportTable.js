@@ -5,14 +5,9 @@ import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
-import {Button} from "reactstrap";
 import {makeStyles, withStyles} from "@material-ui/core/styles";
 import TableCell from "@material-ui/core/TableCell";
 import CardMedia from '@material-ui/core/CardMedia';
-import {confirmAlert} from "react-confirm-alert";
-import {useHistory} from "react-router-dom";
-import API from "../api";
-import EditItemView from "../../views/Dashboard/EditItemView";
 
 //const token =JSON.parse(sessionStorage.getItem("token"));
 
@@ -40,34 +35,8 @@ const useStyles = makeStyles({
     },
 });
 
-const FoodTable = (props) => {
-    const history = useHistory();
+const FoodReportTable = (props) => {
     const classes = useStyles();
-
-    const deleteFood= (id,name) => {
-        confirmAlert({
-            title: 'Confirm to Delete',
-            message: 'Are you sure to delete '+ name +' item.',
-            buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => {
-                        API.delete(`/food/delete/${id}`)
-                            .then();
-
-                    }
-                },
-                {
-                    label: 'No'
-                }
-            ]
-        });
-    }
-
-    const goToEditItem =(row)=>{
-        //history.push({pathname: "/restaurant/food/edit", state: {data: row}});
-        props.dashboard(<EditItemView row={row}/>);
-    }
 
     return (
         <TableContainer component={Paper}>
@@ -76,12 +45,9 @@ const FoodTable = (props) => {
                     <TableRow>
                         <StyledTableCell>Item Code</StyledTableCell>
                         <StyledTableCell>Item Name</StyledTableCell>
-                        <StyledTableCell>Image</StyledTableCell>
                         <StyledTableCell align="left">Description</StyledTableCell>
                         <StyledTableCell align="left">Category</StyledTableCell>
                         <StyledTableCell align="left">Price</StyledTableCell>
-                        <StyledTableCell align="left">Actions</StyledTableCell>
-                        <StyledTableCell align="right"></StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -90,23 +56,9 @@ const FoodTable = (props) => {
                             <StyledTableRow key={row._id}>
                                 <StyledTableCell style={{width: "12%"}} align="left">{row.itemCode}</StyledTableCell>
                                 <StyledTableCell style={{width: "15%"}} align="left">{row.itemName}</StyledTableCell>
-                                <StyledTableCell style={{width: "15%"}} align="left">
-                                    <CardMedia
-                                        component="img"
-                                        image= {row.imageURL}
-                                        height="100"
-                                        title="Contemplative Reptile"
-                                    />
-                                </StyledTableCell>
                                 <StyledTableCell style={{width: "25%"}} align="left">{row.description}</StyledTableCell>
                                 <StyledTableCell style={{width: "10%"}} align="left">{row.category}</StyledTableCell>
                                 <StyledTableCell style={{width: "11%"}} align="left">{"Rs."+row.price}</StyledTableCell>
-                                <StyledTableCell style={{width: "2%"}} align="left">
-                                    <Button color="warning" onClick={()=>{goToEditItem(row)}}>Edit</Button>
-                                </StyledTableCell>
-                                <StyledTableCell style={{width: "2%"}} align="left">
-                                    <Button onClick={()=>{deleteFood(row._id,row.itemName)}} color="danger">Delete</Button>
-                                </StyledTableCell>
                             </StyledTableRow>
                         )
                     })}
@@ -115,4 +67,4 @@ const FoodTable = (props) => {
         </TableContainer>
     );
 }
-export default FoodTable;
+export default FoodReportTable;

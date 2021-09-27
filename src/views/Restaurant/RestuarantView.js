@@ -6,6 +6,8 @@ import API from "../../components/api";
 import './Restaurant.css'
 import Grid from "@material-ui/core/Grid";
 import FoodCard from "../../components/Food/FoodCard";
+import Footer from "../../components/footer/Footer";
+import PageLoaderTimeOut from "../../components/Preloader/PageLoaderTimeOut";
 
 let cart =[];
 
@@ -38,6 +40,7 @@ export default function RestaurantView(){
     return(
         <div>
             <RestHeader count={count} cartItems={cart} removeCache={removeCache}/>
+            <PageLoaderTimeOut/>
             <Title title="Order Delicious Foods" />
             <img className="headerPic" src="https://rs.projects-abroad.net/v1/hero/indian-cuisine-south-africa-food-tours-product-5e146c7a97eb2.[1600].jpeg" />
             <div className="rest-body">
@@ -103,6 +106,7 @@ export default function RestaurantView(){
                 </div>
 
             </div>
+            <Footer/>
         </div>
     );
 }
