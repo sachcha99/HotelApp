@@ -5,8 +5,10 @@ import "./ManageFoodView.css";
 import {useHistory} from "react-router-dom";
 import API from "../../components/api";
 import FoodTable from "../../components/Food/FoodTable";
-import {Input} from "@material-ui/core";
+import {Input, TextField} from "@material-ui/core";
 import AddItemView from "./AddItemView";
+import SearchIcon from '@material-ui/icons/Search';
+import IconButton from "@material-ui/core/IconButton";
 
 export default function ManageFoodView(props) {
     const history = useHistory();
@@ -19,10 +21,9 @@ export default function ManageFoodView(props) {
             })
             .catch(err => {
             });
-    }, []);
+    }, [rows]);
 
     const goToAddItem = ()=>{
-        //history.push("/restaurant/food/add");
         props.dashboard(<AddItemView dashboard={props.dashboard}/>);
     }
 
@@ -54,7 +55,7 @@ export default function ManageFoodView(props) {
                         </Typography>
                     </Col>
                     <Col className="add-new-listening">
-                        <Button onClick={goToAddItem} color="warning">Add New Item</Button>{' '}
+                        <Button onClick={goToAddItem} color="primary">Add New Item</Button>{' '}
                         <UncontrolledButtonDropdown outline color="primary">
                             <DropdownToggle caret>
                                 Category

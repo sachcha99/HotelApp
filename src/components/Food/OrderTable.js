@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -12,6 +12,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import {confirmAlert} from "react-confirm-alert";
 import {useHistory} from "react-router-dom";
 import API from "../api";
+import {FormControl, InputLabel, MenuItem, Select} from "@material-ui/core";
 
 //const token =JSON.parse(sessionStorage.getItem("token"));
 
@@ -43,16 +44,17 @@ const OrderTable = (props) => {
     const history = useHistory();
     const classes = useStyles();
 
-    const deleteFood= (id,name) => {
+    const deleteOrder= (row) => {
         confirmAlert({
             title: 'Confirm to Delete',
-            message: 'Are you sure to delete '+ name +' item.',
+            message: 'Are you sure to delete '+ row.orderNo +' order.',
             buttons: [
                 {
                     label: 'Yes',
                     onClick: () => {
-                        API.delete(`/food/delete/${id}`)
-                            .then();
+                        API.delete(`/order/delete/${row._id}`)
+                            .then(()=>{
+                            });
 
                     }
                 },
@@ -63,8 +65,50 @@ const OrderTable = (props) => {
         });
     }
 
-    const goToEditItem =(row)=>{
-        history.push({pathname: "/restaurant/food/edit", state: {data: row}});
+
+    const goToUpdateOrder =(row)=>{
+        const handleTextInputChange =(event)=>{
+            row.status = event.target.value;
+        }
+        confirmAlert({
+            customUI: ({ onClose }) => {
+                return (
+                    <div style={{backgroundColor:"#F5F5F5", padding:36, borderRadius:10}}>
+                        <h1>Order Status</h1>
+                        <p>select status to update order {row.orderNo}</p>
+                        <FormControl variant="filled" size="sm" fullWidth style={{marginBottom:30}}>
+                            <InputLabel id="demo-simple-select-filled-label">Status</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-filled-label"
+                                id="demo-simple-select-filled"
+                                onChange={handleTextInputChange}
+                                name="category"
+                                size="sm"
+                                required
+                            >
+                                <MenuItem value={"pending"}>Pending</MenuItem>
+                                <MenuItem value={"prepared"}>Prepared</MenuItem>
+                                <MenuItem value={"delivered"}>Delivered</MenuItem>
+                                <MenuItem value={"completed"}>Completed</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <Button
+                            color="primary"
+                            onClick={() => {
+                                API.put("/order/update",row).then(()=>{
+                                       onClose();
+                                    }
+                                    );
+
+                            }}
+                        >
+                            Update
+                        </Button>{' '}
+                        <Button onClick={onClose}>Cancel</Button>
+                    </div>
+                );
+            }
+        });
     }
 
     return (
@@ -80,6 +124,7 @@ const OrderTable = (props) => {
                         <StyledTableCell align="left">Customer Name</StyledTableCell>
                         <StyledTableCell align="left">Phone</StyledTableCell>
                         <StyledTableCell align="left">Action</StyledTableCell>
+                        <StyledTableCell align="left"></StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -98,11 +143,13 @@ const OrderTable = (props) => {
                                 <StyledTableCell style={{width: "20%"}} align="left">{description}</StyledTableCell>
                                 <StyledTableCell style={{width: "10%"}} align="left">{row.status}</StyledTableCell>
                                 <StyledTableCell style={{width: "11%"}} align="left">{"Rs."+row.amount}</StyledTableCell>
-                                <StyledTableCell style={{width: "15%"}} align="left">{row.customer.firstName}</StyledTableCell>
+                                <StyledTableCell style={{width: "15%"}} align="left">{row.customer.firstName+" "+row.customer.lastName}</StyledTableCell>
                                 <StyledTableCell style={{width: "11%"}} align="left">{row.customer.phone}</StyledTableCell>
-
                                 <StyledTableCell style={{width: "2%"}} align="left">
-                                    <Button color="warning" onClick={()=>{goToEditItem(row)}}>Update</Button>
+                                    <Button color="warning" onClick={()=>{goToUpdateOrder(row)}}>Update</Button>
+                                </StyledTableCell>
+                                <StyledTableCell style={{width: "2%"}} align="left">
+                                    <Button color="danger" onClick={()=>{deleteOrder(row)}}>Delete</Button>
                                 </StyledTableCell>
                             </StyledTableRow>
                         )

@@ -27,7 +27,6 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {useHistory, useLocation} from "react-router-dom";
 import ReportView from "../Dashboard/ReportsView";
 import {InputBase} from "@material-ui/core";
-import SearchIcon from '@material-ui/icons/Search';
 import API from "../../components/api";
 
 function Copyright() {
@@ -271,28 +270,6 @@ export default function Dashboard(props) {
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                         Dashboard
                     </Typography>
-                    {/*<IconButton color="inherit">*/}
-                    {/*    <Badge badgeContent={4} color="secondary">*/}
-                    {/*        <NotificationsIcon />*/}
-                    {/*    </Badge>*/}
-                    {/*</IconButton>*/}
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
-                        <form onSubmit={searchSelected}>
-                            <InputBase
-                                placeholder={search}
-                                onChange={handleSearch}
-                                classes={{
-                                    root: classes.inputRoot,
-                                    input: classes.inputInput,
-                                }}
-                                inputProps={{ 'aria-label': 'search' }}
-                            />
-                        </form>
-
-                    </div>
                 </Toolbar>
             </AppBar>
             <Drawer

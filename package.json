@@ -22,6 +22,8 @@
     "clsx": "^1.1.1",
     "date-fns": "^2.23.0",
     "history": "^5.0.0",
+    "jspdf": "^2.4.0",
+    "jspdf-autotable": "^3.5.20",
     "mdb-react-ui-kit": "^1.3.0",
     "mdbreact": "^5.1.0",
     "moment": "^2.29.1",

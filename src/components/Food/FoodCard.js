@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     margin: {
         margin: theme.spacing(1),
         marginTop:10,
-        color:"#fff"
+        color:"#fff",
     },
 });
 
@@ -95,7 +95,7 @@ export default function FoodCard(props) {
                {/*     Add To Cart*/}
                {/* </Button>*/}
                 <ThemeProvider theme={theme}>
-                    <Button variant="contained" onClick={handleButton} color="primary" className={classes.margin}>
+                    <Button variant="contained"color="primary" onClick={handleButton} className={classes.margin}>
                         Add To Cart
                     </Button>
                 </ThemeProvider>
