@@ -27,6 +27,14 @@ export default function ManageFoodReportView(props) {
             });
     }, []);
 
+    const refreshFoodTable = () => {
+        API.get(`/food/`)
+            .then(res => {
+                setRows(res.data)
+            })
+            .catch(err => {
+            });
+    }
 
     const filterByCategory=(category)=>{
         if(category=="all"){
@@ -107,7 +115,10 @@ export default function ManageFoodReportView(props) {
                         <IconButton aria-label="delete" onClick={findFoodByCode}>
                             <SearchIcon/>
                         </IconButton>
-
+                        <IconButton aria-label="delete" onClick={refreshFoodTable}>
+                            <RefreshIcon/>
+                        </IconButton>
+                        {' '}
                         <UncontrolledButtonDropdown outline>
                             <DropdownToggle caret color="primary">
                                 Category
