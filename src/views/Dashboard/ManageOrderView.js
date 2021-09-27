@@ -1,17 +1,26 @@
 import React, {useEffect, useState} from "react";
 import Typography from "@material-ui/core/Typography";
-import {Button, Col, Row, UncontrolledDropdown} from "reactstrap";
+import {
+    Button,
+    Col, DropdownItem,
+    DropdownMenu,
+    DropdownToggle,
+    Row,
+    UncontrolledButtonDropdown,
+    UncontrolledDropdown
+} from "reactstrap";
 import "./ManageFoodView.css";
 import {useHistory} from "react-router-dom";
 import API from "../../components/api";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
-import DropdownMenu from "react-bootstrap/DropdownMenu";
-import DropdownItem from "react-bootstrap/DropdownItem";
 import OrderTable from "../../components/Food/OrderTable";
+import {Input} from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
 
 export default function ManageOrderView() {
     const history = useHistory();
     const [rows, setRows] = useState([]);
+    const [rows1, setRows1] = useState([]);
 
     useEffect(() => {
         API.get(`/order/`)
@@ -20,8 +29,33 @@ export default function ManageOrderView() {
             })
             .catch(err => {
             });
+        API.get(`/order/status/pending`)
+            .then(res => {
+                setRows1(res.data)
+            })
+            .catch(err => {
+            });
     }, [rows]);
 
+    const filterByStatus=(status)=>{
+        if(status=="all"){
+            API.get(`/order/`)
+                .then(res => {
+                    setRows(res.data)
+                })
+                .catch(err => {
+                });
+        }else{
+            API.get(`/order/status/${status}`)
+                .then(res => {
+                    console.log(res.data)
+                    setRows(res.data)
+                })
+                .catch(err => {
+                });
+        }
+
+    }
     return (
         <div>
             <div className="item-view-header">
@@ -31,23 +65,9 @@ export default function ManageOrderView() {
                             Pending Orders ({rows.length})
                         </Typography>
                     </Col>
-                    <Col className="add-new-listening">
-                        <UncontrolledDropdown>
-                            <DropdownToggle caret>
-                                Status
-                            </DropdownToggle>
-                            <DropdownMenu>
-                                <DropdownItem header>Header</DropdownItem>
-                                <DropdownItem disabled>Action</DropdownItem>
-                                <DropdownItem>Another Action</DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>Another Action</DropdownItem>
-                            </DropdownMenu>
-                        </UncontrolledDropdown>
-                    </Col>
                 </Row>
             </div>
-            <OrderTable rows={rows}/>
+            <OrderTable rows={rows1}/>
             <br/>
             <div className="item-view-header">
                 <Row>
@@ -57,18 +77,18 @@ export default function ManageOrderView() {
                         </Typography>
                     </Col>
                     <Col className="add-new-listening">
-                        <UncontrolledDropdown>
-                            <DropdownToggle caret>
+                        <UncontrolledButtonDropdown>
+                            <DropdownToggle caret color="primary">
                                 Status
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem header>Header</DropdownItem>
-                                <DropdownItem disabled>Action</DropdownItem>
-                                <DropdownItem>Another Action</DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>Another Action</DropdownItem>
+                                <DropdownItem onClick={()=>{filterByStatus("all")}}>All</DropdownItem>
+                                <DropdownItem onClick={()=>{filterByStatus("pending")}}>Pending</DropdownItem>
+                                <DropdownItem onClick={()=>{filterByStatus("prepared")}}>Prepared</DropdownItem>
+                                <DropdownItem onClick={()=>{filterByStatus("delivered")}}>Delivered</DropdownItem>
+                                <DropdownItem onClick={()=>{filterByStatus("completed")}}>Completed</DropdownItem>
                             </DropdownMenu>
-                        </UncontrolledDropdown>
+                        </UncontrolledButtonDropdown>
                     </Col>
                 </Row>
             </div>
