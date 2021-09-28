@@ -23,10 +23,44 @@
     -webkit-align-items: center;
     align-items: center;
 }
+.sign-up{
+    height: 100%;
+    width: 100%;
+    position:absolute;
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+    background-image: url("https://images.unsplash.com/photo-1596178065887-1198b6148b2b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cmVzb3J0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80");
+}
 
 .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.food-cart{
+    background-color: #d9ffd9;
+    background-image: url("https://www.transparenttextures.com/patterns/food.png");
+}
+.themed-container{
+    background-color: #d9ffd9;
+}
+.item{
+    background-color: white;
+}
+.check{
+    background-color: white;
+}
+.rest-body{
+    margin-top: 100px;
+    background-color: #d9ffd9;
+    background-image: url("https://www.transparenttextures.com/patterns/food.png");
+}
+.checkout-view{
+    position: relative;
+    width: 50%;
+    background-color: #d9ffd9;
+    margin: 30px auto 30px auto;
+    padding: 20px;
+    box-shadow: 0 1px 5px rgb(0, 0, 0);
 }
