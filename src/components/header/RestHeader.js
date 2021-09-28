@@ -134,6 +134,7 @@ const Header = (props) => {
                                                         style={{fontSize: "large"}}>
                                 <DropdownToggle caret className="rest-user">
                                     <PersonRoundedIcon fontSize="large"/>
+                                    {token.fname}
                                 </DropdownToggle>
                                 <DropdownMenu>
                                     <DropdownItem onClick={goToMyOrders}>
