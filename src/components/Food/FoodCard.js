@@ -7,12 +7,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import {TextField} from "@material-ui/core";
 import { createTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import { green, purple } from '@material-ui/core/colors';
+import {Button, Col, Row} from "reactstrap";
 
 const theme = createTheme({
     palette: {
-        primary: green,
+        def: green,
     },
 });
 
@@ -27,7 +27,9 @@ const useStyles = makeStyles({
         width: 80,
     },
     addTo:{
-        margin: "auto auto"
+        marginLeft:8,
+        marginBottom:8,
+        marginTop:8
     },
     margin: {
         margin: theme.spacing(1),
@@ -79,27 +81,26 @@ export default function FoodCard(props) {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions className={classes.addTo}>
-                <TextField
-                    className={classes.qty}
-                    id="standard-number"
-                    label="Qty"
-                    type="number"
-                    InputProps={{ inputProps: { min: 1, max: 10 } }}
-                    onChange={handleQTY}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-               {/*<Button className={classes.btn} onClick={handleButton} size="medium" variant="contained" color="secondary">*/}
-               {/*     Add To Cart*/}
-               {/* </Button>*/}
-                <ThemeProvider theme={theme}>
-                    <Button variant="contained"color="primary" onClick={handleButton} className={classes.margin}>
-                        Add To Cart
-                    </Button>
-                </ThemeProvider>
-            </CardActions>
+                <Row className={classes.addTo}>
+                    <Col xs={2}>
+                        <TextField
+                            className={classes.qty}
+                            id="standard-number"
+                            label="Qty"
+                            type="number"
+                            InputProps={{ inputProps: { min: 1, max: 10 } }}
+                            onChange={handleQTY}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </Col>
+                    <Col xs={8} style={{textAlign:"right"}}>
+                        <Button color="success" onClick={handleButton} className={classes.margin}>
+                            Add To Cart
+                        </Button>
+                    </Col>
+                </Row>
         </Card>
     );
 }
