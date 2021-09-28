@@ -32,9 +32,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     },
-    paper: {
-
-    },
     avatar: {
         margin: theme.spacing(1),
         backgroundColor: "#198853",
@@ -138,7 +135,7 @@ export default function SignUpView() {
     return (
         <div className="sign-up">
             <Header/>
-            <Container component="main" maxWidth="xs" style={{marginTop:150}}>
+            <Container component="main" maxWidth="xs" style={{marginTop:130}}>
                 <CssBaseline />
                 <div  className="sign-up-form">
                     <Avatar className={classes.avatar}>
