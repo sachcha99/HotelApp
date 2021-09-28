@@ -162,6 +162,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard(props) {
+    const token =JSON.parse(sessionStorage.getItem("token"));
     const classes = useStyles();
     const history = useHistory();
     const [open, setOpen] = React.useState(true);
@@ -170,6 +171,9 @@ export default function Dashboard(props) {
     let searchCode='';
 
     useEffect(() => {
+            if(token.type !="headChef"){
+                history.push("/login");
+            }
         setView(<ManageOrderView/>);
     }, []);
 
