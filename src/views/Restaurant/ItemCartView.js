@@ -13,6 +13,7 @@ import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Container} from "reactstrap";
 import RestHeader from "../../components/header/RestHeader";
+import Footer from "../../components/footer/Footer";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -160,5 +161,6 @@ export default function FoodCartView() {
                     </Row>
                 </Container>
             </div>
+            <Footer/>
         </div>);
 }
