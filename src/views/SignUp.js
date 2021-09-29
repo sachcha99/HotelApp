@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -17,6 +16,10 @@ import uniqueID from "uniqid";
 import API from "../components/api";
 import {confirmAlert} from "react-confirm-alert";
 import {useHistory} from "react-router-dom";
+import {Button} from "reactstrap";
+import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
+
 const bcrypt = require('bcryptjs');
 
 const useStyles = makeStyles((theme) => ({
@@ -29,12 +32,9 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     },
-    paper: {
-
-    },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: "#198853",
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -134,7 +134,8 @@ export default function SignUpView() {
 
     return (
         <div className="sign-up">
-            <Container component="main" maxWidth="xs">
+            <Header/>
+            <Container component="main" maxWidth="xs" style={{marginTop:130}}>
                 <CssBaseline />
                 <div  className="sign-up-form">
                     <Avatar className={classes.avatar}>
@@ -200,18 +201,18 @@ export default function SignUpView() {
                                 />
                             </Grid>
                         </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="secondary"
-                            className={classes.submit}
-                        >
-                            Sign Up
-                        </Button>
+                        <div className="d-grid gap-2">
+                            <Button
+                                type="submit"
+                                color="success"
+                                className={classes.submit}
+                            >
+                                Sign Up
+                            </Button>
+                        </div>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link onClick={goToLogin} variant="body2">
+                                <Link onClick={goToLogin} href="#" variant="body2">
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>
@@ -219,6 +220,7 @@ export default function SignUpView() {
                     </form>
                 </div>
             </Container>
+            <Footer/>
         </div>
     );
 }

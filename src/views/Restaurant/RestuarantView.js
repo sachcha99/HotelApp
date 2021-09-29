@@ -104,9 +104,8 @@ export default function RestaurantView(){
                         ))}
                     </Grid>
                 </div>
-
+                <Footer/>
             </div>
-            <Footer/>
         </div>
     );
 }

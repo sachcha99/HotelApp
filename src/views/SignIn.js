@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -16,6 +13,7 @@ import {useHistory} from "react-router-dom";
 import {useForm} from "react-hook-form";
 import API from "../components/api";
 import {confirmAlert} from "react-confirm-alert";
+import {Button} from "reactstrap";
 const bcrypt = require('bcryptjs');
 
 
@@ -37,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
     },
     image: {
-        backgroundImage: 'url(https://images.unsplash.com/photo-1493770348161-369560ae357d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80)',
+        backgroundImage: 'url(https://images.unsplash.com/photo-1596178065887-1198b6148b2b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cmVzb3J0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80)',
         backgroundRepeat: 'no-repeat',
         backgroundColor:
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -52,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: "#198853",
     },
     form: {
         width: '100%', // Fix IE 11 issue.
@@ -193,23 +191,21 @@ export default function SignInView() {
                                 onChange={handleTextInputChange}
                                 value={textInput.password}
                             />
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="secondary"
-                                className={classes.submit}
-                            >
-                                Sign In
-                            </Button>
+                            <div className="d-grid gap-2">
+                                <Button
+                                    type="submit"
+                                    color="success"
+                                    className={classes.submit}
+                                >
+                                    Sign In
+                                </Button>
+                            </div>
                             <Grid container>
                                 <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Forgot password?
-                                    </Link>
+
                                 </Grid>
                                 <Grid item>
-                                    <Link onClick={goToRegister} variant="body2">
+                                    <Link onClick={goToRegister} href="#" variant="body2">
                                         {"Don't have an account? Sign Up"}
                                     </Link>
                                 </Grid>
