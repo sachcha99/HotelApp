@@ -42,6 +42,7 @@ const useStyles = makeStyles({
 export default function FoodCartView() {
     const history = useHistory();
     const classes = useStyles();
+    const token =JSON.parse(sessionStorage.getItem("token"));
     const cart1 = JSON.parse(localStorage.getItem("cart")); //get cart item back
 
     let itemCount = cart1.length;
@@ -79,9 +80,7 @@ export default function FoodCartView() {
             ]
         });
     };
-    const isEnabled = ()=>{
 
-    }
     const removeCache = () => {
 
     }
@@ -129,31 +128,47 @@ export default function FoodCartView() {
                             <h4 className="order">Order Summary </h4>
                             <Row>
                                 <Row>
-                                    <div className="ordersum">
-                                        <table>
-                                            <tr>
-                                                <td>SubTotal ({itemCount} Items)</td>
-                                                <td className="order-d"> Rs : {sum}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Shipping</td>
-                                                <td className="order-d"> Rs : {shipCost}</td>
-                                            </tr>
-                                            <tr>
-                                                <td id="order-t">Total</td>
-                                                <td id="order-t"> Rs : {tot}</td>
-                                            </tr>
-                                        </table>
+                                    <div className="ordersum" >
+                                            <Row>
+                                                <Col style={{marginLeft:8}} xs={7}>SubTotal ({itemCount} ) items</Col>
+                                                <Col style={{textAlign:"right"}}> Rs : {sum}</Col>
+                                            </Row>
+                                            <Row>
+                                                <Col style={{marginLeft:8}} xs={7}>Shipping</Col>
+                                                <Col style={{textAlign:"right"}} className="order-d"> Rs : {shipCost}</Col>
+                                            </Row>
+                                            <Row>
+                                                <Col style={{marginLeft:8}} xs={7} id="order-t">Total</Col>
+                                                <Col style={{textAlign:"right"}} id="order-t"> Rs : {tot}</Col>
+                                            </Row>
                                     </div>
                                 </Row>
-                                <Col >
+                                <Col style={{textAlign:"left",marginLeft:8}}>
                                     <Button color="warning"onClick={() => {
                                         clearCart();
                                     }}>Clear Cart</Button>
                                 </Col>
-                                <Col>
-                                    <Button color="danger" onClick={() => {
-                                        history.push("/restaurant/checkout");
+                                <Col style={{textAlign:"right",marginRight:8}}>
+                                    <Button color="success" onClick={() => {
+                                        if(itemCount>0){
+                                            if(token){
+                                                history.push("/restaurant/checkout");
+                                            }else{
+                                                history.push("/login");
+                                            }
+                                        }else{
+                                            confirmAlert({
+                                                title: 'No Items in Cart',
+                                                message: 'There are no items in cart to checkout',
+                                                buttons: [
+                                                    {
+                                                        label: 'ok',
+                                                        onClick: () => {
+                                                        }
+                                                    },
+                                                ]
+                                            });
+                                        }
                                     }}>Check out</Button>
                                 </Col>
                             </Row>
