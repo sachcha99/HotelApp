@@ -12,7 +12,7 @@ const override = css`
 
 function AdminLoader() {
   let [loading, setLoading] = useState(true);
-  let [color, setColor] = useState("#c00b0b");
+  let [color, setColor] = useState("#009635");
 
   
 

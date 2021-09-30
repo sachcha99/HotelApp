@@ -6,7 +6,7 @@ import {Col} from "react-bootstrap";
 import {Button, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledButtonDropdown} from "reactstrap";
 import ManageFoodView from "./ManageFoodView";
 import ManageFoodReportView from "./ManageFoodReportView";
-import ManageOrderReportView from "./ManageOrderReportView";
+// import ManageOrderReportView from "./ManageOrderReportView";
 import API from "../../components/api";
 
 export default function IconLabelTabs() {
@@ -14,13 +14,13 @@ export default function IconLabelTabs() {
     const [view, setView] = useState(null);
 
     useEffect(() => {
-        setView(<ManageOrderReportView/>);
+        // setView(<ManageOrderReportView/>);
     }, []);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
         if(newValue==0){
-            setView(<ManageOrderReportView/>);
+            // setView(<ManageOrderReportView/>);
         }else if(newValue==1){
             setView(<ManageFoodReportView/>);
         }

@@ -10,7 +10,7 @@ import Room01 from '../Images/room01.jpg'
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import Title from "../header/Title";
-import image from '../Images/roomreseve.jpg'
+import image from '../Images/roomreseve.jpg';
 import AdminLoader from '../Preloader/AdminLoader';
 import { RoomReport } from './RoomReport';
 import CalcDate from '../Common/CalcDate';
@@ -156,7 +156,7 @@ export const AdminRoomBooking = () => {
         }
 
         API.put("/room/update", approveData).then();
-        //  window.location.reload();
+       
     }
 
     const deleteBooking = (row)=>{

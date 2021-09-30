@@ -2,14 +2,10 @@ import React, {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from "react-bootstrap/Button";
 import API from "../api";
-import { useHistory } from 'react-router-dom';
 import { Col, Row, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import {confirmAlert} from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
-import Hall01 from '../Images/hall01.jpg'
-import { MDBCol } from "mdbreact";
 import Snackbar from '@material-ui/core/Snackbar';
-import Fade from '@material-ui/core/Fade';
 import Slide from '@material-ui/core/Slide';
 import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
 import GroupIcon from '@material-ui/icons/Group';
@@ -52,7 +48,6 @@ export const AdminReceptionBooking = () => {
     const classes = useStyles();
     const [status, setStatus] = useState("all");
     const [rows, setRows] = useState('');
-    const [rows1, setRows1] = useState('');
     const [approve,setApprove] = useState("all");
     const [StatusFilter,setStatusFilter] = useState("All");
     let  count=0;
@@ -73,7 +68,7 @@ export const AdminReceptionBooking = () => {
   const  fetchData = () => {
     setLoading( true );
     
-        //Faking API call here
+     
         setTimeout(() => {
             setLoading( false );
         }, 1000);
@@ -82,13 +77,13 @@ export const AdminReceptionBooking = () => {
       const  fetchDataDel = () => {
         setLoadingDel( true );
         
-            //Faking API call here
+       
             setTimeout(() => {
                 setLoadingDel( false );
             }, 1000);
           };
 
-// preloading
+            // preloading
           setTimeout(() => {
             setAdminLoading(false)
           },1500)
@@ -405,7 +400,7 @@ export const AdminReceptionBooking = () => {
                                
                                 <div className='card-his-btn' >
 
-                                {/* <Button className='conf-btn conf-btn2' variant="primary" onClick={() => rejectBooking(row)}>Decline</Button> */}
+                               
 
                                 <Button variant="primary" className={(row.status != `rejected` ? 'DeclineLoadingBtn' : 'DeclineLoadingBtnFalse')}
                                    variant="primary" onClick={() => rejectBooking(row)} disabled={loading}>
@@ -423,14 +418,12 @@ export const AdminReceptionBooking = () => {
                                     </Container>
                                      ):''}
                                      {!loadingDel && row.status == "rejected" ?<RemoveDoneRoundedIcon  id="refreshIcon"/>:''}
-                                     {/* {!loadingDel && <span>{ row.status != "rejected" ? `Decline`:`Declined`}</span>} */}
+                                    
                                      {!loadingDel && row.status != "rejected" && <span>Decline</span>}
                                      {!loadingDel && row.status == "rejected" && <span>Declined</span>}
                                     </Button>
 
-                                {/* <Button className='conf-btn conf-btn1' variant="primary" onClick={() => approveBooking(row)} >Approve</Button> */}
-
-                               
+                                
                                 <Button className={"AproveLoadingBtn" + (row.status != `approved` ? '' : 'False')} variant="primary" onClick={() => approveBooking(row)} disabled={loading}>
                                  { loading &&  (
                                       <Container maxWidth="sm">
@@ -445,7 +438,7 @@ export const AdminReceptionBooking = () => {
                                     </Container>
                                      )}
                                      { !loading && row.status == "approved" ?<DoneAllRoundedIcon  id="refreshIcon"/>:''}
-                                     {/* {!loading && <span>{row.status != "approved"  ? `Give Approve`:`Approved`}</span>} */}
+                                     
                                      {!loading && row.status != "approved" && <span>Approve</span>}
                                      {!loading && row.status == "approved" && <span>Approved</span>}
                                     </Button>
@@ -473,8 +466,7 @@ export const AdminReceptionBooking = () => {
 
 
             </div>
-            {/* <Snackbar  className="approveSnack" autoHideDuration={3000} open={open} onClose={handleClose} TransitionComponent={transition} 
-            message="Successfully Approved"key={transition ? transition.name : ''}  /> */}
+            
            <Snackbar autoHideDuration={3000} open={openDel} onClose={handleClose} TransitionComponent={transition} 
             severity="success" key={transition ? transition.name : ''}>
                   <div id="declineSnack" >
@@ -489,11 +481,6 @@ export const AdminReceptionBooking = () => {
                   </div>
             </Snackbar>
 
-         {/* <Snackbar open={open} autoHideDuration={3000} onClose={handleClose} TransitionComponent={transition} >
-          <Alert id="approveSnack"  onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-               Successfully Approved
-          </Alert>
-         </Snackbar> */}
         </div>}
         </div>
     )
