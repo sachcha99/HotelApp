@@ -1417,6 +1417,27 @@ margin-right: 100px;
     /*background-color: black;*/
     color: white;
   }
+  .signup-MainTitle{
+    /*font-family: 'Poppins', sans-serif !important;*/
+   position: absolute;
+    top: 50px !important;
+    font-size: 60px !important;
+    font-weight: bold;
+    /*background-color: black;*/
+    color: black;
+    cursor: pointer;
+    transition: 1s;
+  }
+  .signup-MainTitle:hover{
+    /*font-family: 'Poppins', sans-serif !important;*/
+   position: absolute;
+    top: 50px !important;
+    font-size: 65px !important;
+    font-weight: bold;
+    /*background-color: black;*/
+    color: black;
+    cursor: pointer;
+  }
   .conf-info{
     /*background: #f03c5a !important;*/
     color: white !important;

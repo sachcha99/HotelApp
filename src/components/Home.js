@@ -37,7 +37,7 @@ export const Home = () => {
                         />
 
                         <Carousel.Caption>
-                            <div className="conf-MainTitle"> Hotel <text style={{ color: "green" }}><br />Lemon</text> Tree </div>
+                            <div className="conf-MainTitle"> Hotel <text style={{ color: "green" }}>Lemon</text> Tree </div>
                             <p>Enjoy your happiness</p>
                         </Carousel.Caption>
                     </Carousel.Item>

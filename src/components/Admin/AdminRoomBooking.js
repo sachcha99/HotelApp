@@ -14,6 +14,20 @@ import image from '../Images/roomreseve.jpg'
 import AdminLoader from '../Preloader/AdminLoader';
 import { RoomReport } from './RoomReport';
 import CalcDate from '../Common/CalcDate';
+import GroupIcon from '@material-ui/icons/Group';
+import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
+import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
+import BedroomChildIcon from '@mui/icons-material/BedroomChild';
+import BedroomParentIcon from '@mui/icons-material/BedroomParent';
+import FamilyRestroomIcon from '@mui/icons-material/FamilyRestroom';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
+import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import EventIcon from '@mui/icons-material/Event';
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 
 export const AdminRoomBooking = () => {
     const [status, setStatus] = useState("all");
@@ -263,38 +277,39 @@ export const AdminRoomBooking = () => {
                                                 <div style={{display:'flex',justifyContent: 'space-evenly', marginBottom:'15px'}}>
                                                     <div style={{ width:'400px', padding:'15px',textAlign:'left' }}>
                                                         
-                                                        <h5 className="admin-room">Capacity:</h5>
-                                                        <h5 style={{marginLeft:'25px'}} className="admin-room">No of Rooms : {row.roomNo}</h5>
-                                                        <h5 style={{marginLeft:'25px'}} className="admin-room">No of Adults : {row.adultNo}</h5>
-                                                        <h5  style={{marginLeft:'25px'}} className="admin-room">No of Childs : {row.childNo}</h5>
+                                                        <h5 className="admin-room"><GroupIcon  id="card-his-bodyIcon"/>Capacity:</h5>
+                                                        <h5 style={{marginLeft:'25px'}} className="admin-room"><FamilyRestroomIcon  id="card-his-bodyIcon"/>No of Rooms : {row.roomNo}</h5>
+                                                        <h5 style={{marginLeft:'25px'}} className="admin-room"><BedroomParentIcon  id="card-his-bodyIcon"/>No of Adults : {row.adultNo}</h5>
+                                                        <h5  style={{marginLeft:'25px'}} className="admin-room"><BedroomChildIcon  id="card-his-bodyIcon"/>No of Childs : {row.childNo}</h5>
                                                         
                                                     </div>
                                                     
-                                                    <div style={{backgroundColor:'#9e9e9e' , width:'400px', padding:'15px',textAlign:'left' }}>
-                                                    <h5 className="admin-room">Contact Details:</h5>
-                                                        <h5 style={{marginLeft:'25px'}} className="admin-room">Name : {row.name}</h5>
-                                                        <h5  style={{marginLeft:'25px'}} className="admin-room">E-mail : {row.email}</h5>
-                                                        <h5  style={{marginLeft:'25px'}} className="admin-room">Phone : {row.phone}</h5>
+                                                    <div style={{backgroundColor:'#9e9e9e' , width:'400px', height:'fit-content', padding:'15px',textAlign:'left' }}>
+                                                    <h5 className="admin-room"><ContactMailIcon  id="card-his-bodyIcon"/>Contact Details:</h5>
+                                                        <h5 style={{marginLeft:'25px'}} className="admin-room"><PermIdentityIcon  id="card-his-bodyIcon"/>Name : {row.name}</h5>
+                                                        <h5  style={{marginLeft:'25px'}} className="admin-room"><AlternateEmailIcon  id="card-his-bodyIcon"/>E-mail : {row.email}</h5>
+                                                        <h5  style={{marginLeft:'25px'}} className="admin-room"><PhoneInTalkIcon  id="card-his-bodyIcon"/>Phone : {row.phone}</h5>
                                                     </div>
                                                 </div>
                                 <div className='conf-date' style={{justifyContent: 'flex-start' }}>
-                                    <h6 className='conf-date1'>Check In Date : {row.checkIn.split('T',[1])}</h6>
-                                    <h6 className='conf-date1'>Check In Time : {row.checkIn.split('T').pop().split(".",1)}</h6>
+                                    <h6 className='conf-date1'><TodayOutlinedIcon  id="card-his-bodyIcon"/>Check In Date : {row.checkIn.split('T',[1])}</h6>
+                                    <h6 className='conf-date1'><AccessTimeIcon  id="card-his-bodyIcon"/>Check In Time : {row.checkIn.split('T').pop().split(".",1)}</h6>
                                 </div>
-                                    
+                                
                                 <div className='conf-date' style={{justifyContent: 'flex-start'}}>
-                                <h6 className='conf-date1'>Check Out Date : {row.checkOut.split('T',[1])}</h6>
-                                    <h6 className='conf-date1'>Check Out Time : {row.checkOut.split('T').pop().split(".",1)}</h6>
+                                <h6 className='conf-date1'><EventIcon  id="card-his-bodyIcon"/>Check Out Date : {row.checkOut.split('T',[1])}</h6>
+                                    <h6 className='conf-date1'><AccessTimeFilledIcon  id="card-his-bodyIcon"/>Check Out Time : {row.checkOut.split('T').pop().split(".",1)}</h6>
                                 </div>
                                 <br />
                                 <div className='conf-date' style={{justifyContent: 'flex-start'}}>
                                 <h5  className="desc-card">
+                                <StarRateRoundedIcon  id="card-his-bodyIcon"/>
                                     Remarks : {row.remarks}
                                 </h5>
                                 </div>
                                 
                                 <div className='conf-date' style={{justifyContent: 'flex-start' }}>
-                                    <h6 >Customer Type :  {row.loyalty? "Loyalty":"Regular"}</h6>
+                                    <h6 > <LoyaltyIcon  id="card-his-bodyIcon"/>Customer Type :  {row.loyalty? "Loyalty":"Regular"}</h6>
                                 </div>
                                 
                                 <div className='conf-card' >
