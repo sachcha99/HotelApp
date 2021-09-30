@@ -11,7 +11,7 @@ import coverSection from './Images/coverSection.jpg'
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
 export const Home = () => {
-    const [more,setMore]= useState(false)
+    const [more, setMore] = useState(false)
     return (
         <div className='HomePage'>
             <Header />

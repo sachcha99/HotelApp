@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const RoomBookingForm = ({row,roomType,imageName}) => {
+export const RoomBookingForm = ({ row, roomType, imageName }) => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
@@ -106,53 +106,48 @@ export const RoomBookingForm = ({row,roomType,imageName}) => {
     const [switchState, setSwitchState] = useState({ switch: false });
     const [open, setOpen] = React.useState(false);
     const [Alertopen, setAlertopen] = React.useState(false);
-
-    const token =JSON.parse(sessionStorage.getItem("token"));
+    const token = JSON.parse(sessionStorage.getItem("token"));
     const today = new Date()
 
-    const handleShow = () =>{ 
+    const handleShow = () => {
 
-      
-    if(token){
-        setShow(true);
-        setuserId(token.id)
-        setEmail(token.email)
-        setName(token.fname+" "+token.lname)
-        setPhone("1234567896")
-        setsumbitDate(today)
-        setphotoPath(imageName)
-    }else{
-        handleClickOpen()
-       
+        if (token) {
+            setShow(true);
+            setuserId(token.id)
+            setEmail(token.email)
+            setName(token.fname + " " + token.lname)
+            setPhone("1234567896")
+            setsumbitDate(today)
+            setphotoPath(imageName)
+        } else {
+            handleClickOpen()
+        }
     }
 
-}
+    const handleClickOpen = () => {
+        setAlertopen(true);
+    };
 
-
-const handleClickOpen = () => {
-setAlertopen(true);
-};
-
-const handleAlertClose = () => {
-setAlertopen(false);
-};
+    const handleAlertClose = () => {
+        setAlertopen(false);
+    };
 
 
     useEffect(() => {
-        if(row){
-   
+        if (row) {
+
             setRooms(row.roomNo)
             setAdultNo(row.adultNo);
             setChildNo(row.childNo);
-            setCheckIn(row.checkIn.split('.',1));
-            setCheckOut(row.checkOut.split('.',1));
+            setCheckIn(row.checkIn.split('.', 1));
+            setCheckOut(row.checkOut.split('.', 1));
             setRemarks(row.remarks);
-            if( row.loyalty){
-                setSwitchState(true );
+            if (row.loyalty) {
+                setSwitchState(true);
             }
-            
+
         }
-       }, [open])
+    }, [open])
 
 
     const handleClick = () => {
@@ -168,56 +163,56 @@ setAlertopen(false);
     };
 
     const handleSwitch = (event) => {
-       
+
         setSwitchState({ ...switchState, [event.target.name]: event.target.checked });
     };
-    
+
 
     function handleSubmit(event) {
         event.preventDefault();
-        if(!row){
-        const room = {
-            userId:userId,
-            name: name,
-            email: email,
-            phone: phone,
-            roomName: roomType? roomType : 'Unkown Room Type',
-            status: "pending",
-            adultNo: adultNo,
-            childNo: childNo,
-            roomNo: Rooms,
-            checkIn: checkIn,
-            checkOut: checkOut,
-            remarks: remarks,
-            loyalty: switchState.switch,
-            addDate: sumbitDate,
-            photoPath: photoPath
-
-        }
-
-        //send post request to add a new room reservation to the db
-        API.post('/room/create', room)
-            .then(function (response) {
-                console.log(response.data);
-                if (response.data.message) {
-                    alert.info(response.data.message);
-                }
-                handleClick()
-                setShow(false)
-            })
-            .catch(function (error) {
-                console.log(error);
-                setShow(false)
-            });
-        }if(row){
+        if (!row) {
             const room = {
-                
-               
+                userId: userId,
+                name: name,
+                email: email,
+                phone: phone,
+                roomName: roomType ? roomType : 'Unkown Room Type',
+                status: "pending",
+                adultNo: adultNo,
+                childNo: childNo,
+                roomNo: Rooms,
+                checkIn: checkIn,
+                checkOut: checkOut,
+                remarks: remarks,
+                loyalty: switchState.switch,
+                addDate: sumbitDate,
+                photoPath: photoPath
+
+            }
+
+            //send post request to add a new room reservation to the db
+            API.post('/room/create', room)
+                .then(function (response) {
+                    console.log(response.data);
+                    if (response.data.message) {
+                        alert.info(response.data.message);
+                    }
+                    handleClick()
+                    setShow(false)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    setShow(false)
+                });
+        } if (row) {
+            const room = {
+
+
                 _id: row._id,
-                userId:row.userId,
+                userId: row.userId,
                 name: row.name,
                 email: row.email,
-                phone: row.phone, 
+                phone: row.phone,
                 roomName: row.roomName,
                 status: "pending",
                 adultNo: adultNo,
@@ -228,29 +223,29 @@ setAlertopen(false);
                 remarks: remarks,
                 loyalty: false,
                 addDate: row.addDate,
-                photoPath: row.photoPath, 
-    
+                photoPath: row.photoPath,
+
             }
 
 
 
             API.put('/room/update', room)
-                    .then(function (response) {
-                        console.log(response.data);
-                        if (response.data.message) {
-                            alert.info(response.data.message);
-    
-                        }
-                        handleClick()
-                        setShow(false)
-    
-                    })
-    
-                    .catch(function (error) {
-                        console.log(error);
-                        setShow(false)
-    
-                    });
+                .then(function (response) {
+                    console.log(response.data);
+                    if (response.data.message) {
+                        alert.info(response.data.message);
+
+                    }
+                    handleClick()
+                    setShow(false)
+
+                })
+
+                .catch(function (error) {
+                    console.log(error);
+                    setShow(false)
+
+                });
         }
 
         setRooms()
@@ -266,14 +261,14 @@ setAlertopen(false);
         <div>
             <Snackbar open={open} autoHideDuration={3000} onClose={handleCloseSnack}>
                 <Alert onClose={handleCloseSnack} severity="success">
-                {row ? 'Room Reservation Successful Updated':'Room Reservation Successful'}
+                    {row ? 'Room Reservation Successful Updated' : 'Room Reservation Successful'}
                 </Alert>
             </Snackbar>
-            <SlideAlert open={Alertopen} handleClose={handleAlertClose}/>
-         {row ?
-            <Button className='conf-btn conf-btn2' variant="primary" onClick={handleShow}>Edit</Button>:
-            <Button variant="primary" className="roomBtn1" onClick={handleShow} >Reserve</Button>
-         }
+            <SlideAlert open={Alertopen} handleClose={handleAlertClose} />
+            {row ?
+                <Button className='conf-btn conf-btn2' variant="primary" onClick={handleShow}>Edit</Button> :
+                <Button variant="primary" className="roomBtn1" onClick={handleShow} >Reserve</Button>
+            }
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -446,8 +441,8 @@ setAlertopen(false);
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                
-                        <Button type="submit" className="bookingBtn" variant="primary">{row ? `Update`:'Reserve'}</Button>
+
+                        <Button type="submit" className="bookingBtn" variant="primary">{row ? `Update` : 'Reserve'}</Button>
                     </Modal.Footer>
                 </form>
             </Modal>

@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { makeStyles } from '@material-ui/core/styles';
@@ -72,12 +72,11 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const ReceptionHallBookingForm = ({row,receptionType,imageName}) => {
+export const ReceptionHallBookingForm = ({ row, receptionType, imageName }) => {
 
     const classes = useStyles();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-
     const [Ent, setEnt] = useState();
     const [Category, setCategory] = useState();
     const [Menu, setMenu] = useState();
@@ -92,55 +91,51 @@ export const ReceptionHallBookingForm = ({row,receptionType,imageName}) => {
     const [photoPath, setphotoPath] = useState();
     const [open, setOpen] = React.useState(false);
     const [Alertopen, setAlertopen] = React.useState(false);
-
-    const token =JSON.parse(sessionStorage.getItem("token"));
+    const token = JSON.parse(sessionStorage.getItem("token"));
     const today = new Date()
-   
-    const handleShow = () =>{ 
-        
-      
-        if(token){
+
+    const handleShow = () => {
+
+        if (token) {
             setShow(true);
             setuserId(token.id)
             setEmail(token.email)
-            setName(token.fname+" "+token.lname)
+            setName(token.fname + " " + token.lname)
             setPhone("1234567896")
             setsumbitDate(today)
             setphotoPath(imageName)
-            
-        }else{
+
+        } else {
             handleClickOpen()
-           
         }
-    
     }
 
 
-  const handleClickOpen = () => {
-    setAlertopen(true);
-  };
+    const handleClickOpen = () => {
+        setAlertopen(true);
+    };
 
-  const handleAlertClose = () => {
-    setAlertopen(false);
-  };
+    const handleAlertClose = () => {
+        setAlertopen(false);
+    };
 
     useEffect(() => {
-     if(row){
+        if (row) {
 
-        setCapacity(row.capacity)
-        setEnt(row.entType);
-        setCategory(row.category);
-        setDate(row.funcDate.split('.',1));
-        setMenu(row.menu);
-        setRemarks(row.remarks);
-     }
+            setCapacity(row.capacity)
+            setEnt(row.entType);
+            setCategory(row.category);
+            setDate(row.funcDate.split('.', 1));
+            setMenu(row.menu);
+            setRemarks(row.remarks);
+        }
     }, [show])
-    
+
 
     const handleClick = () => {
-    
-            setOpen(true);
-       
+
+        setOpen(true);
+
     };
 
     const handleCloseSnack = (event, reason) => {
@@ -154,96 +149,85 @@ export const ReceptionHallBookingForm = ({row,receptionType,imageName}) => {
 
     function handleSubmit(event) {
         event.preventDefault();
-        if(!row)
-      {  const reception = {
-            userId:userId,
-            name: name,
-            email: email,
-            phone: phone,
-            receptionName: receptionType? receptionType : 'Unknown',
-            status: "pending",
-            capacity: capacity,
-            entType: Ent,
-            category: Category,
-            funcDate: date,
-            addDate: sumbitDate,
-            photoPath: photoPath,
-            menu: Menu,
-            remarks: remarks
+        if (!row) {
+            const reception = {
+                userId: userId,
+                name: name,
+                email: email,
+                phone: phone,
+                receptionName: receptionType ? receptionType : 'Unknown',
+                status: "pending",
+                capacity: capacity,
+                entType: Ent,
+                category: Category,
+                funcDate: date,
+                addDate: sumbitDate,
+                photoPath: photoPath,
+                menu: Menu,
+                remarks: remarks
+            }
+            console.log(reception)
+
+            //send post request to add a new reception hall reservation to the db
+            API.post('/reception/create', reception)
+                .then(function (response) {
+                    console.log(response.data);
+                    if (response.data.message) {
+                        alert.info(response.data.message);
+                    }
+                    handleClick()
+                    setShow(false)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    setShow(false)
+                });
         }
-        console.log(reception)
+        if (row) {
+            const reception = {
 
-        //send post request to add a new reception hall reservation to the db
-        API.post('/reception/create', reception)
-            .then(function (response) {
-                console.log(response.data);
-                if (response.data.message) {
-                    alert.info(response.data.message);
-                }
-                handleClick()
-                setShow(false)
-            })
-            .catch(function (error) {
-                console.log(error);
-                setShow(false)
-            });
-        } 
-        if(row){
+                _id: row._id,
+                userId: row.userId,
+                name: row.name,
+                email: row.email,
+                phone: row.phone,
+                receptionName: row.receptionName,
+                status: "pending",
+                capacity: capacity,
+                entType: Ent,
+                category: Category,
+                funcDate: date,
+                addDate: row.addDate,
+                photoPath: row.photoPath,
+                menu: Menu,
+                remarks: remarks
 
-           
+            }
 
-                const reception = {
-    
-                    _id: row._id,
-                    userId:row.userId,
-                    name: row.name,
-                    email: row.email,
-                    phone: row.phone,  
-                    receptionName: row.receptionName,
-                    status: "pending",  
-                    capacity: capacity,  
-                    entType: Ent,    
-                    category: Category,    
-                    funcDate: date,   
-                    addDate: row.addDate,
-                    photoPath: row.photoPath, 
-                    menu: Menu,
-                    remarks: remarks
-    
-                }
-    
-        
-                //send post request to add a new reception hall reservation to the db
-    
-                API.put('/reception/update', reception)
-                    .then(function (response) {
-                        console.log(response.data);
-                        if (response.data.message) {
-                            alert.info(response.data.message);
-    
-                        }
-                        handleClick()
-                        setShow(false)
-    
-                    })
-    
-                    .catch(function (error) {
-                        console.log(error);
-                        setShow(false)
-    
-                    });
-    
-                }
+            //send post request to add a new reception hall reservation to the db
 
-        
+            API.put('/reception/update', reception)
+                .then(function (response) {
+                    console.log(response.data);
+                    if (response.data.message) {
+                        alert.info(response.data.message);
+
+                    }
+                    handleClick()
+                    setShow(false)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    setShow(false)
+                });
+        }
+
         setCapacity()
         setEnt();
         setCategory();
         setDate();
         setMenu();
         setRemarks();
-
-        
     }
 
     return (
@@ -253,15 +237,15 @@ export const ReceptionHallBookingForm = ({row,receptionType,imageName}) => {
                     {row ? `Reception Hall Reservation Successfully Updated ` : `Reception Hall Reservation Successful`}
                 </Alert>
             </Snackbar>
-             <SlideAlert open={Alertopen} handleClose={handleAlertClose}/>
-          
+            <SlideAlert open={Alertopen} handleClose={handleAlertClose} />
+
             <div className="repBtn" >
-                {row ? 
-                 <Button className=' conf-btn2' variant="primary" onClick={handleShow} ><EditOutlinedIcon fontSize="small" /> Edit</Button> :
-                
-                 <Button variant="primary" className="repBtn1" onClick={handleShow}  >Make an Enquiry</Button>
-         }
-          </div>
+                {row ?
+                    <Button className=' conf-btn2' variant="primary" onClick={handleShow} ><EditOutlinedIcon fontSize="small" /> Edit</Button> :
+
+                    <Button variant="primary" className="repBtn1" onClick={handleShow}  >Make an Enquiry</Button>
+                }
+            </div>
 
             <Modal
                 show={show}
@@ -272,7 +256,7 @@ export const ReceptionHallBookingForm = ({row,receptionType,imageName}) => {
                 size="lg"
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>{row ? `Update Reception Hall Reservation Details`:`Check Availability of the Reception Hall`}</Modal.Title>
+                    <Modal.Title>{row ? `Update Reception Hall Reservation Details` : `Check Availability of the Reception Hall`}</Modal.Title>
                 </Modal.Header>
                 <form onSubmit={handleSubmit}>
                     <Modal.Body>
@@ -408,8 +392,8 @@ export const ReceptionHallBookingForm = ({row,receptionType,imageName}) => {
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                  
-                        <Button type="submit" className="bookingBtn" variant="primary">{ row ? `Update`:`Reserve`}</Button>
+
+                        <Button type="submit" className="bookingBtn" variant="primary">{row ? `Update` : `Reserve`}</Button>
 
                     </Modal.Footer>
                 </form>

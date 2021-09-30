@@ -23,31 +23,28 @@ import PageLoaderTimeOut from "../Preloader/PageLoaderTimeOut";
 
 export const RecepitonHallList = () => {
 
-  
   return (
     <div>
-      
       <Header />
-      <PageLoaderTimeOut/>
-      {/* <div className="PicTitileHallReserve">Reserve a ReceptionHall</div> */}
+      <PageLoaderTimeOut />
       <Title className="PicTitileRoomReserve" title="Reserve a Reception Hall" />
       <img className="headerPic" src={image} />
       <div className="mainBgPic">
         <h3 className="repMTitle">Our Reception Hall List</h3>
         <hr className="hr1"></hr>
-        
+
         <div className="repCard">
-       
+
           <Card style={{ width: "70%", margin: "20px" }}>
-          <div className="img-wrapper">
-            <img className="repImage1" src={rep4} alt="sdfd" />
-</div>
+            <div className="img-wrapper">
+              <img className="repImage1" src={rep4} alt="sdfd" />
+            </div>
             <Card.Body id="repcard-body">
               <div className="repTitleFlex">
                 <Card.Title className="repTitle">Grand Ballroom</Card.Title>
               </div>
               <Card.Text className="repDesc">
-              Upholding its reputation to the name, the grandest venue at waters edge is located on the 3rd floor, with a panoramic view of the lake and beyond. The unique column free feature ensures the largest seating capacity for a minimum of 500 guests.   </Card.Text>
+                Upholding its reputation to the name, the grandest venue at waters edge is located on the 3rd floor, with a panoramic view of the lake and beyond. The unique column free feature ensures the largest seating capacity for a minimum of 500 guests.   </Card.Text>
 
               <div className="repFlex">
 
@@ -120,315 +117,284 @@ export const RecepitonHallList = () => {
                 </div>
               </div>
 
-              <ReceptionHallBookingForm receptionType={'Grand Ballroom'}  imageName={rep4}/>
+              <ReceptionHallBookingForm receptionType={'Grand Ballroom'} imageName={rep4} />
 
             </Card.Body>
           </Card>
         </div>
-        <hr className="hr-mainRe"/>
+        <hr className="hr-mainRe" />
+        <div className="repCard">
+
+          <Card style={{ width: "70%", margin: "20px" }}>
+
+            <div className="img-wrapper">
+              <img className="repImage1" src={rep3} alt="sdfd" />
+            </div>
+            <Card.Body id="repcard-body">
+              <div className="repTitleFlex">
+                <Card.Title className="repTitle">Banquet Hall</Card.Title>
+              </div>
+              <Card.Text className="repDesc">
+                The Grand Banquet Hall is the largest hall in Brighten Hotels. The hall is ideal for weddings, birthday parties, engagements, receptions, corporate events etc.   </Card.Text>
+
+              <div className="repFlex">
+
+                <Divider />
+                <List component="nav" aria-label="secondary mailbox folders">
+                  <div>
+                    <hr className="repListHR" />
+
+                    <ListItemIcon>
+                      <RoomRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Location</div>
+                    </ListItemIcon>
+                    <div className="repListChild"  >Lobby level with lawn views</div>
+
+                    <hr className="repListHR" />
+
+                    <ListItemIcon>
+                      <GroupRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Occupancy</div>
+                    </ListItemIcon>
+                    <div className="repListChild"  >Capacity for 400 guests (seated)</div>
+
+                    <hr className="repListHR" />
+
+                    <ListItemIcon>
+                      <SquareFootRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Area</div>
+                    </ListItemIcon>
+                    <div className="repListChild"  >600 m2 or 7425 sq. ft. floor space</div>
+
+                    <hr className="repListHR" />
+                  </div>
+                </List>
+                <div className="repFeature">
+                  <div className="repFeaTitle">Features</div>
+
+                  <List component="nav" aria-label="main mailbox folders">
+
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Premium wood ceiling
+                    </ListItemIcon>
+
+                    <br />
+
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Unobstructed view from any angle
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Theatre style and table set-up arrangements
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Cushion chairs with choice of covers and bows
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Choice of theme light colours
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Fully Air-conditioned
+                    </ListItemIcon>
+
+                    <br />
 
 
+                  </List>
+                </div>
+              </div>
+
+              <ReceptionHallBookingForm receptionType={'Banquet Hall'} imageName={rep3} />
+
+            </Card.Body>
+          </Card>
+        </div>
+        <hr className="hr-mainRe" />
 
 
         <div className="repCard">
 
-<Card style={{ width: "70%", margin: "20px" }}>
+          <Card style={{ width: "70%", margin: "20px" }}>
+            <div className="img-wrapper">
+              <img className="repImage1" src={rep2} alt="sdfd" />
+            </div>
+            <Card.Body id="repcard-body">
+              <div className="repTitleFlex">
+                <Card.Title className="repTitle">Sangeeth Hall</Card.Title>
+              </div>
+              <Card.Text className="repDesc">
+                Sangeeth Hall is designed to meet relatively smaller gatherings such as birthdays, engagements, baby showers, small scale parties, receptions etc.   </Card.Text>
 
-<div className="img-wrapper">
-            <img className="repImage1" src={rep3} alt="sdfd" />
-</div>
-<Card.Body id="repcard-body">
-    <div className="repTitleFlex">
-      <Card.Title className="repTitle">Banquet Hall</Card.Title>
-    </div>
-    <Card.Text className="repDesc">
-    The Grand Banquet Hall is the largest hall in Brighten Hotels. The hall is ideal for weddings, birthday parties, engagements, receptions, corporate events etc.   </Card.Text>
+              <div className="repFlex">
 
-    <div className="repFlex">
+                <Divider />
+                <List component="nav" aria-label="secondary mailbox folders">
+                  <div>
+                    <hr className="repListHR" />
 
-      <Divider />
-      <List component="nav" aria-label="secondary mailbox folders">
-        <div>
-          <hr className="repListHR" />
+                    <ListItemIcon>
+                      <RoomRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Location</div>
+                    </ListItemIcon>
+                    <div className="repListChild"  >Lobby level with lawn views</div>
 
-          <ListItemIcon>
-            <RoomRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Location</div>
-          </ListItemIcon>
-          <div className="repListChild"  >Lobby level with lawn views</div>
+                    <hr className="repListHR" />
 
-          <hr className="repListHR" />
+                    <ListItemIcon>
+                      <GroupRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Occupancy</div>
+                    </ListItemIcon>
+                    <div className="repListChild"  >Capacity for 500 guests (seated)</div>
 
-          <ListItemIcon>
-            <GroupRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Occupancy</div>
-          </ListItemIcon>
-          <div className="repListChild"  >Capacity for 400 guests (seated)</div>
+                    <hr className="repListHR" />
 
-          <hr className="repListHR" />
+                    <ListItemIcon>
+                      <SquareFootRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Area</div>
+                    </ListItemIcon>
+                    <div className="repListChild"  >676 m2 or 7725 sq. ft. floor space</div>
 
-          <ListItemIcon>
-            <SquareFootRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Area</div>
-          </ListItemIcon>
-          <div className="repListChild"  >600 m2 or 7425 sq. ft. floor space</div>
+                    <hr className="repListHR" />
+                  </div>
+                </List>
+                <div className="repFeature">
+                  <div className="repFeaTitle">Features</div>
 
-          <hr className="repListHR" />
+                  <List component="nav" aria-label="main mailbox folders">
+
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Premium wood ceiling
+                    </ListItemIcon>
+
+                    <br />
+
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Unobstructed view from any angle
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Theatre style and table set-up arrangements
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Cushion chairs with choice of covers and bows
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Choice of theme light colours
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Fully Air-conditioned
+                    </ListItemIcon>
+
+                    <br />
+                  </List>
+                </div>
+              </div>
+
+              <ReceptionHallBookingForm receptionType={'Sangeeth Hall'} imageName={rep2} />
+
+            </Card.Body>
+          </Card>
         </div>
-      </List>
-      <div className="repFeature">
-        <div className="repFeaTitle">Features</div>
+        <hr className="hr-mainRe" />
+        <div className="repCard">
 
-        <List component="nav" aria-label="main mailbox folders">
+          <Card style={{ width: "70%", margin: "20px" }}>
+            <div className="img-wrapper">
+              <img className="repImage1" src={rep1} alt="sdfd" />
+            </div>
+            <Card.Body id="repcard-body">
+              <div className="repTitleFlex">
+                <Card.Title className="repTitle">Queens Hall</Card.Title>
+              </div>
+              <Card.Text className="repDesc">
+                Sangeeth Hall is designed to meet relatively smaller gatherings such as birthdays, engagements, baby showers, small scale parties, receptions etc.   </Card.Text>
 
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Premium wood ceiling
-          </ListItemIcon>
+              <div className="repFlex">
 
-          <br />
+                <Divider />
+                <List component="nav" aria-label="secondary mailbox folders">
+                  <div>
+                    <hr className="repListHR" />
 
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Unobstructed view from any angle
-          </ListItemIcon>
+                    <ListItemIcon>
+                      <RoomRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Location</div>
+                    </ListItemIcon>
+                    <div className="repListChild"  >Lobby level with lawn views</div>
 
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Theatre style and table set-up arrangements
-          </ListItemIcon>
+                    <hr className="repListHR" />
 
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Cushion chairs with choice of covers and bows
-          </ListItemIcon>
+                    <ListItemIcon>
+                      <GroupRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Occupancy</div>
+                    </ListItemIcon>
+                    <div className="repListChild"  >Capacity for 500 guests (seated)</div>
 
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Choice of theme light colours
-          </ListItemIcon>
+                    <hr className="repListHR" />
 
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Fully Air-conditioned
-          </ListItemIcon>
+                    <ListItemIcon>
+                      <SquareFootRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Area</div>
+                    </ListItemIcon>
+                    <div className="repListChild"  >676 m2 or 7725 sq. ft. floor space</div>
 
-          <br />
+                    <hr className="repListHR" />
+                  </div>
+                </List>
+                <div className="repFeature">
+                  <div className="repFeaTitle">Features</div>
+
+                  <List component="nav" aria-label="main mailbox folders">
+
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Premium wood ceiling
+                    </ListItemIcon>
+
+                    <br />
+
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Unobstructed view from any angle
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Theatre style and table set-up arrangements
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Cushion chairs with choice of covers and bows
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Choice of theme light colours
+                    </ListItemIcon>
+
+                    <br />
+                    <ListItemIcon>
+                      <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Fully Air-conditioned
+                    </ListItemIcon>
+
+                    <br />
 
 
-        </List>
-      </div>
-    </div>
+                  </List>
+                </div>
+              </div>
 
-    <ReceptionHallBookingForm receptionType={'Banquet Hall'} imageName={rep3}/>
+              <ReceptionHallBookingForm receptionType={'Queens Hall'} imageName={rep1} />
 
-  </Card.Body>
-</Card>
-</div>
-<hr className="hr-mainRe"/>
-
-
-
-
-
-
-
-
-
-<div className="repCard">
-
-<Card style={{ width: "70%", margin: "20px" }}>
-<div className="img-wrapper">
-            <img className="repImage1" src={rep2} alt="sdfd" />
-</div>
-  <Card.Body id="repcard-body">
-    <div className="repTitleFlex">
-      <Card.Title className="repTitle">Sangeeth Hall</Card.Title>
-    </div>
-    <Card.Text className="repDesc">
-    Sangeeth Hall is designed to meet relatively smaller gatherings such as birthdays, engagements, baby showers, small scale parties, receptions etc.   </Card.Text>
-
-    <div className="repFlex">
-
-      <Divider />
-      <List component="nav" aria-label="secondary mailbox folders">
-        <div>
-          <hr className="repListHR" />
-
-          <ListItemIcon>
-            <RoomRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Location</div>
-          </ListItemIcon>
-          <div className="repListChild"  >Lobby level with lawn views</div>
-
-          <hr className="repListHR" />
-
-          <ListItemIcon>
-            <GroupRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Occupancy</div>
-          </ListItemIcon>
-          <div className="repListChild"  >Capacity for 500 guests (seated)</div>
-
-          <hr className="repListHR" />
-
-          <ListItemIcon>
-            <SquareFootRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Area</div>
-          </ListItemIcon>
-          <div className="repListChild"  >676 m2 or 7725 sq. ft. floor space</div>
-
-          <hr className="repListHR" />
+            </Card.Body>
+          </Card>
         </div>
-      </List>
-      <div className="repFeature">
-        <div className="repFeaTitle">Features</div>
 
-        <List component="nav" aria-label="main mailbox folders">
-
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Premium wood ceiling
-          </ListItemIcon>
-
-          <br />
-
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Unobstructed view from any angle
-          </ListItemIcon>
-
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Theatre style and table set-up arrangements
-          </ListItemIcon>
-
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Cushion chairs with choice of covers and bows
-          </ListItemIcon>
-
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Choice of theme light colours
-          </ListItemIcon>
-
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Fully Air-conditioned
-          </ListItemIcon>
-
-          <br />
-
-
-        </List>
-      </div>
-    </div>
-
-    <ReceptionHallBookingForm receptionType={'Sangeeth Hall'} imageName={rep2}/>
-
-  </Card.Body>
-</Card>
-</div>
-<hr className="hr-mainRe"/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div className="repCard">
-
-<Card style={{ width: "70%", margin: "20px" }}>
-<div className="img-wrapper">
-            <img className="repImage1" src={rep1} alt="sdfd" />
-</div>
-  <Card.Body id="repcard-body">
-    <div className="repTitleFlex">
-      <Card.Title className="repTitle">Queens Hall</Card.Title>
-    </div>
-    <Card.Text className="repDesc">
-    Sangeeth Hall is designed to meet relatively smaller gatherings such as birthdays, engagements, baby showers, small scale parties, receptions etc.   </Card.Text>
-
-    <div className="repFlex">
-
-      <Divider />
-      <List component="nav" aria-label="secondary mailbox folders">
-        <div>
-          <hr className="repListHR" />
-
-          <ListItemIcon>
-            <RoomRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Location</div>
-          </ListItemIcon>
-          <div className="repListChild"  >Lobby level with lawn views</div>
-
-          <hr className="repListHR" />
-
-          <ListItemIcon>
-            <GroupRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Occupancy</div>
-          </ListItemIcon>
-          <div className="repListChild"  >Capacity for 500 guests (seated)</div>
-
-          <hr className="repListHR" />
-
-          <ListItemIcon>
-            <SquareFootRoundedIcon style={{ color: "#827c74" }} /><div className="repList"  >Area</div>
-          </ListItemIcon>
-          <div className="repListChild"  >676 m2 or 7725 sq. ft. floor space</div>
-
-          <hr className="repListHR" />
-        </div>
-      </List>
-      <div className="repFeature">
-        <div className="repFeaTitle">Features</div>
-
-        <List component="nav" aria-label="main mailbox folders">
-
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Premium wood ceiling
-          </ListItemIcon>
-
-          <br />
-
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Unobstructed view from any angle
-          </ListItemIcon>
-
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Theatre style and table set-up arrangements
-          </ListItemIcon>
-
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Cushion chairs with choice of covers and bows
-          </ListItemIcon>
-
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Choice of theme light colours
-          </ListItemIcon>
-
-          <br />
-          <ListItemIcon>
-            <ChevronRightOutlinedIcon style={{ color: "#0e992e", marginTop: "5px" }} />Fully Air-conditioned
-          </ListItemIcon>
-
-          <br />
-
-
-        </List>
-      </div>
-    </div>
-
-    <ReceptionHallBookingForm receptionType={'Queens Hall'} imageName={rep1}/>
-
-  </Card.Body>
-</Card>
-</div>
-
-
-
-
-<Footer/>
+        <Footer />
 
       </div>
     </div>
