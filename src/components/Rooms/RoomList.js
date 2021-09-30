@@ -21,8 +21,6 @@ import Title from "../header/Title";
 import image from '../Images/rroom.jpg'
 import PageLoaderTimeOut from "../Preloader/PageLoaderTimeOut";
 
-
-
 export const RoomList = () => {
 
   const [readmore1, setReadmore1] = useState(false);
@@ -30,11 +28,11 @@ export const RoomList = () => {
   const [readmore3, setReadmore3] = useState(false);
   const [readmore4, setReadmore4] = useState(false);
 
-  
+
   return (
     <div>
       <Header />
-      <PageLoaderTimeOut/>
+      <PageLoaderTimeOut />
       <Title className="PicTitileRoomReserve" title="Reserve a Room" />
       <img className="headerPic" src={image} />
       <div className="mainBgPic">
@@ -49,13 +47,13 @@ export const RoomList = () => {
 
 
               <div className="room-img-wrapper">
-              <img className="roomImage1" src={rep1} alt="sdfd" /></div>
+                <img className="roomImage1" src={rep1} alt="sdfd" /></div>
               <Card.Body>
                 <div className="roomTitleFlex">
                   <Card.Title className="roomTitle">Luxury Room City View</Card.Title>
                 </div>
                 <Card.Text className="roomDesc">
-                In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
+                  In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
                 </Card.Text>
 
 
@@ -91,8 +89,8 @@ export const RoomList = () => {
 
 
                 <div className="roomBtn" >
-                  <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore1(!readmore1)}} >Read more</Button>
-                  <RoomBookingForm roomType={'Luxury Room City View'} imageName={rep1}/>
+                  <Button variant="primary" className="roomBtn2" onClick={() => { setReadmore1(!readmore1) }} >Read more</Button>
+                  <RoomBookingForm roomType={'Luxury Room City View'} imageName={rep1} />
                 </div>
 
               </Card.Body>
@@ -101,23 +99,9 @@ export const RoomList = () => {
         </div>
 
         <br></br>
-        
+
 
         {readmore1 ? <RoomDetails /> : ""}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <div className="roomCard">
 
@@ -127,15 +111,15 @@ export const RoomList = () => {
             <div className="roomFlex">
 
 
-            <div className="room-img-wrapper">
-              <img className="roomImage1" src={rep2} alt="sdfd" />
+              <div className="room-img-wrapper">
+                <img className="roomImage1" src={rep2} alt="sdfd" />
               </div>
               <Card.Body>
                 <div className="roomTitleFlex">
                   <Card.Title className="roomTitle">Deluxe Room Ocean Facing</Card.Title>
                 </div>
                 <Card.Text className="roomDesc">
-                In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
+                  In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
                 </Card.Text>
 
 
@@ -171,7 +155,7 @@ export const RoomList = () => {
 
 
                 <div className="roomBtn" >
-                  <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore2(!readmore2)}} >Read more</Button>
+                  <Button variant="primary" className="roomBtn2" onClick={() => { setReadmore2(!readmore2) }} >Read more</Button>
                   <RoomBookingForm roomType={'Deluxe Room Ocean Facing'} imageName={rep2} />
                 </div>
 
@@ -181,15 +165,9 @@ export const RoomList = () => {
         </div>
 
         <br></br>
-        
+
 
         {readmore2 ? <RoomDetails /> : ""}
-
-
-
-
-
-
 
 
         <div className="roomCard">
@@ -200,15 +178,15 @@ export const RoomList = () => {
             <div className="roomFlex">
 
 
-            <div className="room-img-wrapper">
-              <img className="roomImage1" src={rep3} alt="sdfd" />
+              <div className="room-img-wrapper">
+                <img className="roomImage1" src={rep3} alt="sdfd" />
               </div>
               <Card.Body>
                 <div className="roomTitleFlex">
                   <Card.Title className="roomTitle">Deluxe Bed Room Suite City View</Card.Title>
                 </div>
                 <Card.Text className="roomDesc">
-                In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
+                  In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
                 </Card.Text>
 
 
@@ -244,8 +222,8 @@ export const RoomList = () => {
 
 
                 <div className="roomBtn" >
-                  <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore3(!readmore3)}} >Read more</Button>
-                  <RoomBookingForm roomType={'Deluxe Bed Room Suite City View'}  imageName={rep3}/>
+                  <Button variant="primary" className="roomBtn2" onClick={() => { setReadmore3(!readmore3) }} >Read more</Button>
+                  <RoomBookingForm roomType={'Deluxe Bed Room Suite City View'} imageName={rep3} />
                 </div>
 
               </Card.Body>
@@ -254,17 +232,9 @@ export const RoomList = () => {
         </div>
 
         <br></br>
-        
+
 
         {readmore3 ? <RoomDetails /> : ""}
-
-
-
-
-
-
-
-
         <div className="roomCard">
 
           <Card style={{ width: "80%", margin: "20px" }}>
@@ -273,15 +243,15 @@ export const RoomList = () => {
             <div className="roomFlex">
 
 
-            <div className="room-img-wrapper">
-              <img className="roomImage1" src={rep4} alt="sdfd" />
+              <div className="room-img-wrapper">
+                <img className="roomImage1" src={rep4} alt="sdfd" />
               </div>
               <Card.Body>
                 <div className="roomTitleFlex">
                   <Card.Title className="roomTitle">Deluxe Bed Room Suite Ocean View</Card.Title>
                 </div>
                 <Card.Text className="roomDesc">
-                In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
+                  In the buzzing beachside, resort amenities of the cosiest kind are yours at our deluxe rooms with all the comforts you need. Bold colours paint bright cheer in the décor reflecting the vibrant surrounds.
                 </Card.Text>
 
 
@@ -315,10 +285,9 @@ export const RoomList = () => {
                 </div>
 
 
-
                 <div className="roomBtn" >
-                  <Button variant="primary" className="roomBtn2" onClick={()=> {setReadmore4(!readmore4)}} >Read more</Button>
-                  <RoomBookingForm roomType={'Deluxe Bed Room Suite Ocean View'} imageName={rep4}/>
+                  <Button variant="primary" className="roomBtn2" onClick={() => { setReadmore4(!readmore4) }} >Read more</Button>
+                  <RoomBookingForm roomType={'Deluxe Bed Room Suite Ocean View'} imageName={rep4} />
                 </div>
 
               </Card.Body>
@@ -327,12 +296,10 @@ export const RoomList = () => {
         </div>
 
         <br></br>
-        
-
         {readmore4 ? <RoomDetails /> : ""}
-        </div>
-      <Footer/>        
       </div>
+      <Footer />
+    </div>
 
-      );
+  );
 };
