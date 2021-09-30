@@ -3,8 +3,8 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { Button } from 'reactstrap';
 import { Carousel } from 'react-bootstrap';
-import HomeSlide1 from './Images/HomeSlide1.jpg'
-import HomeSlide2 from './Images/HomeSlide2.jpg'
+import HomeSlide2 from './Images/HomeSlide1.jpg'
+import HomeSlide1 from './Images/HomeSlide2.jpg'
 import HomeSlide3 from './Images/HomeSlide3.jpg'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import coverSection from './Images/coverSection.jpg'

@@ -19,7 +19,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   const goToLogin =()=>{
     history.push("/login")
   }
-  
+  const goToSignUp =()=>{
+    history.push("/register")
+  }
 
   return (
     <div>
@@ -33,16 +35,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       ><div id="AlertBox">
-        <DialogTitle><div><InfoOutlinedIcon className="alertBoxIcon"/>Google's location service</div></DialogTitle>
+        <DialogTitle><div><InfoOutlinedIcon className="alertBoxIcon"/>Login to continue</div></DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-           <div> Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.</div>
+           <div>You must be logged into the <span style={{color:"#007500", cursor:"pointer" }}>Lemon Tree </span>Website before making the reservation.If you have not yet registered with our system, Please Sign up now</div>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} id="alertCancelBtn">Cancel</Button>
-          <Button onClick={goToLogin} id="alertLoginBtn">Go to login</Button>
+          <Button onClick={goToSignUp} id="alertRegBtn">SignUp</Button>
+          <Button onClick={goToLogin} id="alertLoginBtn">Login</Button>
+
         </DialogActions>
         </div>
       </Dialog>

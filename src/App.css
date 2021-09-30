@@ -1086,25 +1086,45 @@ margin-left: auto;
   color: rgb(255, 0, 0) !important;
   border: 1px solid  #e7e7e79f;
   text-transform: none !important;
+  font-family: 'Poppins' !important;
   box-shadow: 0 5px 6px rgba(163, 163, 163, 0.25), 0 6px 5px rgba(199, 199, 199, 0.22) !important;
 }
 #alertLoginBtn{
   margin-top: 5px !important;
-  width: 150px !important;
+  width: 120px !important;
   height: 35px!important;
   border-radius: 4px !important;
   background: #ffffff !important;
-  color: rgb(3, 146, 10) !important;
+  color: rgb(7, 110, 12) !important;
   border: 1px solid  #e7e7e79f;
+  font-weight: 800;
+  font-family: 'Poppins' !important;
   text-transform: none !important;
+  box-shadow: 0 5px 6px rgba(163, 163, 163, 0.25), 0 6px 5px rgba(199, 199, 199, 0.22) !important;
+}
+#alertRegBtn{
+  margin-top: 5px !important;
+  width: 120px !important;
+  height: 35px!important;
+  border-radius: 4px !important;
+  background: #ffffff !important;
+  color: rgb(56, 168, 61) !important;
+  border: 1px solid  #e7e7e79f;
+  font-weight: 800;
+  text-transform: none !important;
+  font-family: 'Poppins' !important;
   box-shadow: 0 5px 6px rgba(163, 163, 163, 0.25), 0 6px 5px rgba(199, 199, 199, 0.22) !important;
 }
 
 #AlertBox{
-  height: 200px !important;
+  height: 220px !important;
   background: rgba(241, 241, 241, 0.938);
   border-radius: 4px !important;
   box-shadow: 0 5px 6px rgba(163, 163, 163, 0.25), 0 6px 5px rgba(199, 199, 199, 0.22) !important;
+  font-family: 'Poppins' !important;
+}
+#alert-dialog-slide-description{
+  font-family: 'Poppins' !important;
 }
 .alertBoxIcon{
   margin-right: 8px;
