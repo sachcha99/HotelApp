@@ -240,7 +240,7 @@ export const RoomBookingHistory = () => {
                  )}
                 })}
             </div>
-            {/* <Footer/> */}
+            <Footer/>
             </div>
             </div> }
 </div>

@@ -93,7 +93,7 @@ export default function SignInView() {
                         sessionStorage.setItem("token",JSON.stringify(token));
                         switch(token.type) {
                             case "customer":
-                                history.push("/restaurant/menu");
+                                history.push("/home");
                                 break;
                             case "headChef":
                                 history.push("/restaurant/dashboard");
