@@ -7,22 +7,23 @@ const override = css`
   display: block;
   margin: 0 auto;
   border-color: red;
-  speedMultiplier: 0.5;
+  speedmultiplier: 0.5;
 `;
 
 function AdminLoader() {
   let [loading, setLoading] = useState(true);
   let [color, setColor] = useState("#009635");
 
-  
-
   return (
-    
     <div className="admin-loading">
-      {/* <button onClick={() => setLoading(!loading)}>Toggle Loader</button>
-      <input value={color} onChange={(input) => setColor(input.target.value)} placeholder="Color of the loader" /> */}
-    <div className="admin-loadingBody">
-      <HashLoader className="admin-loader" color={color} loading={loading} css={override} size={50} />
+      <div className="admin-loadingBody">
+        <HashLoader
+          className="admin-loader"
+          color={color}
+          loading={loading}
+          css={override}
+          size={50}
+        />
       </div>
     </div>
   );

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import "./Preloader.css";
-import  image  from "../Images/logonew.png";
+import image from "../Images/logonew.png";
 import Header from "../header/Header";
 
 class Pageloader extends Component {
-    pageloader() {
+  pageloader() {
     let preload = document.querySelector(".pageloader");
-    
   }
 
   componentDidMount() {
@@ -16,15 +15,15 @@ class Pageloader extends Component {
   render() {
     return (
       <div>
-      <div className="pageloader">
-          
-      <Header/>
-        <div class="spinner_wrap_pageLoader">
-          <div class="spinner" >  <img className="pageloaderPic" src={image} /> </div>
-          {/* <div className="pageloadeTxt" data-textPageloader=" Loading..."> Loading...</div> */}
+        <div className="pageloader">
+          <Header />
+          <div class="spinner_wrap_pageLoader">
+            <div class="spinner">
+              {" "}
+              <img className="pageloaderPic" src={image} />{" "}
+            </div>
+          </div>
         </div>
-      </div>
-
       </div>
     );
   }

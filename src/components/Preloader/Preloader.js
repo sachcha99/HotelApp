@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Preloader.css";
-import  image  from "../Images/logonew.png";
+import image from "../Images/logonew.png";
 
 class Preloader extends Component {
   preloader() {
@@ -21,8 +21,14 @@ class Preloader extends Component {
     return (
       <div className="preloader">
         <div class="spinner_wrap">
-          <div class="spinner" >  <img className="PreLoaderPic" src={image} /> </div>
-          <div className="preloadTxt" data-text=" Lemon Tree Hotel"> Lemon Tree Hotel</div>
+          <div class="spinner">
+            {" "}
+            <img className="PreLoaderPic" src={image} />{" "}
+          </div>
+          <div className="preloadTxt" data-text=" Lemon Tree Hotel">
+            {" "}
+            Lemon Tree Hotel
+          </div>
         </div>
       </div>
     );
