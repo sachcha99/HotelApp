@@ -74,7 +74,6 @@ export const ReceptionHallBookingHistory = () => {
   }
 
   const deleteBooking = (row) => {
-    console.log(row._id);
     confirmAlert({
       title: "Confirm to Delete",
       message: "Are you sure to delete this Reception Hall Reservation.",

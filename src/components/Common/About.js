@@ -52,23 +52,23 @@ const About = () => {
   useEffect(() => {
     if (rating == 1) {
       setratingStatus("Bad");
-      console.log(rating);
+     
     }
     if (rating == 2) {
       setratingStatus("Ok");
-      console.log(rating);
+ 
     }
     if (rating == 3) {
       setratingStatus("Good");
-      console.log(rating);
+  
     }
     if (rating == 4) {
       setratingStatus("Very Good");
-      console.log(rating);
+     
     }
     if (rating == 5) {
       setratingStatus("Excellent");
-      console.log(rating);
+   
     }
   }, [rating]);
 

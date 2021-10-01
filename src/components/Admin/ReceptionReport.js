@@ -43,7 +43,7 @@ export const ReceptionReport = () => {
   useEffect(() => {
     API.get(`/reception/`)
       .then((res) => {
-        console.log(res.data);
+       
         setRows(res.data);
       })
       .catch((err) => {
@@ -52,7 +52,6 @@ export const ReceptionReport = () => {
   }, []);
 
   useEffect(() => {
-    console.log("rows", rows);
   }, [rows]);
   const columns = [
     {

@@ -1,5 +1,7 @@
-import List from "@material-ui/core/List";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
+
+import List from '@material-ui/core/List';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+
 
 import React from "react";
 
@@ -12,15 +14,16 @@ export const RoomDetails = () => {
             <div className="repFeaTitle">ROOM DETAILS</div>
 
             <List component="nav" aria-label="main mailbox folders">
+
               <ListItemIcon>
-                The large rooms are a luxurious retreat in the middle of the
-                city,<br></br> with captivating views of Colombo’s vibrant
-                streets.
+                The large rooms are a luxurious retreat in the middle of the city,<br></br> with captivating views of Colombo’s vibrant streets.
               </ListItemIcon>
 
               <br />
               <div className="repFeaTitle">SIZE</div>
-              <ListItemIcon>35 Sq Mt</ListItemIcon>
+              <ListItemIcon>
+                35 Sq Mt
+              </ListItemIcon>
 
               <br />
               <div className="repFeaTitle">SIGNATURE FEATURE</div>
@@ -33,21 +36,30 @@ export const RoomDetails = () => {
               <ListItemIcon>
                 Cushion chairs with choice of covers and bows
               </ListItemIcon>
+
             </List>
           </div>
 
           <div>
+
             <div className="repFeaTitle">BED & BATH</div>
 
             <List component="nav" aria-label="main mailbox folders">
-              <ListItemIcon>Pillow menu</ListItemIcon>
+
+              <ListItemIcon>
+                Pillow menu
+              </ListItemIcon>
 
               <br />
 
-              <ListItemIcon>Suit, skirt & padded hangers</ListItemIcon>
+              <ListItemIcon>
+                Suit, skirt & padded hangers
+              </ListItemIcon>
 
               <br />
-              <ListItemIcon>Bath menu & bath salts</ListItemIcon>
+              <ListItemIcon>
+                Bath menu & bath salts
+              </ListItemIcon>
 
               <br />
               <ListItemIcon>
@@ -55,7 +67,9 @@ export const RoomDetails = () => {
               </ListItemIcon>
 
               <br />
-              <ListItemIcon>request on complimentary basis</ListItemIcon>
+              <ListItemIcon>
+                request on complimentary basis
+              </ListItemIcon>
 
               <br />
               <ListItemIcon>
@@ -70,19 +84,26 @@ export const RoomDetails = () => {
             <div className="repFeaTitle">OTHER CONVENIENCES</div>
 
             <List component="nav" aria-label="main mailbox folders">
+
               <ListItemIcon>
                 24-hour in-room dining Premium Wi-Fi at nominal charge
               </ListItemIcon>
 
               <br />
 
-              <ListItemIcon>Premium Wi-Fi at nominal charge</ListItemIcon>
+              <ListItemIcon>
+                Premium Wi-Fi at nominal charge
+              </ListItemIcon>
 
               <br />
-              <ListItemIcon>DVD player DVDs on request</ListItemIcon>
+              <ListItemIcon>
+                DVD player DVDs on request
+              </ListItemIcon>
 
               <br />
-              <ListItemIcon>Complimentary newspapers</ListItemIcon>
+              <ListItemIcon>
+                Complimentary newspapers
+              </ListItemIcon>
 
               <br />
               <ListItemIcon>
@@ -90,13 +111,16 @@ export const RoomDetails = () => {
               </ListItemIcon>
 
               <br />
-              <ListItemIcon>32-inch flat-screen LCD TV</ListItemIcon>
-
+              <ListItemIcon>
+                32-inch flat-screen LCD TV
+              </ListItemIcon>
               <br />
+
             </List>
           </div>
         </div>
       </div>
     </div>
+
   );
 };

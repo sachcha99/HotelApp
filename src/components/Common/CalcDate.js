@@ -42,7 +42,7 @@ const CalcDate = ({ DateC }) => {
 
   useEffect(() => {
     calculateDays();
-    console.log(past, today);
+
   }, []);
 
   return (

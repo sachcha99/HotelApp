@@ -137,7 +137,7 @@ export default function CheckOutView() {
             userId:token.id
         }
 
-        console.log(Order)
+  
 
         API.post("/order/create", Order)
             .then(() => {

@@ -51,7 +51,7 @@ function TransitionUp(props) {
 export const AdminReceptionBooking = () => {
   const classes = useStyles();
   const [status, setStatus] = useState("all");
-  const [rows, setRows] = useState("");
+  const [rows, setRows] = useState([]);
   const [approve, setApprove] = useState("all");
   const [StatusFilter, setStatusFilter] = useState("All");
   let count = 0;
@@ -119,7 +119,10 @@ export const AdminReceptionBooking = () => {
           console.log(err);
         });
     }
-  }, [rows, searchTerm]);
+
+   
+    
+  }, [searchTerm]);
 
   const findItems = (itemName) => {
     if (itemName) {
@@ -136,18 +139,16 @@ export const AdminReceptionBooking = () => {
         .catch((err) => {
           console.log(err);
         });
-      console.log(searchResults);
     }
   };
 
-  {
-    rows.length > 0 &&
-      rows.map((row) => {
-        if (row.status === status || status === "all") {
-          count++;
-        }
-      });
-  }
+  {rows.length > 0 &&
+        rows.map((row) => {
+          if (row.status === status || status === "all") {
+            count++;
+          }
+        });
+    }
 
   const handleChange = (event) => {
     findItems(event.target.value);
@@ -210,28 +211,7 @@ export const AdminReceptionBooking = () => {
     setApprove("rejected");
   };
 
-  const deleteBooking = (row) => {
-    console.log(row._id);
-    confirmAlert({
-      title: "Confirm to Delete",
-      message: "Are you sure to delete this Reception.",
-      buttons: [
-        {
-          label: "Yes",
-          onClick: () => {
-            API.delete(`reception/delete/${row._id}`)
-              .then((res) => {})
-              .catch((err) => {
-                console.log(err);
-              });
-          },
-        },
-        {
-          label: "No",
-        },
-      ],
-    });
-  };
+ 
 
   const AllConference = () => {
     setStatus("all");

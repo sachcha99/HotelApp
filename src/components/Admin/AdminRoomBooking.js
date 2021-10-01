@@ -71,7 +71,7 @@ export const AdminRoomBooking = () => {
           console.log(err);
         });
     }
-  }, [rows, searchTerm]);
+  }, [searchTerm]);
 
   const handleClick = (Transition) => () => {
     setTimeout(() => {
@@ -108,7 +108,7 @@ export const AdminRoomBooking = () => {
         .catch((err) => {
           console.log(err);
         });
-      console.log(searchResults);
+     
     }
   };
 
@@ -124,7 +124,7 @@ export const AdminRoomBooking = () => {
   const handleChange = (event) => {
     findItems(event.target.value);
     setSearchTerm(event.target.value);
-    console.log(searchTerm);
+   
   };
 
   const approveBooking = (rowData) => {
@@ -180,28 +180,7 @@ export const AdminRoomBooking = () => {
     API.put("/room/update", approveData).then(handleClickDel(TransitionUp));
   };
 
-  const deleteBooking = (row) => {
-    console.log(row._id);
-    confirmAlert({
-      title: "Confirm to Delete",
-      message: "Are you sure to delete this Room.",
-      buttons: [
-        {
-          label: "Yes",
-          onClick: () => {
-            API.delete(`room/delete/${row._id}`)
-              .then((res) => {})
-              .catch((err) => {
-                console.log(err);
-              });
-          },
-        },
-        {
-          label: "No",
-        },
-      ],
-    });
-  };
+  
 
   const AllConference = () => {
     setStatus("all");
