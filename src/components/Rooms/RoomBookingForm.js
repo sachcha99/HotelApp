@@ -116,7 +116,7 @@ export const RoomBookingForm = ({ row, roomType, imageName }) => {
             setuserId(token.id)
             setEmail(token.email)
             setName(token.fname + " " + token.lname)
-            setPhone("1234567896")
+            setPhone("+94717222462")
             setsumbitDate(today)
             setphotoPath(imageName)
         } else {

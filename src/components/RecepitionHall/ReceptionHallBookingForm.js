@@ -101,7 +101,7 @@ export const ReceptionHallBookingForm = ({ row, receptionType, imageName }) => {
             setuserId(token.id)
             setEmail(token.email)
             setName(token.fname + " " + token.lname)
-            setPhone("1234567896")
+            setPhone("+94776426210")
             setsumbitDate(today)
             setphotoPath(imageName)
 
