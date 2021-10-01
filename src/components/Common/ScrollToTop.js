@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import ArrowUpwardRoundedIcon from '@mui/icons-material/ArrowUpwardRounded';
+import ArrowUpwardRoundedIcon from "@mui/icons-material/ArrowUpwardRounded";
 export default class ScrollToTop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      is_visible: false
+      is_visible: false,
     };
   }
 
   componentDidMount() {
     var scrollComponent = this;
-    document.addEventListener("scroll", function(e) {
+    document.addEventListener("scroll", function (e) {
       scrollComponent.toggleVisibility();
     });
   }
@@ -18,11 +18,11 @@ export default class ScrollToTop extends Component {
   toggleVisibility() {
     if (window.pageYOffset > 300) {
       this.setState({
-        is_visible: true
+        is_visible: true,
       });
     } else {
       this.setState({
-        is_visible: false
+        is_visible: false,
       });
     }
   }
@@ -30,7 +30,7 @@ export default class ScrollToTop extends Component {
   scrollToTop() {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   }
 
@@ -39,13 +39,8 @@ export default class ScrollToTop extends Component {
     return (
       <div className="scroll-to-top">
         {is_visible && (
-          <div   className="topScroll" onClick={() => this.scrollToTop()}>
-             < ArrowUpwardRoundedIcon className="topScrollIcon" >
-            {/* <svg
-              xmlns="http://www.w3.org/2000/svg"
-              height="38.735"
-              width="33.749"
-            > */}
+          <div className="topScroll" onClick={() => this.scrollToTop()}>
+            <ArrowUpwardRoundedIcon className="topScrollIcon">
               <g transform="translate(-18.121 -3.364)">
                 <rect
                   ry="4.928"
@@ -70,7 +65,7 @@ export default class ScrollToTop extends Component {
                   </g>
                 </g>
               </g>
-            </  ArrowUpwardRoundedIcon >
+            </ArrowUpwardRoundedIcon>
           </div>
         )}
       </div>

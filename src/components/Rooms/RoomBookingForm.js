@@ -193,7 +193,6 @@ export const RoomBookingForm = ({ row, roomType, imageName }) => {
             //send post request to add a new room reservation to the db
             API.post('/room/create', room)
                 .then(function (response) {
-                    console.log(response.data);
                     if (response.data.message) {
                         alert.info(response.data.message);
                     }
@@ -231,7 +230,6 @@ export const RoomBookingForm = ({ row, roomType, imageName }) => {
 
             API.put('/room/update', room)
                 .then(function (response) {
-                    console.log(response.data);
                     if (response.data.message) {
                         alert.info(response.data.message);
 
@@ -449,4 +447,3 @@ export const RoomBookingForm = ({ row, roomType, imageName }) => {
         </div>
     )
 }
-

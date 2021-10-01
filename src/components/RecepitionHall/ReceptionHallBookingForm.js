@@ -166,12 +166,11 @@ export const ReceptionHallBookingForm = ({ row, receptionType, imageName }) => {
                 menu: Menu,
                 remarks: remarks
             }
-            console.log(reception)
+        
 
             //send post request to add a new reception hall reservation to the db
             API.post('/reception/create', reception)
                 .then(function (response) {
-                    console.log(response.data);
                     if (response.data.message) {
                         alert.info(response.data.message);
                     }
@@ -208,7 +207,6 @@ export const ReceptionHallBookingForm = ({ row, receptionType, imageName }) => {
 
             API.put('/reception/update', reception)
                 .then(function (response) {
-                    console.log(response.data);
                     if (response.data.message) {
                         alert.info(response.data.message);
 
@@ -401,4 +399,3 @@ export const ReceptionHallBookingForm = ({ row, receptionType, imageName }) => {
         </div>
     )
 }
-
