@@ -25,11 +25,19 @@ The records are stored in mongo DB database. Requirements gathered from the hote
 
 ### Technologies ###
 
-React JS
-Node JS
-Mongo DB
+1. React JS
+2. Node JS
+3. Mongo DB
 
 ### Prerequisites ###
 
+1. Need to install and setup Node JS
 
 ### Procedure of setting up prerequisites and run the project ###
+
+1. Install Node JS from https://nodejs.org/en/
+2. Get a clone from this repository using git clone https://github.com/sachcha99/HotelApp.git
+3. Checkout master branch using git checkout master
+4. Open the code using Webstorm or VS Code
+5. Run npm install
+6. Run npm start
