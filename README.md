@@ -3,7 +3,7 @@
 # Project name - Hotel Management System #
 
 <hr />
-Group Details:<br />
+# Group Details: #<br />
 <hr />
 member details:
 
