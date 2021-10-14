@@ -1,8 +1,10 @@
 GROUP-ID - 2021S2_REG_WE_44
-
+<hr />
 Project name - Hotel Management System
 
+<hr />
 Group Details:<br />
+<hr />
 member details:
 
 | Name  | Student ID | Username |
