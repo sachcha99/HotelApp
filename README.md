@@ -13,8 +13,8 @@ member details:
 | Sachintha Nipun M.M  | IT19046594  | mmihiranga  |
 | Madhura Mihiranga H.N  | IT19177410  | Sachcha99  |
 
-Project Description
-<hr />
+### Project Description ###
+
 Absence of online system has made the hotel consume more time for record keeping, lack of popularity and required to keep hard copies of records. The proposed Hotel Management System can keep the above-mentioned difficulties to minimum.   
 
 First, customers can register to the system and then system will create a separate user account. Customers can simply login to the system afterwards. Then Customers can view rooms, reception halls view food items and can filter items by category easily. After that, Customers can book rooms and reception halls, order foods through the system via different delivery options and will show order status accordingly. 
@@ -23,5 +23,13 @@ Through this Hotel Management System manager can manage rooms, reception halls a
 
 The records are stored in mongo DB database. Requirements gathered from the hotel management mainly focus on online system with a database. All the records of these sub systems are stored in a database.   As the back-end operations, admin can get reports from the system about rooms/reception halls/packages reservations, online food delivery service and invoice of all the current transactions that gone through the system.
 
-Technologies
-<hr />
+### Technologies ###
+
+React JS
+Node JS
+Mongo DB
+
+### Prerequisites ###
+
+
+### Procedure of setting up prerequisites and run the project ###
