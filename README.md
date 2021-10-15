@@ -41,3 +41,5 @@ The records are stored in mongo DB database. Requirements gathered from the hote
 4. Open the code using Webstorm or VS Code
 5. Run npm install
 6. Run npm start
+
+Or link - https://hotelapplk.netlify.app
